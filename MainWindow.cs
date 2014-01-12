@@ -20,8 +20,10 @@ namespace AVTTLoaderStandalone
 
         private void Button1Click(object sender, EventArgs e)
         {
-            var tmp = ReadCfg("tree.cfg");
-            Tree.Load(tmp);
+            dataList.Clear();
+            if (!File.Exists("tree.cfg")) { dataList.Items.Add("Put tree.cfg in the same folder as this file and run again."); return; }
+
+            Tree.Load(ReadCfg("tree.cfg"));
             foreach (var part in Tree.Nodes.SelectMany(n => n.Parts))
             {
                 dataList.Items.Add(part);
@@ -30,10 +32,6 @@ namespace AVTTLoaderStandalone
 
         private static string ReadCfg(string cfg)
         {
-            //
-            // Read in a file line-by-line, and store it all in a List.
-            //
-            var list = new List<string>();
             var cfgout = "";
             using (var reader = new StreamReader(cfg))
             {
@@ -41,7 +39,6 @@ namespace AVTTLoaderStandalone
                 while ((line = reader.ReadLine()) != null)
                 {
                     cfgout = cfgout + line + "\r\n";
-                    list.Add(line); // Add to list.
                 }
             }
             return cfgout;
