@@ -20,7 +20,7 @@ namespace AVTTLoaderStandalone
 
         private void Button1Click(object sender, EventArgs e)
         {
-            var tmp = ReadCfg("C:/Games/Steam/steamapps/common/Kerbal Space Program - Copy/saves/default/tree.cfg");
+            var tmp = ReadCfg("tree.cfg");
             Tree.Load(tmp);
             foreach (var part in Tree.Nodes.SelectMany(n => n.Parts))
             {
