@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -42,6 +43,21 @@ namespace AVTTLoaderStandalone
                 }
             }
             return cfgout;
+        }
+
+        private void ButtonAddClick(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof (AddWindow))
+                {
+                    form.Dispose();
+                    return;
+                }
+            }
+            var addWindow = new AddWindow();
+            addWindow.SetDesktopLocation(Location.X + Width + 5, Location.Y);
+            addWindow.Show();
         }
     }
 }
