@@ -22,5 +22,17 @@ namespace AVTTLoaderStandalone.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("tree.cfg")]
+        public string TreeLocation {
+            get {
+                return ((string)(this["TreeLocation"]));
+            }
+            set {
+                this["TreeLocation"] = value;
+            }
+        }
     }
 }

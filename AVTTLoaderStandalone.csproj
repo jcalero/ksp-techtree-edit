@@ -63,6 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Attribute.cs" />
     <Compile Include="Tree.cs" />
+    <Compile Include="TreeParser.cs" />
     <EmbeddedResource Include="AddWindow.resx">
       <DependentUpon>AddWindow.cs</DependentUpon>
     </EmbeddedResource>

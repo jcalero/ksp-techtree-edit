@@ -1,128 +1,25 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
+﻿using System.Collections.Generic;
 
 namespace AVTTLoaderStandalone
 {
     /// <summary>
-    /// Tech tree parser and structure
+    /// Represents a tech tree structure.
     /// </summary>
-    public static class Tree
+    public class Tree
     {
-        public static List<Node> Nodes = new List<Node>();
-        public static void Load(string cfg)
+        public List<Node> Nodes = new List<Node>();
+        public string FilePath { get; private set; }
+
+        public Tree(string fileName)
         {
-            var n = 0;
-            var b = false;
-            foreach (var str in Regex.Split(cfg, "\r\n|\r|\n"))
-            {
-                switch (str.Trim())
-                {
-                    case "{":
-                        n += 1;
-                        b = true;
-                        break;
-                    case "}":
-                        n -= 1;
-                        break;
-                }
-
-                switch (n)
-                {
-                    case 1:
-                        if (b) { Nodes.Add(new Node()); Nodes.Last().Parts = new List<Attribute>(); }
-                        if (str.Contains('=') == false)
-                            break;
-
-                        var ss = new Attribute(str.Trim());
-                        switch (ss.Item)
-                        {
-                            case "name":
-                                Nodes.Last().Name.Value = ss.Value;
-                                break;
-                            case "techID":
-                                Nodes.Last().TechId.Value = ss.Value;
-                                break;
-                            case "pos":
-                                Nodes.Last().Pos.Value = ss.Value;
-                                break;
-                            case "icon":
-                                Nodes.Last().Icon.Value = ss.Value;
-                                break;
-                            case "cost":
-                                Nodes.Last().Cost.Value = ss.Value;
-                                break;
-                            case "title":
-                                Nodes.Last().Title.Value = ss.Value;
-                                break;
-                            case "description":
-                                Nodes.Last().Description.Value = ss.Value;
-                                break;
-                            case "anyParent":
-                                Nodes.Last().AnyParent.Value = ss.Value;
-                                break;
-                            case "hideIfEmpty":
-                                Nodes.Last().HideIfEmpty.Value = ss.Value;
-                                break;
-                            case "parents":
-                                Nodes.Last().Parents.Value = ss.Value;
-                                break;
-                        }
-                        break;
-                    case 2:
-                        if (str.Contains('=') == false)
-                            break;
-
-                        Nodes.Last().Parts.Add(new Attribute(str.Trim()));
-                        break;
-                }
-                b = false;
-            }
+            FilePath = fileName;
         }
 
-        public static bool Save(string fileName)
-        {
-            var newLine = Environment.NewLine;
-            var cfgOutput = "";
-            StreamWriter file;
-
-            try
-            {
-                 file = new StreamWriter(fileName);
-            }
-            catch (Exception)
-            {
-                return false;
-                // TODO: HANDLE
-            }
-
-            foreach (var node in Nodes)
-            {
-                cfgOutput += "NODE" + newLine + "{" + newLine;
-
-                foreach (var a in node.AttributeList)
-                {
-                    cfgOutput += "\t" + a.Item + " = " + a.Value + newLine;
-                }
-
-                cfgOutput += "\tPARTS" + newLine + "\t{" + newLine;
-                foreach (var part in node.Parts)
-                {
-                    cfgOutput += "\t\t" + part.Item + " = " + part.Value + newLine;
-                }
-
-                cfgOutput += "\t}" + newLine + "}" + newLine;
-            }
-
-            file.Write(cfgOutput);
-            file.Close();
-
-            return true;
-        }
     }
+
+    /// <summary>
+    /// Represents a node in a tech tree. Can iterate through attributes by calling Attributes. Can iterate through parts by calling Parts.
+    /// </summary>
     public class Node
     {
         public Attribute Name = new Attribute();
@@ -135,9 +32,19 @@ namespace AVTTLoaderStandalone
         public Attribute AnyParent = new Attribute();
         public Attribute HideIfEmpty = new Attribute();
         public Attribute Parents = new Attribute();
+        /// <summary>
+        /// All the parts in this node
+        /// </summary>
         public List<Attribute> Parts = new List<Attribute>();
 
-        public List<Attribute> AttributeList = new List<Attribute>();
+        private readonly List<Attribute> _attributeList = new List<Attribute>();
+
+        /// <summary>
+        /// A list of all attributes in this node (not including the parts)
+        /// </summary>
+        public List<Attribute> Attributes {
+            get { return _attributeList; }
+        } 
 
         public Node()
         {
@@ -152,16 +59,16 @@ namespace AVTTLoaderStandalone
             HideIfEmpty.Item = "hideIfEmpty";
             Parents.Item = "parents";
 
-            AttributeList.Add(Name);
-            AttributeList.Add(TechId);
-            AttributeList.Add(Pos);
-            AttributeList.Add(Icon);
-            AttributeList.Add(Cost);
-            AttributeList.Add(Title);
-            AttributeList.Add(Description);
-            AttributeList.Add(AnyParent);
-            AttributeList.Add(HideIfEmpty);
-            AttributeList.Add(Parents);
+            _attributeList.Add(Name);
+            _attributeList.Add(TechId);
+            _attributeList.Add(Pos);
+            _attributeList.Add(Icon);
+            _attributeList.Add(Cost);
+            _attributeList.Add(Title);
+            _attributeList.Add(Description);
+            _attributeList.Add(AnyParent);
+            _attributeList.Add(HideIfEmpty);
+            _attributeList.Add(Parents);
         }
     }
 }

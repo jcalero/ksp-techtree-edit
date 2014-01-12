@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AVTTLoaderStandalone
@@ -13,18 +7,24 @@ namespace AVTTLoaderStandalone
     {
         public Node SelectedNode { get; private set; }
         public string NewPart { get; private set; }
+        private Tree tree;
 
         public event EventHandler OnDataAvailable;
 
-        public AddWindow()
+        //public AddWindow()
+        //{
+        //    InitializeComponent();
+        //}
+
+        public AddWindow(Tree tree)
         {
             InitializeComponent();
-            PopulateNodesComboBox();
+            this.tree = tree;
         }
 
         public void PopulateNodesComboBox()
         {
-            foreach (var node in Tree.Nodes)
+            foreach (var node in tree.Nodes)
             {
                 comboBoxNodes.Items.Add((string)node.Name);
             }
@@ -35,7 +35,7 @@ namespace AVTTLoaderStandalone
         private void ButtonAddConfirmClick(object sender, EventArgs e)
         {
             NewPart = textBoxNewPart.Text;
-            foreach (var node in Tree.Nodes)
+            foreach (var node in tree.Nodes)
             {
                 if (node.Name != (string)comboBoxNodes.SelectedItem) continue;
                 SelectedNode = node;
