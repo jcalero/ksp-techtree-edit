@@ -13,7 +13,18 @@ namespace AVTTLoaderStandalone
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindow());
+            var mw = new MainWindow();
+            Application.Run(mw);
+            var app = new AVTTEditor(mw);
+        }
+
+    }
+
+    public class AVTTEditor
+    {
+        public AVTTEditor(MainWindow mw)
+        {
+            
         }
     }
 }
