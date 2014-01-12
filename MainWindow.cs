@@ -9,6 +9,8 @@ namespace AVTTLoaderStandalone
 {
     public partial class MainWindow : Form
     {
+        readonly AddWindow _addWindow = new AddWindow();
+        private string treeFile = "tree.cfg";
         public MainWindow()
         {
             InitializeComponent();
@@ -16,15 +18,15 @@ namespace AVTTLoaderStandalone
 
         private void MainWindowLoad(object sender, EventArgs e)
         {
-            // Nothing here
+            _addWindow.OnDataAvailable += AddPartDataAvailable;
         }
 
         private void Button1Click(object sender, EventArgs e)
         {
             dataList.Clear();
-            if (!File.Exists("tree.cfg")) { dataList.Items.Add("Put tree.cfg in the same folder as this file and run again."); return; }
+            if (!File.Exists(treeFile)) { dataList.Items.Add("Put tree.cfg in the same folder as this file and run again."); return; }
 
-            Tree.Load(ReadCfg("tree.cfg"));
+            Tree.Load(ReadCfg(treeFile));
             foreach (var part in Tree.Nodes.SelectMany(n => n.Parts))
             {
                 dataList.Items.Add(part);
@@ -47,17 +49,23 @@ namespace AVTTLoaderStandalone
 
         private void ButtonAddClick(object sender, EventArgs e)
         {
-            foreach (Form form in Application.OpenForms)
+            if (_addWindow.Visible)
             {
-                if (form.GetType() == typeof (AddWindow))
-                {
-                    form.Dispose();
-                    return;
-                }
+                _addWindow.Hide();
+                return;
             }
-            var addWindow = new AddWindow();
-            addWindow.SetDesktopLocation(Location.X + Width + 5, Location.Y);
-            addWindow.Show();
+            _addWindow.SetDesktopLocation(Location.X + Width + 5, Location.Y);
+            _addWindow.PopulateNodesComboBox();
+            _addWindow.Show();
+        }
+
+        private void AddPartDataAvailable(object sender, EventArgs e)
+        {
+            dataList.Clear();
+            dataList.Items.Add(_addWindow.NewPart);
+            dataList.Items.Add(_addWindow.SelectedNode.Name);
+            _addWindow.SelectedNode.Parts.Add(new Attribute("name = " + _addWindow.NewPart));
+            Tree.Save(treeFile);
         }
     }
 }
