@@ -12,6 +12,7 @@ namespace AVTTLoaderStandalone
         private ModCollection _tmpMC;
         private Dictionary<string, string> _tmpModParts;
         private int _lastIndex;
+        private FolderBrowserDialog fb;
 
         public EditModDialog()
         {
@@ -21,6 +22,8 @@ namespace AVTTLoaderStandalone
         private void EditModDialogLoad(object sender, EventArgs e)
         {
             if (MC == null) return;
+
+            fb = new FolderBrowserDialog();
 
             _tmpMC = MC.Clone();
             _tmpModParts = new Dictionary<string, string>();
@@ -35,7 +38,8 @@ namespace AVTTLoaderStandalone
             foreach (var mod in _tmpMC.Mods)
             {
                 comboBox1.Items.Add(mod.Name);
-                _tmpModParts.Add(mod.Name, mod.Parts.Keys.Aggregate("", (current, p) => current + (p + ", ")));
+                if (!_tmpModParts.ContainsKey(mod.Name))
+                    _tmpModParts.Add(mod.Name, mod.Parts.Keys.Aggregate("", (current, p) => current + (p + ", ")));
                 _tmpModParts[mod.Name] += mod.Prefixes.Aggregate("", (current, p) => current + (p + ", "));
             }
             if (comboBox1.Items.Count < 1)
@@ -102,6 +106,16 @@ namespace AVTTLoaderStandalone
                     in Regex.Split(prefixes, ",")
                     where part.Trim().Length >= 1 && part.Trim().Last() == '*'
                     select part.Trim()).ToList();
+        }
+
+        private void buttonAutoParts_Click(object sender, EventArgs e)
+        {
+            var result = fb.ShowDialog();
+
+            if (result != DialogResult.OK) return;
+
+            var pf = new PartsFinder();
+            textBoxParts.Text = pf.FindPartsString(fb.SelectedPath);
         }
     }
 }

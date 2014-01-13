@@ -231,5 +231,10 @@ namespace AVTTLoaderStandalone
             _tp.Restore();
             SetTextByTimer(labelStatusBar, Resources.STATUSBAR_RestoreSuccess, 5);
         }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

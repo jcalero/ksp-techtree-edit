@@ -39,6 +39,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonCheckAll = new System.Windows.Forms.Button();
             this.buttonUncheckAll = new System.Windows.Forms.Button();
+            this.buttonRestoreBackup = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,7 +49,6 @@
             this.editModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buttonRestoreBackup = new System.Windows.Forms.Button();
             this.tableLayoutPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -107,6 +107,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(574, 30);
             this.tableLayoutPanel1.TabIndex = 3;
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // labelTreeLoc
             // 
@@ -192,6 +193,18 @@
             this.buttonUncheckAll.UseVisualStyleBackColor = true;
             this.buttonUncheckAll.Click += new System.EventHandler(this.ButtonUncheckAllClick);
             // 
+            // buttonRestoreBackup
+            // 
+            this.buttonRestoreBackup.Dock = System.Windows.Forms.DockStyle.Left;
+            this.buttonRestoreBackup.Location = new System.Drawing.Point(10, 302);
+            this.buttonRestoreBackup.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.buttonRestoreBackup.Name = "buttonRestoreBackup";
+            this.buttonRestoreBackup.Size = new System.Drawing.Size(151, 32);
+            this.buttonRestoreBackup.TabIndex = 7;
+            this.buttonRestoreBackup.Text = "Restore tree";
+            this.buttonRestoreBackup.UseVisualStyleBackColor = true;
+            this.buttonRestoreBackup.Click += new System.EventHandler(this.ButtonRestoreBackupClick);
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -261,18 +274,6 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.aboutToolStripMenuItem.Text = "About...";
-            // 
-            // buttonRestoreBackup
-            // 
-            this.buttonRestoreBackup.Dock = System.Windows.Forms.DockStyle.Left;
-            this.buttonRestoreBackup.Location = new System.Drawing.Point(10, 302);
-            this.buttonRestoreBackup.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
-            this.buttonRestoreBackup.Name = "buttonRestoreBackup";
-            this.buttonRestoreBackup.Size = new System.Drawing.Size(151, 32);
-            this.buttonRestoreBackup.TabIndex = 7;
-            this.buttonRestoreBackup.Text = "Restore tree";
-            this.buttonRestoreBackup.UseVisualStyleBackColor = true;
-            this.buttonRestoreBackup.Click += new System.EventHandler(this.ButtonRestoreBackupClick);
             // 
             // MainWindow
             // 

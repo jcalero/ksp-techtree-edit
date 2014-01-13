@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="AVTTEditor.cs" />
     <Compile Include="ModCollection.cs" />
+    <Compile Include="PartsFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Attribute.cs" />
     <Compile Include="Tree.cs" />
