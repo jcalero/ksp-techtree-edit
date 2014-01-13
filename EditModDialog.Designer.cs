@@ -100,6 +100,7 @@
             this.textBoxParts.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.textBoxParts.Multiline = true;
             this.textBoxParts.Name = "textBoxParts";
+            this.textBoxParts.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxParts.Size = new System.Drawing.Size(401, 216);
             this.textBoxParts.TabIndex = 3;
             this.textBoxParts.TextChanged += new System.EventHandler(this.TextBoxPartsTextChanged);
