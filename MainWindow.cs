@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -23,7 +24,7 @@ namespace AVTTLoaderStandalone
         private void MainWindowLoad(object sender, EventArgs e)
         {
             // Load Settings
-            if (Settings.Default.TreeLocation != null)
+            if (Settings.Default.TreeLocation != null && File.Exists(Settings.Default.TreeLocation))
             {
                 _treeFile = Settings.Default.TreeLocation;
                 buttonTreeLoad.Text = _treeFile;
