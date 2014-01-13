@@ -5,5 +5,11 @@
     <Setting Name="TreeLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)">tree.cfg</Value>
     </Setting>
+    <Setting Name="ModCollectionLoc" Type="System.String" Scope="User">
+      <Value Profile="(Default)">modlist.cfg</Value>
+    </Setting>
+    <Setting Name="BackupLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">tree.cfg.backup</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

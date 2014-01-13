@@ -59,5 +59,32 @@ namespace AVTTLoaderStandalone.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no backup to restore!.
+        /// </summary>
+        internal static string STATUSBAR_Nobackup {
+            get {
+                return ResourceManager.GetString("STATUSBAR_Nobackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tree was restored successfully!.
+        /// </summary>
+        internal static string STATUSBAR_RestoreSuccess {
+            get {
+                return ResourceManager.GetString("STATUSBAR_RestoreSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tree updated successfully!.
+        /// </summary>
+        internal static string STATUSBAR_TreeUpdatedSuccess {
+            get {
+                return ResourceManager.GetString("STATUSBAR_TreeUpdatedSuccess", resourceCulture);
+            }
+        }
     }
 }

@@ -36,6 +36,7 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.labelUseWildcards = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -48,13 +49,15 @@
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.textBoxModName, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.labelPartListInfo, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.textBoxParts, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.textBoxParts, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.labelUseWildcards, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.523511F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.47649F));
@@ -66,7 +69,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 3);
+            this.label1.Location = new System.Drawing.Point(9, 2);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 0;
@@ -89,23 +92,24 @@
             this.labelPartListInfo.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.labelPartListInfo, 2);
             this.labelPartListInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelPartListInfo.Location = new System.Drawing.Point(13, 39);
+            this.labelPartListInfo.Location = new System.Drawing.Point(13, 38);
             this.labelPartListInfo.Margin = new System.Windows.Forms.Padding(13, 0, 3, 0);
             this.labelPartListInfo.Name = "labelPartListInfo";
             this.labelPartListInfo.Size = new System.Drawing.Size(405, 20);
             this.labelPartListInfo.TabIndex = 2;
             this.labelPartListInfo.Text = "Parts that correspond to mod: (Separate by comma)";
             this.labelPartListInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelPartListInfo.Click += new System.EventHandler(this.labelPartListInfo_Click);
             // 
             // textBoxParts
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.textBoxParts, 2);
             this.textBoxParts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxParts.Location = new System.Drawing.Point(10, 62);
+            this.textBoxParts.Location = new System.Drawing.Point(10, 81);
             this.textBoxParts.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.textBoxParts.Multiline = true;
             this.textBoxParts.Name = "textBoxParts";
-            this.textBoxParts.Size = new System.Drawing.Size(401, 235);
+            this.textBoxParts.Size = new System.Drawing.Size(401, 216);
             this.textBoxParts.TabIndex = 3;
             this.textBoxParts.TextChanged += new System.EventHandler(this.TextBoxPartsTextChanged);
             // 
@@ -150,6 +154,20 @@
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
+            // labelUseWildcards
+            // 
+            this.labelUseWildcards.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labelUseWildcards.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.labelUseWildcards, 2);
+            this.labelUseWildcards.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUseWildcards.Location = new System.Drawing.Point(15, 61);
+            this.labelUseWildcards.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
+            this.labelUseWildcards.Name = "labelUseWildcards";
+            this.labelUseWildcards.Size = new System.Drawing.Size(190, 13);
+            this.labelUseWildcards.TabIndex = 5;
+            this.labelUseWildcards.Text = "Use wildcards! (E.g.: B9.*, KW*)";
+            this.labelUseWildcards.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // AddModDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -178,5 +196,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Label labelUseWildcards;
     }
 }

@@ -34,5 +34,29 @@ namespace AVTTLoaderStandalone.Properties {
                 this["TreeLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("modlist.cfg")]
+        public string ModCollectionLoc {
+            get {
+                return ((string)(this["ModCollectionLoc"]));
+            }
+            set {
+                this["ModCollectionLoc"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("tree.cfg.backup")]
+        public string BackupLocation {
+            get {
+                return ((string)(this["BackupLocation"]));
+            }
+            set {
+                this["BackupLocation"] = value;
+            }
+        }
     }
 }

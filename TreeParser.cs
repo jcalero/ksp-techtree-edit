@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using AVTTLoaderStandalone.Properties;
 
 namespace AVTTLoaderStandalone
 {
@@ -18,7 +19,7 @@ namespace AVTTLoaderStandalone
         /// <summary>
         /// The tree bound to this parser instance
         /// </summary>
-        public Tree Tree { get; private set; }
+        public Tree Tree { get; set; }
 
         /// <summary>
         /// Constructs a TreeParser instance bound to a specific file
@@ -35,7 +36,7 @@ namespace AVTTLoaderStandalone
         /// </summary>
         /// <param name="path">Full path to tree.cfg</param>
         /// <returns>A Tree class with Nodes corresponding the tree.cfg data</returns>
-        private static Tree Load(string path)
+        private Tree Load(string path)
         {
             var treeString = "";
             using (var reader = new StreamReader(path))
@@ -167,6 +168,39 @@ namespace AVTTLoaderStandalone
         public void SaveTo(string path)
         {
             Save(path);
+        }
+
+        public void Backup(string filename)
+        {
+            if (File.Exists(filename)) return;
+            var reader = new StreamReader(Path);
+            var writer = new StreamWriter(filename);
+            string line;
+
+            while ((line = reader.ReadLine()) != null)
+            {
+                writer.WriteLine(line);    
+            }
+            
+            reader.Close();
+            writer.Close();
+        }
+
+        public void Backup()
+        {
+            Backup(Settings.Default.BackupLocation);
+        }
+
+        public void Restore(string backupFile)
+        {
+            Tree = Load(backupFile);
+            Tree.FilePath = Path;
+            Save();
+        }
+
+        public void Restore()
+        {
+            Restore(Settings.Default.BackupLocation);
         }
     }
 }

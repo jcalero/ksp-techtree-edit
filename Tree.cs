@@ -8,7 +8,7 @@ namespace AVTTLoaderStandalone
     public class Tree
     {
         public List<Node> Nodes = new List<Node>();
-        public string FilePath { get; private set; }
+        public string FilePath { get; set; }
 
         public Tree(string fileName)
         {

@@ -22,9 +22,9 @@ namespace AVTTLoaderStandalone
             Mods = new List<Mod>();
         }
 
-        public void AddMod(string name, List<string> parts)
+        public void AddMod(string name, Dictionary<string, string> parts, List<string> prefixes)
         {
-            var mod = new Mod(name, parts);
+            var mod = new Mod(name, parts, prefixes);
             Mods.Add(mod);
         }
 
@@ -42,23 +42,34 @@ namespace AVTTLoaderStandalone
     public class Mod
     {
         public string Name { get; set; }
-        public List<string> Parts { get; set; }
+        public Dictionary<string, string> Parts { get; set; }
+        public List<string> Prefixes { get; set; }
 
         public Mod()
         {
-            Parts = new List<string>();
+            Parts = new Dictionary<string, string>();
+            Prefixes = new List<string>();
         }
 
         public Mod(string name)
         {
             Name = name;
-            Parts = new List<string>();
+            Parts = new Dictionary<string, string>();
+            Prefixes = new List<string>();
         }
 
-        public Mod(string name, List<string> parts)
+        public Mod(string name, Dictionary<string, string> parts)
         {
             Name = name;
             Parts = parts;
+            Prefixes = new List<string>();
+        }
+
+        public Mod(string name, Dictionary<string, string> parts, List<string> prefixes)
+        {
+            Name = name;
+            Parts = parts;
+            Prefixes = prefixes;
         }
 
         public Mod Clone()
@@ -66,7 +77,11 @@ namespace AVTTLoaderStandalone
             var tmpMod = new Mod(Name);
             foreach (var p in Parts)
             {
-                tmpMod.Parts.Add(p);
+                tmpMod.Parts.Add(p.Key, p.Value);
+            }
+            foreach (var pre in Prefixes)
+            {
+                tmpMod.Prefixes.Add(pre);
             }
             return tmpMod;
         }
@@ -133,7 +148,15 @@ namespace AVTTLoaderStandalone
                     case 2:
                         if (str.Contains('=') == false)
                             break;
-                        mods.Last().Parts.Add(str.Remove(0, str.LastIndexOf(char.Parse("=")) + 1).Trim());
+                        var value = str.Remove(0, str.LastIndexOf(char.Parse("=")) + 1).Trim();
+                        if (value.Last() == '*')
+                        {
+                            mods.Last().Prefixes.Add(value);
+                        }
+                        else
+                        {
+                            mods.Last().Parts.Add(value, "");
+                        }
                         break;
                 }
             }
@@ -154,8 +177,13 @@ namespace AVTTLoaderStandalone
                 cfgOutput += "\tPARTS" + newLine + "\t{" + newLine;
                 foreach (var part in mod.Parts)
                 {
-                    if (part.Length < 1) return;
-                    cfgOutput += "\t\tname = " + part + newLine;
+                    if (part.Key.Length < 1) return;
+                    cfgOutput += "\t\tpart = " + part.Key + newLine;
+                }
+                foreach (var prefix in mod.Prefixes)
+                {
+                    if (prefix.Length < 1) return;
+                    cfgOutput += "\t\tprefix = " + prefix + newLine;
                 }
                 cfgOutput += "\t}" + newLine + "}" + newLine;
             }

@@ -35,7 +35,8 @@ namespace AVTTLoaderStandalone
             foreach (var mod in _tmpMC.Mods)
             {
                 comboBox1.Items.Add(mod.Name);
-                _tmpModParts.Add(mod.Name, mod.Parts.Aggregate("", (current, p) => current + (p + ", ")));
+                _tmpModParts.Add(mod.Name, mod.Parts.Keys.Aggregate("", (current, p) => current + (p + ", ")));
+                _tmpModParts[mod.Name] += mod.Prefixes.Aggregate("", (current, p) => current + (p + ", "));
             }
             if (comboBox1.Items.Count < 1)
             {
@@ -81,15 +82,26 @@ namespace AVTTLoaderStandalone
                 {
                     if (mod.Name != partlist.Key) continue;
                     mod.Parts = ParsePartList(partlist.Value);
+                    mod.Prefixes = ParsePrefixList(partlist.Value);
                     break;
                 }
             }
             MC = _tmpMC;
         }
 
-        private static List<string> ParsePartList(string parts)
+        private static Dictionary<string, string> ParsePartList(string parts)
         {
-            return (from part in Regex.Split(parts, ",") where part.Trim().Length >= 1 select part.Trim()).ToList();
+            return Regex.Split(parts, ",")
+                   .Where(part => part.Trim().Length >= 1 && part.Trim().Last() != '*')
+                   .ToDictionary(part => part.Trim(), part => "");
+        }
+
+        private static List<string> ParsePrefixList(string prefixes)
+        {
+            return (from part
+                    in Regex.Split(prefixes, ",")
+                    where part.Trim().Length >= 1 && part.Trim().Last() == '*'
+                    select part.Trim()).ToList();
         }
     }
 }

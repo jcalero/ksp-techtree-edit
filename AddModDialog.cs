@@ -28,5 +28,10 @@ namespace AVTTLoaderStandalone
         {
             ModTitle = textBoxModName.Text;
         }
+
+        private void labelPartListInfo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
