@@ -34,12 +34,20 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.labelTreeLoc = new System.Windows.Forms.Label();
             this.buttonTreeLoad = new System.Windows.Forms.Button();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.checkedListMods = new System.Windows.Forms.CheckedListBox();
             this.buttonSaveTree = new System.Windows.Forms.Button();
-            this.buttonDevMode = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.developerOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelStatusBar
@@ -48,7 +56,7 @@
             this.labelStatusBar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.tableLayoutPanel.SetColumnSpan(this.labelStatusBar, 2);
             this.labelStatusBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelStatusBar.Location = new System.Drawing.Point(3, 361);
+            this.labelStatusBar.Location = new System.Drawing.Point(3, 337);
             this.labelStatusBar.Name = "labelStatusBar";
             this.labelStatusBar.Size = new System.Drawing.Size(568, 20);
             this.labelStatusBar.TabIndex = 2;
@@ -60,24 +68,21 @@
             this.tableLayoutPanel.ColumnCount = 2;
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel.Controls.Add(this.labelStatusBar, 0, 7);
-            this.tableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 0, 2);
-            this.tableLayoutPanel.Controls.Add(this.checkedListBox1, 0, 4);
-            this.tableLayoutPanel.Controls.Add(this.buttonSaveTree, 1, 5);
-            this.tableLayoutPanel.Controls.Add(this.buttonDevMode, 1, 0);
+            this.tableLayoutPanel.Controls.Add(this.labelStatusBar, 0, 5);
+            this.tableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 0, 1);
+            this.tableLayoutPanel.Controls.Add(this.checkedListMods, 0, 3);
+            this.tableLayoutPanel.Controls.Add(this.buttonSaveTree, 1, 4);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 8;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel.RowCount = 6;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 14F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(574, 381);
+            this.tableLayoutPanel.Size = new System.Drawing.Size(574, 357);
             this.tableLayoutPanel.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -89,7 +94,7 @@
             this.tableLayoutPanel1.Controls.Add(this.labelTreeLoc, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.buttonTreeLoad, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 40);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 14);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
@@ -119,101 +124,26 @@
             this.buttonTreeLoad.UseVisualStyleBackColor = true;
             this.buttonTreeLoad.Click += new System.EventHandler(this.ButtonTreeLoadClick);
             // 
-            // checkedListBox1
+            // checkedListMods
             // 
-            this.checkedListBox1.CheckOnClick = true;
-            this.tableLayoutPanel.SetColumnSpan(this.checkedListBox1, 2);
-            this.checkedListBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
+            this.checkedListMods.CheckOnClick = true;
+            this.tableLayoutPanel.SetColumnSpan(this.checkedListMods, 2);
+            this.checkedListMods.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkedListMods.FormattingEnabled = true;
+            this.checkedListMods.Items.AddRange(new object[] {
             "item1",
-            "item2",
-            "asdf",
-            "item1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1item1asdfitem1item1asdfitem1item1",
-            "item2",
-            "asdfasdfitem1item1asdfitem1item1asdfitem1item1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1",
-            "asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1asdfitem1",
-            "item2",
-            "asdfitem1",
-            "item2",
-            "asdfitem1",
-            "asdf"});
-            this.checkedListBox1.Location = new System.Drawing.Point(10, 93);
-            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
-            this.checkedListBox1.MultiColumn = true;
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(554, 212);
-            this.checkedListBox1.TabIndex = 4;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            "item2"});
+            this.checkedListMods.Location = new System.Drawing.Point(10, 67);
+            this.checkedListMods.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.checkedListMods.MultiColumn = true;
+            this.checkedListMods.Name = "checkedListMods";
+            this.checkedListMods.Size = new System.Drawing.Size(554, 229);
+            this.checkedListMods.TabIndex = 4;
             // 
             // buttonSaveTree
             // 
             this.buttonSaveTree.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonSaveTree.Location = new System.Drawing.Point(409, 311);
+            this.buttonSaveTree.Location = new System.Drawing.Point(409, 302);
             this.buttonSaveTree.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.buttonSaveTree.Name = "buttonSaveTree";
             this.buttonSaveTree.Size = new System.Drawing.Size(155, 32);
@@ -221,15 +151,75 @@
             this.buttonSaveTree.Text = "Update Tree";
             this.buttonSaveTree.UseVisualStyleBackColor = true;
             // 
-            // buttonDevMode
+            // openFileDialog1
             // 
-            this.buttonDevMode.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonDevMode.Location = new System.Drawing.Point(496, 3);
-            this.buttonDevMode.Name = "buttonDevMode";
-            this.buttonDevMode.Size = new System.Drawing.Size(75, 20);
-            this.buttonDevMode.TabIndex = 6;
-            this.buttonDevMode.Text = "DevMode";
-            this.buttonDevMode.UseVisualStyleBackColor = true;
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.developerOptionsToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(574, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.closeToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.ShortcutKeyDisplayString = "";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItemClick);
+            // 
+            // developerOptionsToolStripMenuItem
+            // 
+            this.developerOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addModToolStripMenuItem,
+            this.editModToolStripMenuItem});
+            this.developerOptionsToolStripMenuItem.Name = "developerOptionsToolStripMenuItem";
+            this.developerOptionsToolStripMenuItem.Size = new System.Drawing.Size(117, 20);
+            this.developerOptionsToolStripMenuItem.Text = "Developer Options";
+            // 
+            // addModToolStripMenuItem
+            // 
+            this.addModToolStripMenuItem.Name = "addModToolStripMenuItem";
+            this.addModToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.addModToolStripMenuItem.Text = "Add Mod...";
+            this.addModToolStripMenuItem.Click += new System.EventHandler(this.AddModToolStripMenuItemClick);
+            // 
+            // editModToolStripMenuItem
+            // 
+            this.editModToolStripMenuItem.Name = "editModToolStripMenuItem";
+            this.editModToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.editModToolStripMenuItem.Text = "Edit Mod...";
+            this.editModToolStripMenuItem.Click += new System.EventHandler(this.EditModToolStripMenuItemClick);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.aboutToolStripMenuItem.Text = "About...";
             // 
             // MainWindow
             // 
@@ -237,7 +227,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(574, 381);
             this.Controls.Add(this.tableLayoutPanel);
+            this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
             this.Text = "Tech Tree Config Tool v0.1";
             this.Load += new System.EventHandler(this.MainWindowLoad);
@@ -245,7 +237,10 @@
             this.tableLayoutPanel.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -256,10 +251,17 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label labelTreeLoc;
         private System.Windows.Forms.Button buttonTreeLoad;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox checkedListMods;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button buttonSaveTree;
-        private System.Windows.Forms.Button buttonDevMode;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem developerOptionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addModToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editModToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
 
     }
 }

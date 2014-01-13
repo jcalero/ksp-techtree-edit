@@ -1,6 +1,7 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using AVTTLoaderStandalone.Properties;
 
@@ -8,10 +9,11 @@ namespace AVTTLoaderStandalone
 {
     public partial class MainWindow : Form
     {
-        private AddWindow _addWindow;
-        private string treeFile;
-        private Tree tree;
-        private TreeParser tp;
+        private string _treeFile;
+        private Tree _tree;
+        private TreeParser _tp;
+        private ModCollection _mc;
+        private ModCollectionParser _mcp;
 
         public MainWindow()
         {
@@ -23,40 +25,92 @@ namespace AVTTLoaderStandalone
             // Load Settings
             if (Settings.Default.TreeLocation != null)
             {
-                treeFile = Settings.Default.TreeLocation;
-                buttonTreeLoad.Text = treeFile;
+                _treeFile = Settings.Default.TreeLocation;
+                buttonTreeLoad.Text = _treeFile;
             }
 
             // Initialise tree
-            if (treeFile != null) InitialiseTree();
+            if (_treeFile != null) InitialiseTree();
+            // Initialise mod collection
+            _mcp = new ModCollectionParser(_mc);
+            _mcp.Load();
+            _mc = _mcp.Collection;
 
-            // Initialise addWindow
-            _addWindow = new AddWindow(tree);
-            _addWindow.OnDataAvailable += AddPartDataAvailable;
+            ReloadCheckList();
         }
 
         private void InitialiseTree()
         {
-            tp = new TreeParser(treeFile);
-            tree = tp.Tree;
-        }
-
-        private void AddPartDataAvailable(object sender, EventArgs e)
-        {
-            _addWindow.SelectedNode.Parts.Add(new Attribute("name = " + _addWindow.NewPart));
-            tp.Save();
+            _tp = new TreeParser(_treeFile);
+            _tree = _tp.Tree;
         }
 
         private void ButtonTreeLoadClick(object sender, EventArgs e)
         {
             var result = openFileDialog1.ShowDialog();
             if (result != DialogResult.OK) return;
-            
-            treeFile = openFileDialog1.FileName;
-            buttonTreeLoad.Text = treeFile;
-            Settings.Default.TreeLocation = treeFile;
+
+            _treeFile = openFileDialog1.FileName;
+            buttonTreeLoad.Text = _treeFile;
+            Settings.Default.TreeLocation = _treeFile;
             InitialiseTree();
             Settings.Default.Save();
         }
+
+        private void AddModToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            using (var dialog = new AddModDialog())
+            {
+                var result = dialog.ShowDialog();
+
+                switch (result)
+                {
+                    case DialogResult.OK:
+                        _mc.AddMod(dialog.ModTitle, ParsePartList(dialog.ModParts));
+                        ReloadCheckList();
+                        _mcp.Save();
+                        break;
+                }
+            }
+        }
+
+        private void ReloadCheckList()
+        {
+            checkedListMods.Items.Clear();
+            foreach (var mod in _mc.Mods)
+            {
+                checkedListMods.Items.Add(mod.Name);
+            }
+        }
+
+        private static List<string> ParsePartList(string parts)
+        {
+            return (from part in Regex.Split(parts, ",") where part.Length >= 1 select part.Trim()).ToList();
+        }
+
+        private void EditModToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            using (var dialog = new EditModDialog())
+            {
+                dialog.MC = _mc;
+
+                var result = dialog.ShowDialog();
+
+                switch (result)
+                {
+                    case DialogResult.OK:
+                        _mc = dialog.MC;
+                        _mcp.Collection = dialog.MC;
+                        ReloadCheckList();
+                        _mcp.Save();
+                        break;
+                }
+            }
+        }
+
+        private void CloseToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            Application.Exit();
+        } 
     }
 }

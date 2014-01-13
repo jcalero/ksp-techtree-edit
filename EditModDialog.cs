@@ -1,0 +1,95 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+
+namespace AVTTLoaderStandalone
+{
+    public partial class EditModDialog : Form
+    {
+        public ModCollection MC;
+        private ModCollection _tmpMC;
+        private Dictionary<string, string> _tmpModParts;
+        private int _lastIndex;
+
+        public EditModDialog()
+        {
+            InitializeComponent();
+        }
+
+        private void EditModDialogLoad(object sender, EventArgs e)
+        {
+            if (MC == null) return;
+
+            _tmpMC = MC.Clone();
+            _tmpModParts = new Dictionary<string, string>();
+
+            ReloadData();
+        }
+
+        private void ReloadData()
+        {
+            comboBox1.Items.Clear();
+            _tmpModParts.Clear();
+            foreach (var mod in _tmpMC.Mods)
+            {
+                comboBox1.Items.Add(mod.Name);
+                _tmpModParts.Add(mod.Name, mod.Parts.Aggregate("", (current, p) => current + (p + ", ")));
+            }
+            if (comboBox1.Items.Count < 1)
+            {
+                textBoxParts.Text = "";
+                return;
+            }
+            var newIndex = _lastIndex - 1;
+            if (newIndex < 0) newIndex = 0;
+            comboBox1.SelectedIndex = newIndex;
+        }
+
+        private void TextBoxPartsTextChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.Items.Count < 1) return;
+            _tmpModParts[_tmpMC.Mods[comboBox1.SelectedIndex].Name] = textBoxParts.Text;
+        }
+
+        private void ComboBox1SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _lastIndex = comboBox1.SelectedIndex;
+            textBoxParts.Text = _tmpModParts[_tmpMC.Mods[_lastIndex].Name];
+        }
+
+        private void ButtonDeleteModClick(object sender, EventArgs e)
+        {
+            if (comboBox1.Items.Count < 1) return;
+            _tmpModParts.Remove(_tmpMC.Mods[comboBox1.SelectedIndex].Name);
+            _tmpMC.Mods.Remove(_tmpMC.Mods[comboBox1.SelectedIndex]);
+            ReloadData();
+        }
+
+        private void ButtonCancelClick(object sender, EventArgs e)
+        {
+            _tmpMC = null;
+            _tmpModParts = null;
+        }
+
+        private void ButtonSaveClick(object sender, EventArgs e)
+        {
+            foreach (var partlist in _tmpModParts)
+            {
+                foreach (var mod in _tmpMC.Mods)
+                {
+                    if (mod.Name != partlist.Key) continue;
+                    mod.Parts = ParsePartList(partlist.Value);
+                    break;
+                }
+            }
+            MC = _tmpMC;
+        }
+
+        private static List<string> ParsePartList(string parts)
+        {
+            return (from part in Regex.Split(parts, ",") where part.Trim().Length >= 1 select part.Trim()).ToList();
+        }
+    }
+}
