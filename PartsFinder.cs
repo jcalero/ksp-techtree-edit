@@ -87,7 +87,7 @@ namespace AVTTLoaderStandalone
             reader.Close();
 
             // If no parts found, try special case
-            return (parts.Count < 1 && file.Name == "part.cfg") ? GetParts(file, true) : parts;
+            return (parts.Count < 1 && file.Name == "part.cfg" && !specialCase) ? GetParts(file, true) : parts;
         }
 
         public int FilesCount(string directory)
