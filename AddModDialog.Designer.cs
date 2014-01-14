@@ -139,7 +139,6 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonSave.Dock = System.Windows.Forms.DockStyle.Right;
             this.buttonSave.Location = new System.Drawing.Point(336, 3);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
@@ -148,6 +147,7 @@
             this.buttonSave.TabIndex = 0;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.ButtonSaveClick);
             // 
             // buttonCancel
             // 
