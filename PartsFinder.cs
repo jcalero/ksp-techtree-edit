@@ -48,13 +48,22 @@ namespace AVTTLoaderStandalone
             return FindParts(directory).Aggregate("", (current, part) => current + (part + ", "));
         }
 
-        static List<string> GetParts(FileSystemInfo file)
+        static List<string> GetParts(FileSystemInfo file, bool specialCase = false)
         {
             var parts = new List<string>();
             var reader = new StreamReader(file.FullName);
             string line;
             var isPart = false;
             var depth = 0;
+
+            // Special case for part.cfg's that don't have a PART{ } section
+            // but instead only the actual attributes are in the file. Apparently
+            // that's an accepted file structre :/ Silly Squad...
+            if (specialCase)
+            {
+                isPart = true;
+                depth = 1;
+            }
 
             while ((line = reader.ReadLine()) != null)
             {
@@ -63,7 +72,7 @@ namespace AVTTLoaderStandalone
                 if (line.StartsWith("PART")) isPart = true;
 
                 if (!isPart) continue;
-
+                
                 if (line.Contains("{")) depth++;
 
                 if (line.Contains("}")) depth--;
@@ -75,7 +84,9 @@ namespace AVTTLoaderStandalone
                 var partName = line.Remove(0, line.LastIndexOf(char.Parse("=")) + 1).Trim();
                 if (partName.Length >= 1) parts.Add(partName);
             }
-            return parts;
+            reader.Close();
+            // If no parts found, try special case
+            return (parts.Count < 1 && file.Name == "part.cfg") ? GetParts(file, true) : parts;
         }
 
         public int FilesCount(string directory)
