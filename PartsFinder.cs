@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace AVTTLoaderStandalone
 {
@@ -68,6 +69,7 @@ namespace AVTTLoaderStandalone
             while ((line = reader.ReadLine()) != null)
             {
                 line = line.Trim();
+                line = Regex.Replace(line, @"\t|\n|\r| ", String.Empty);
 
                 if (line.StartsWith("PART")) isPart = true;
 
@@ -79,9 +81,9 @@ namespace AVTTLoaderStandalone
 
                 if (depth != 1) continue;
 
-                if (!line.StartsWith("name = ")) continue;
+                if (!line.StartsWith("name=")) continue;
 
-                var partName = line.Remove(0, line.LastIndexOf(char.Parse("=")) + 1).Trim();
+                var partName = line.Remove(0, line.LastIndexOf(char.Parse("=")) + 1).Trim().Replace('_','.');
                 if (partName.Length >= 1 && !parts.Contains(partName)) parts.Add(partName);
             }
             reader.Close();
