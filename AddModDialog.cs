@@ -19,6 +19,8 @@ namespace AVTTLoaderStandalone
         private void AddModDialogLoad(object sender, EventArgs e)
         {
             _fb = new FolderBrowserDialog();
+            ModParts = "";
+            ModTitle = "";
         }
 
         private void TextBoxPartsTextChanged(object sender, EventArgs e)
@@ -51,6 +53,19 @@ namespace AVTTLoaderStandalone
         private void FileProgress(object sender, EventArgs e)
         {
             progressBar.Increment(1);
+        }
+
+        private void ButtonSaveClick(object sender, EventArgs e)
+        {
+            if (textBoxModName.Text.Trim().Length > 0)
+            {
+                Close();
+                DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                MessageBox.Show("Please put a mod name", "Missing mod name", MessageBoxButtons.OK);
+            }
         }
     }
 }
