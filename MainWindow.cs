@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using AVTTLoaderStandalone.Properties;
@@ -29,6 +30,8 @@ namespace AVTTLoaderStandalone
                 _treeFile = Settings.Default.TreeLocation;
                 buttonTreeLoad.Text = _treeFile;
             }
+            var versionNr = Assembly.GetEntryAssembly().GetName().Version;
+            Text = string.Format("{0}{1}.{2}.{3}", Resources.GUI_TitleLabel, versionNr.Major, versionNr.Minor, versionNr.Build);
 
             // Initialise tree
             if (_treeFile != null) InitialiseTree();

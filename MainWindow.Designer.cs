@@ -285,7 +285,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
-            this.Text = "Ackander\'s Vertical Tech Tree Config Tool v0.1";
+            this.Text = "Ackander\'s Vertical Tech Tree Config Tool v0.2.2";
             this.Load += new System.EventHandler(this.MainWindowLoad);
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();

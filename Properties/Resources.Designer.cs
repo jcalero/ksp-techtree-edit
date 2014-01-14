@@ -61,6 +61,15 @@ namespace AVTTLoaderStandalone.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ackander&apos;s Vertical Tech Tree Config Tool v.
+        /// </summary>
+        internal static string GUI_TitleLabel {
+            get {
+                return ResourceManager.GetString("GUI_TitleLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is no backup to restore!.
         /// </summary>
         internal static string STATUSBAR_Nobackup {
