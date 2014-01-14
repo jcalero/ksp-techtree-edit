@@ -15,16 +15,7 @@ namespace AVTTLoaderStandalone
             Application.SetCompatibleTextRenderingDefault(false);
             var mw = new MainWindow();
             Application.Run(mw);
-            var app = new AVTTEditor(mw);
         }
 
-    }
-
-    public class AVTTEditor
-    {
-        public AVTTEditor(MainWindow mw)
-        {
-            
-        }
     }
 }

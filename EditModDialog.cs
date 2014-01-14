@@ -12,7 +12,7 @@ namespace AVTTLoaderStandalone
         private ModCollection _tmpMC;
         private Dictionary<string, string> _tmpModParts;
         private int _lastIndex;
-        private FolderBrowserDialog fb;
+        private FolderBrowserDialog _fb;
 
         public EditModDialog()
         {
@@ -23,7 +23,7 @@ namespace AVTTLoaderStandalone
         {
             if (MC == null) return;
 
-            fb = new FolderBrowserDialog();
+            _fb = new FolderBrowserDialog();
 
             _tmpMC = MC.Clone();
             _tmpModParts = new Dictionary<string, string>();
@@ -110,12 +110,12 @@ namespace AVTTLoaderStandalone
 
         private void buttonAutoParts_Click(object sender, EventArgs e)
         {
-            var result = fb.ShowDialog();
+            var result = _fb.ShowDialog();
 
             if (result != DialogResult.OK) return;
 
             var pf = new PartsFinder();
-            textBoxParts.Text = pf.FindPartsString(fb.SelectedPath);
+            textBoxParts.Text = pf.FindPartsString(_fb.SelectedPath);
         }
     }
 }
