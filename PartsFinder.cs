@@ -60,13 +60,13 @@ namespace AVTTLoaderStandalone
             {
                 line = line.Trim();
 
-                if (line == "PART") isPart = true;
+                if (line.StartsWith("PART")) isPart = true;
 
                 if (!isPart) continue;
 
-                if (line == "{") depth++;
+                if (line.Contains("{")) depth++;
 
-                if (line == "}") depth--;
+                if (line.Contains("}")) depth--;
 
                 if (depth != 1) continue;
 
