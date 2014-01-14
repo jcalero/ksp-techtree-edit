@@ -39,6 +39,7 @@
             this.labelUseWildcards = new System.Windows.Forms.Label();
             this.labelModFolder = new System.Windows.Forms.Label();
             this.buttonModFolder = new System.Windows.Forms.Button();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -52,20 +53,22 @@
             this.tableLayoutPanel1.Controls.Add(this.textBoxModName, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.labelPartListInfo, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.textBoxParts, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.labelUseWildcards, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.labelModFolder, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.buttonModFolder, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.progressBar, 0, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowCount = 7;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(421, 339);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -113,7 +116,7 @@
             this.textBoxParts.Multiline = true;
             this.textBoxParts.Name = "textBoxParts";
             this.textBoxParts.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxParts.Size = new System.Drawing.Size(401, 200);
+            this.textBoxParts.Size = new System.Drawing.Size(401, 178);
             this.textBoxParts.TabIndex = 3;
             this.textBoxParts.TextChanged += new System.EventHandler(this.TextBoxPartsTextChanged);
             // 
@@ -121,17 +124,17 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel2, 2);
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.64371F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.35629F));
             this.tableLayoutPanel2.Controls.Add(this.buttonSave, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.buttonCancel, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 301);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 304);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(421, 38);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(421, 35);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // buttonSave
@@ -141,7 +144,7 @@
             this.buttonSave.Location = new System.Drawing.Point(336, 3);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(75, 32);
+            this.buttonSave.Size = new System.Drawing.Size(75, 29);
             this.buttonSave.TabIndex = 0;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -153,7 +156,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(10, 3);
             this.buttonCancel.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 32);
+            this.buttonCancel.Size = new System.Drawing.Size(75, 29);
             this.buttonCancel.TabIndex = 1;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -194,6 +197,16 @@
             this.buttonModFolder.UseVisualStyleBackColor = true;
             this.buttonModFolder.Click += new System.EventHandler(this.ButtonModFolderClick);
             // 
+            // progressBar
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.progressBar, 2);
+            this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.progressBar.Location = new System.Drawing.Point(3, 282);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(415, 19);
+            this.progressBar.Step = 1;
+            this.progressBar.TabIndex = 8;
+            // 
             // AddModDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -225,5 +238,6 @@
         private System.Windows.Forms.Label labelUseWildcards;
         private System.Windows.Forms.Label labelModFolder;
         private System.Windows.Forms.Button buttonModFolder;
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 }

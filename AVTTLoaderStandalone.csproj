@@ -95,6 +95,7 @@
     <Compile Include="TreeParser.cs" />
     <EmbeddedResource Include="AddModDialog.resx">
       <DependentUpon>AddModDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AddWindow.resx">
       <DependentUpon>AddWindow.cs</DependentUpon>

@@ -1,11 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
 namespace AVTTLoaderStandalone
 {
+    public delegate void ProgressFileSearch(object sender, EventArgs e);
+
     class PartsFinder
     {
+        public event ProgressFileSearch Progress;
+
+        protected virtual void OnProgress()
+        {
+            var handler = Progress;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
 
         public List<string> Parts { get; private set; }
 
@@ -20,6 +30,7 @@ namespace AVTTLoaderStandalone
             var dir = new DirectoryInfo(@directory);
             foreach (var file in dir.GetFiles("*.cfg", SearchOption.AllDirectories))
             {
+                OnProgress();
                 var parts = GetParts(file);
                 if (parts != null && parts.Count >= 1)
                 {
@@ -27,7 +38,7 @@ namespace AVTTLoaderStandalone
                     {
                         Parts.Add(p);
                     }
-                };
+                }
             }
             return Parts;
         }
@@ -35,7 +46,7 @@ namespace AVTTLoaderStandalone
         public string FindPartsString(string directory)
         {
             return FindParts(directory).Aggregate("", (current, part) => current + (part + ", "));
-        } 
+        }
 
         static List<string> GetParts(FileSystemInfo file)
         {
@@ -65,6 +76,12 @@ namespace AVTTLoaderStandalone
                 if (partName.Length >= 1) parts.Add(partName);
             }
             return parts;
+        }
+
+        public int FilesCount(string directory)
+        {
+            var dir = new DirectoryInfo(@directory);
+            return dir.GetFiles("*.cfg", SearchOption.AllDirectories).Count();
         }
     }
 }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Windows.Forms;
 
 namespace AVTTLoaderStandalone
@@ -11,7 +9,7 @@ namespace AVTTLoaderStandalone
         public string ModParts { get; private set; }
         public string ModFolder { get; private set; }
 
-        private FolderBrowserDialog fb;
+        private FolderBrowserDialog _fb;
 
         public AddModDialog()
         {
@@ -20,7 +18,7 @@ namespace AVTTLoaderStandalone
 
         private void AddModDialogLoad(object sender, EventArgs e)
         {
-            fb = new FolderBrowserDialog();
+            _fb = new FolderBrowserDialog();
         }
 
         private void TextBoxPartsTextChanged(object sender, EventArgs e)
@@ -35,15 +33,24 @@ namespace AVTTLoaderStandalone
 
         private void ButtonModFolderClick(object sender, EventArgs e)
         {
-            var result = fb.ShowDialog();
+            var result = _fb.ShowDialog();
 
             if (result != DialogResult.OK) return;
-            
-            ModFolder = fb.SelectedPath;
 
             var pf = new PartsFinder();
+
+            ModFolder = _fb.SelectedPath;
+            progressBar.Value = 0;
+            progressBar.Maximum = pf.FilesCount(ModFolder);
+            pf.Progress += FileProgress;
+
             ModParts = pf.FindPartsString(ModFolder);
             textBoxParts.Text = ModParts;
+        }
+
+        private void FileProgress(object sender, EventArgs e)
+        {
+            progressBar.Increment(1);
         }
     }
 }
