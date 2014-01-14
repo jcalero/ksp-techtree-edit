@@ -34,7 +34,7 @@ namespace AVTTLoaderStandalone
                 var parts = GetParts(file);
                 if (parts != null && parts.Count >= 1)
                 {
-                    foreach (var p in parts)
+                    foreach (var p in parts.Where(p => !Parts.Contains(p)))
                     {
                         Parts.Add(p);
                     }
@@ -82,9 +82,10 @@ namespace AVTTLoaderStandalone
                 if (!line.StartsWith("name = ")) continue;
 
                 var partName = line.Remove(0, line.LastIndexOf(char.Parse("=")) + 1).Trim();
-                if (partName.Length >= 1) parts.Add(partName);
+                if (partName.Length >= 1 && !parts.Contains(partName)) parts.Add(partName);
             }
             reader.Close();
+
             // If no parts found, try special case
             return (parts.Count < 1 && file.Name == "part.cfg") ? GetParts(file, true) : parts;
         }
