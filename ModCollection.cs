@@ -114,6 +114,7 @@ namespace AVTTLoaderStandalone
                 {
                     modlistString = modlistString + line + Environment.NewLine;
                 }
+                reader.Close();
             }
 
             var mods = Collection.Mods;
