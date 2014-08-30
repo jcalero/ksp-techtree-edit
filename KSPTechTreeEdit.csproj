@@ -7,11 +7,12 @@
     <ProjectGuid>{40794855-475D-4FC1-B764-AA5F2B76EB13}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AVTTLoaderStandalone</RootNamespace>
-    <AssemblyName>AVTTEditor</AssemblyName>
+    <RootNamespace>KSPTechTreeEditor</RootNamespace>
+    <AssemblyName>KSPTechTreeEditor</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -86,7 +86,7 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="AVTTEditor.cs" />
+    <Compile Include="KSPTechTreeEditor.cs" />
     <Compile Include="ModCollection.cs" />
     <Compile Include="PartsFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

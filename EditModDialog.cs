@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace AVTTLoaderStandalone
+namespace KSPTechTreeEditor
 {
     public partial class EditModDialog : Form
     {

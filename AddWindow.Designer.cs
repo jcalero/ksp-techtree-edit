@@ -1,4 +1,4 @@
-﻿namespace AVTTLoaderStandalone
+namespace KSPTechTreeEditor
 {
     partial class AddWindow
     {

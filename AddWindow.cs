@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 
-namespace AVTTLoaderStandalone
+namespace KSPTechTreeEditor
 {
     public partial class AddWindow : Form
     {

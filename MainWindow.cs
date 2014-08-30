@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using AVTTLoaderStandalone.Properties;
+using KSPTechTreeEditor.Properties;
 
-namespace AVTTLoaderStandalone
+namespace KSPTechTreeEditor
 {
     public partial class MainWindow : Form
     {

@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace AVTTLoaderStandalone
+namespace KSPTechTreeEditor
 {
     /// <summary>
     /// An attribute class representing a name-value pair of attributes in a tree node

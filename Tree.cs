@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
-namespace AVTTLoaderStandalone
+namespace KSPTechTreeEditor
 {
     /// <summary>
     /// Represents a tech tree structure.
