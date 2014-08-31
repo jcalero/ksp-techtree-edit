@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using KSPTechTreeEditor.Properties;
 
-namespace KSPTechTreeEditor
+namespace KSPTechTreeEditor.Views
 {
 	public partial class MainWindow : Form
 	{

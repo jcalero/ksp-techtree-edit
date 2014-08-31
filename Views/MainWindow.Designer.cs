@@ -1,6 +1,6 @@
 using KSPTechTreeEditor.Properties;
 
-namespace KSPTechTreeEditor
+namespace KSPTechTreeEditor.Views
 {
 	partial class MainWindow
 	{

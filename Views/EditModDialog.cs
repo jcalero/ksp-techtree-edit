@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace KSPTechTreeEditor
+namespace KSPTechTreeEditor.Views
 {
     public partial class EditModDialog : Form
     {

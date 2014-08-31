@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace KSPTechTreeEditor
+namespace KSPTechTreeEditor.Views
 {
     public partial class AddWindow : Form
     {

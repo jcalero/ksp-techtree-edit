@@ -2,7 +2,7 @@ using System;
 using System.Windows.Forms;
 using KSPTechTreeEditor.Properties;
 
-namespace KSPTechTreeEditor
+namespace KSPTechTreeEditor.Views
 {
 	public partial class AddModDialog : Form
 	{
