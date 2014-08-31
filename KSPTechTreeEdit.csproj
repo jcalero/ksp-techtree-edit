@@ -62,30 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddModDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddModDialog.Designer.cs">
-      <DependentUpon>AddModDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AddWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddWindow.Designer.cs">
-      <DependentUpon>AddWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EditModDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditModDialog.Designer.cs">
-      <DependentUpon>EditModDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainWindow.Designer.cs">
-      <DependentUpon>MainWindow.cs</DependentUpon>
-    </Compile>
     <Compile Include="KSPTechTreeEditor.cs" />
     <Compile Include="ModCollection.cs" />
     <Compile Include="PartsFinder.cs" />
@@ -93,19 +69,30 @@
     <Compile Include="Attribute.cs" />
     <Compile Include="Tree.cs" />
     <Compile Include="TreeParser.cs" />
-    <EmbeddedResource Include="AddModDialog.resx">
+    <Compile Include="Views\AddModDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddModDialog.Designer.cs">
       <DependentUpon>AddModDialog.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddWindow.resx">
+    </Compile>
+    <Compile Include="Views\AddWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddWindow.Designer.cs">
       <DependentUpon>AddWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="EditModDialog.resx">
+    </Compile>
+    <Compile Include="Views\EditModDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditModDialog.Designer.cs">
       <DependentUpon>EditModDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainWindow.resx">
+    </Compile>
+    <Compile Include="Views\MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
-    </EmbeddedResource>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -116,6 +103,19 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\AddModDialog.resx">
+      <DependentUpon>AddModDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddWindow.resx">
+      <DependentUpon>AddWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditModDialog.resx">
+      <DependentUpon>EditModDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -144,6 +144,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
