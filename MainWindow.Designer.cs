@@ -1,3 +1,5 @@
+using KSPTechTreeEditor.Properties;
+
 namespace KSPTechTreeEditor
 {
     partial class MainWindow
@@ -5,7 +7,7 @@ namespace KSPTechTreeEditor
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private readonly System.ComponentModel.IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -28,300 +30,345 @@ namespace KSPTechTreeEditor
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            this.labelStatusBar = new System.Windows.Forms.Label();
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.labelTreeLoc = new System.Windows.Forms.Label();
-            this.buttonTreeLoad = new System.Windows.Forms.Button();
-            this.checkedListMods = new System.Windows.Forms.CheckedListBox();
-            this.buttonSaveTree = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.buttonCheckAll = new System.Windows.Forms.Button();
-            this.buttonUncheckAll = new System.Windows.Forms.Button();
-            this.buttonRestoreBackup = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.developerOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tableLayoutPanel.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.SuspendLayout();
+            var resources =
+                new System.ComponentModel.ComponentResourceManager(typeof (MainWindow));
+            _labelStatusBar = new System.Windows.Forms.Label();
+            _tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            _tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            _labelTreeLoc = new System.Windows.Forms.Label();
+            _buttonTreeLoad = new System.Windows.Forms.Button();
+            _checkedListMods = new System.Windows.Forms.CheckedListBox();
+            _buttonSaveTree = new System.Windows.Forms.Button();
+            _flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            _buttonCheckAll = new System.Windows.Forms.Button();
+            _buttonUncheckAll = new System.Windows.Forms.Button();
+            _buttonRestoreBackup = new System.Windows.Forms.Button();
+            _openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            _menuStrip1 = new System.Windows.Forms.MenuStrip();
+            _fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            _closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            _developerOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            _addModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            _editModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            _helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            _aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            _tableLayoutPanel.SuspendLayout();
+            _tableLayoutPanel1.SuspendLayout();
+            _flowLayoutPanel1.SuspendLayout();
+            _menuStrip1.SuspendLayout();
+            SuspendLayout();
             // 
             // labelStatusBar
             // 
-            this.labelStatusBar.AutoSize = true;
-            this.labelStatusBar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.tableLayoutPanel.SetColumnSpan(this.labelStatusBar, 2);
-            this.labelStatusBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelStatusBar.Location = new System.Drawing.Point(3, 337);
-            this.labelStatusBar.Name = "labelStatusBar";
-            this.labelStatusBar.Size = new System.Drawing.Size(568, 20);
-            this.labelStatusBar.TabIndex = 2;
-            this.labelStatusBar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            _labelStatusBar.AutoSize = true;
+            _labelStatusBar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            _tableLayoutPanel.SetColumnSpan(_labelStatusBar, 2);
+            _labelStatusBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            _labelStatusBar.Location = new System.Drawing.Point(3, 337);
+            _labelStatusBar.Name = "_labelStatusBar";
+            _labelStatusBar.Size = new System.Drawing.Size(568, 20);
+            _labelStatusBar.TabIndex = 2;
+            _labelStatusBar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel
             // 
-            this.tableLayoutPanel.ColumnCount = 2;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel.Controls.Add(this.labelStatusBar, 0, 5);
-            this.tableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 0, 1);
-            this.tableLayoutPanel.Controls.Add(this.checkedListMods, 0, 3);
-            this.tableLayoutPanel.Controls.Add(this.buttonSaveTree, 1, 4);
-            this.tableLayoutPanel.Controls.Add(this.flowLayoutPanel1, 0, 2);
-            this.tableLayoutPanel.Controls.Add(this.buttonRestoreBackup, 0, 4);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 24);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 6;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 14F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(574, 357);
-            this.tableLayoutPanel.TabIndex = 0;
+            _tableLayoutPanel.ColumnCount = 2;
+            _tableLayoutPanel.ColumnStyles.Add(
+                                              new System.Windows.Forms.ColumnStyle(
+                                                  System.Windows.Forms.SizeType.Percent,
+                                                  50F));
+            _tableLayoutPanel.ColumnStyles.Add(
+                                              new System.Windows.Forms.ColumnStyle(
+                                                  System.Windows.Forms.SizeType.Percent,
+                                                  50F));
+            _tableLayoutPanel.Controls.Add(_labelStatusBar, 0, 5);
+            _tableLayoutPanel.Controls.Add(_tableLayoutPanel1, 0, 1);
+            _tableLayoutPanel.Controls.Add(_checkedListMods, 0, 3);
+            _tableLayoutPanel.Controls.Add(_buttonSaveTree, 1, 4);
+            _tableLayoutPanel.Controls.Add(_flowLayoutPanel1, 0, 2);
+            _tableLayoutPanel.Controls.Add(_buttonRestoreBackup, 0, 4);
+            _tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            _tableLayoutPanel.Location = new System.Drawing.Point(0, 24);
+            _tableLayoutPanel.Name = "_tableLayoutPanel";
+            _tableLayoutPanel.RowCount = 6;
+            _tableLayoutPanel.RowStyles.Add(
+                                           new System.Windows.Forms.RowStyle(
+                                               System.Windows.Forms.SizeType.Absolute,
+                                               14F));
+            _tableLayoutPanel.RowStyles.Add(
+                                           new System.Windows.Forms.RowStyle(
+                                               System.Windows.Forms.SizeType.Absolute,
+                                               30F));
+            _tableLayoutPanel.RowStyles.Add(
+                                           new System.Windows.Forms.RowStyle(
+                                               System.Windows.Forms.SizeType.Absolute,
+                                               35F));
+            _tableLayoutPanel.RowStyles.Add(
+                                           new System.Windows.Forms.RowStyle(
+                                               System.Windows.Forms.SizeType.Percent,
+                                               100F));
+            _tableLayoutPanel.RowStyles.Add(
+                                           new System.Windows.Forms.RowStyle(
+                                               System.Windows.Forms.SizeType.Absolute,
+                                               38F));
+            _tableLayoutPanel.RowStyles.Add(
+                                           new System.Windows.Forms.RowStyle(
+                                               System.Windows.Forms.SizeType.Absolute,
+                                               20F));
+            _tableLayoutPanel.Size = new System.Drawing.Size(574, 357);
+            _tableLayoutPanel.TabIndex = 0;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel.SetColumnSpan(this.tableLayoutPanel1, 2);
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.labelTreeLoc, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.buttonTreeLoad, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 14);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(574, 30);
-            this.tableLayoutPanel1.TabIndex = 3;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            _tableLayoutPanel1.ColumnCount = 2;
+            _tableLayoutPanel.SetColumnSpan(_tableLayoutPanel1, 2);
+            _tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            _tableLayoutPanel1.ColumnStyles.Add(
+                                               new System.Windows.Forms.ColumnStyle(
+                                                   System.Windows.Forms.SizeType.Percent,
+                                                   100F));
+            _tableLayoutPanel1.Controls.Add(_labelTreeLoc, 0, 0);
+            _tableLayoutPanel1.Controls.Add(_buttonTreeLoad, 1, 0);
+            _tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            _tableLayoutPanel1.Location = new System.Drawing.Point(0, 14);
+            _tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            _tableLayoutPanel1.Name = "_tableLayoutPanel1";
+            _tableLayoutPanel1.RowCount = 1;
+            _tableLayoutPanel1.RowStyles.Add(
+                                            new System.Windows.Forms.RowStyle(
+                                                System.Windows.Forms.SizeType.Percent,
+                                                100F));
+            _tableLayoutPanel1.Size = new System.Drawing.Size(574, 30);
+            _tableLayoutPanel1.TabIndex = 3;
+            _tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
             // 
             // labelTreeLoc
             // 
-            this.labelTreeLoc.AutoSize = true;
-            this.labelTreeLoc.Dock = System.Windows.Forms.DockStyle.Right;
-            this.labelTreeLoc.Location = new System.Drawing.Point(3, 0);
-            this.labelTreeLoc.Name = "labelTreeLoc";
-            this.labelTreeLoc.Size = new System.Drawing.Size(99, 30);
-            this.labelTreeLoc.TabIndex = 0;
-            this.labelTreeLoc.Text = "Location of tree.cfg";
-            this.labelTreeLoc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            _labelTreeLoc.AutoSize = true;
+            _labelTreeLoc.Dock = System.Windows.Forms.DockStyle.Right;
+            _labelTreeLoc.Location = new System.Drawing.Point(3, 0);
+            _labelTreeLoc.Name = "_labelTreeLoc";
+            _labelTreeLoc.Size = new System.Drawing.Size(99, 30);
+            _labelTreeLoc.TabIndex = 0;
+            _labelTreeLoc.Text = Resources.MainWindow_TreeLocation_Label;
+            _labelTreeLoc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // buttonTreeLoad
             // 
-            this.buttonTreeLoad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonTreeLoad.Location = new System.Drawing.Point(108, 3);
-            this.buttonTreeLoad.Name = "buttonTreeLoad";
-            this.buttonTreeLoad.Size = new System.Drawing.Size(463, 24);
-            this.buttonTreeLoad.TabIndex = 1;
-            this.buttonTreeLoad.Text = "Browse...";
-            this.buttonTreeLoad.UseVisualStyleBackColor = true;
-            this.buttonTreeLoad.Click += new System.EventHandler(this.ButtonTreeLoadClick);
+            _buttonTreeLoad.Dock = System.Windows.Forms.DockStyle.Fill;
+            _buttonTreeLoad.Location = new System.Drawing.Point(108, 3);
+            _buttonTreeLoad.Name = "_buttonTreeLoad";
+            _buttonTreeLoad.Size = new System.Drawing.Size(463, 24);
+            _buttonTreeLoad.TabIndex = 1;
+            _buttonTreeLoad.Text = Resources.MainWindow_TreeLocationBrowseButton_Text;
+            _buttonTreeLoad.UseVisualStyleBackColor = true;
+            _buttonTreeLoad.Click += ButtonTreeLoadClick;
             // 
             // checkedListMods
             // 
-            this.checkedListMods.CheckOnClick = true;
-            this.tableLayoutPanel.SetColumnSpan(this.checkedListMods, 2);
-            this.checkedListMods.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkedListMods.FormattingEnabled = true;
-            this.checkedListMods.Items.AddRange(new object[] {
-            "item1",
-            "item2"});
-            this.checkedListMods.Location = new System.Drawing.Point(10, 82);
-            this.checkedListMods.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
-            this.checkedListMods.MultiColumn = true;
-            this.checkedListMods.Name = "checkedListMods";
-            this.checkedListMods.Size = new System.Drawing.Size(554, 214);
-            this.checkedListMods.TabIndex = 4;
+            _checkedListMods.CheckOnClick = true;
+            _tableLayoutPanel.SetColumnSpan(_checkedListMods, 2);
+            _checkedListMods.Dock = System.Windows.Forms.DockStyle.Fill;
+            _checkedListMods.FormattingEnabled = true;
+            _checkedListMods.Items.AddRange(
+                                           new object[]
+                                           {
+                                               "item1",
+                                               "item2"
+                                           });
+            _checkedListMods.Location = new System.Drawing.Point(10, 82);
+            _checkedListMods.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            _checkedListMods.MultiColumn = true;
+            _checkedListMods.Name = "_checkedListMods";
+            _checkedListMods.Size = new System.Drawing.Size(554, 214);
+            _checkedListMods.TabIndex = 4;
             // 
             // buttonSaveTree
             // 
-            this.buttonSaveTree.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonSaveTree.Location = new System.Drawing.Point(409, 302);
-            this.buttonSaveTree.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.buttonSaveTree.Name = "buttonSaveTree";
-            this.buttonSaveTree.Size = new System.Drawing.Size(155, 32);
-            this.buttonSaveTree.TabIndex = 5;
-            this.buttonSaveTree.Text = "Update Tree";
-            this.buttonSaveTree.UseVisualStyleBackColor = true;
-            this.buttonSaveTree.Click += new System.EventHandler(this.ButtonSaveTreeClick);
+            _buttonSaveTree.Dock = System.Windows.Forms.DockStyle.Right;
+            _buttonSaveTree.Location = new System.Drawing.Point(409, 302);
+            _buttonSaveTree.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            _buttonSaveTree.Name = "_buttonSaveTree";
+            _buttonSaveTree.Size = new System.Drawing.Size(155, 32);
+            _buttonSaveTree.TabIndex = 5;
+            _buttonSaveTree.Text = Resources.MainWindow_UpdateTreeButton_Text;
+            _buttonSaveTree.UseVisualStyleBackColor = true;
+            _buttonSaveTree.Click += ButtonSaveTreeClick;
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.buttonCheckAll);
-            this.flowLayoutPanel1.Controls.Add(this.buttonUncheckAll);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(10, 44);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(277, 35);
-            this.flowLayoutPanel1.TabIndex = 6;
+            _flowLayoutPanel1.Controls.Add(_buttonCheckAll);
+            _flowLayoutPanel1.Controls.Add(_buttonUncheckAll);
+            _flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            _flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
+            _flowLayoutPanel1.Location = new System.Drawing.Point(10, 44);
+            _flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            _flowLayoutPanel1.Name = "_flowLayoutPanel1";
+            _flowLayoutPanel1.Size = new System.Drawing.Size(277, 35);
+            _flowLayoutPanel1.TabIndex = 6;
             // 
             // buttonCheckAll
             // 
-            this.buttonCheckAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonCheckAll.Location = new System.Drawing.Point(3, 9);
-            this.buttonCheckAll.Name = "buttonCheckAll";
-            this.buttonCheckAll.Size = new System.Drawing.Size(75, 23);
-            this.buttonCheckAll.TabIndex = 0;
-            this.buttonCheckAll.Text = "Check All";
-            this.buttonCheckAll.UseVisualStyleBackColor = true;
-            this.buttonCheckAll.Click += new System.EventHandler(this.ButtonCheckAllClick);
+            _buttonCheckAll.Anchor =
+                System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            _buttonCheckAll.Location = new System.Drawing.Point(3, 9);
+            _buttonCheckAll.Name = "_buttonCheckAll";
+            _buttonCheckAll.Size = new System.Drawing.Size(75, 23);
+            _buttonCheckAll.TabIndex = 0;
+            _buttonCheckAll.Text = Resources.MainWindow_CheckAllButton_Text;
+            _buttonCheckAll.UseVisualStyleBackColor = true;
+            _buttonCheckAll.Click += ButtonCheckAllClick;
             // 
             // buttonUncheckAll
             // 
-            this.buttonUncheckAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonUncheckAll.Location = new System.Drawing.Point(84, 9);
-            this.buttonUncheckAll.Name = "buttonUncheckAll";
-            this.buttonUncheckAll.Size = new System.Drawing.Size(75, 23);
-            this.buttonUncheckAll.TabIndex = 1;
-            this.buttonUncheckAll.Text = "Uncheck All";
-            this.buttonUncheckAll.UseVisualStyleBackColor = true;
-            this.buttonUncheckAll.Click += new System.EventHandler(this.ButtonUncheckAllClick);
+            _buttonUncheckAll.Anchor =
+                System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            _buttonUncheckAll.Location = new System.Drawing.Point(84, 9);
+            _buttonUncheckAll.Name = "_buttonUncheckAll";
+            _buttonUncheckAll.Size = new System.Drawing.Size(75, 23);
+            _buttonUncheckAll.TabIndex = 1;
+            _buttonUncheckAll.Text = Resources.MainWindow_UncheckButtonAll_Text;
+            _buttonUncheckAll.UseVisualStyleBackColor = true;
+            _buttonUncheckAll.Click += ButtonUncheckAllClick;
             // 
             // buttonRestoreBackup
             // 
-            this.buttonRestoreBackup.Dock = System.Windows.Forms.DockStyle.Left;
-            this.buttonRestoreBackup.Location = new System.Drawing.Point(10, 302);
-            this.buttonRestoreBackup.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
-            this.buttonRestoreBackup.Name = "buttonRestoreBackup";
-            this.buttonRestoreBackup.Size = new System.Drawing.Size(151, 32);
-            this.buttonRestoreBackup.TabIndex = 7;
-            this.buttonRestoreBackup.Text = "Restore tree";
-            this.buttonRestoreBackup.UseVisualStyleBackColor = true;
-            this.buttonRestoreBackup.Click += new System.EventHandler(this.ButtonRestoreBackupClick);
+            _buttonRestoreBackup.Dock = System.Windows.Forms.DockStyle.Left;
+            _buttonRestoreBackup.Location = new System.Drawing.Point(10, 302);
+            _buttonRestoreBackup.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            _buttonRestoreBackup.Name = "_buttonRestoreBackup";
+            _buttonRestoreBackup.Size = new System.Drawing.Size(151, 32);
+            _buttonRestoreBackup.TabIndex = 7;
+            _buttonRestoreBackup.Text = Resources.MainWindow_RestoreTreeButton_Text;
+            _buttonRestoreBackup.UseVisualStyleBackColor = true;
+            _buttonRestoreBackup.Click += ButtonRestoreBackupClick;
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            _openFileDialog1.FileName = "openFileDialog1";
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.developerOptionsToolStripMenuItem,
-            this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(574, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            _menuStrip1.Items.AddRange(
+                                      new System.Windows.Forms.ToolStripItem[]
+                                      {
+                                          _fileToolStripMenuItem,
+                                          _developerOptionsToolStripMenuItem,
+                                          _helpToolStripMenuItem
+                                      });
+            _menuStrip1.Location = new System.Drawing.Point(0, 0);
+            _menuStrip1.Name = "_menuStrip1";
+            _menuStrip1.Size = new System.Drawing.Size(574, 24);
+            _menuStrip1.TabIndex = 1;
+            _menuStrip1.Text = Resources.MainWindow_MenuStrip_Text;
             // 
             // fileToolStripMenuItem
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.closeToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.ShortcutKeyDisplayString = "";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
+            _fileToolStripMenuItem.DropDownItems.AddRange(
+                                                         new System.Windows.Forms.ToolStripItem[]
+                                                         {
+                                                             _closeToolStripMenuItem
+                                                         });
+            _fileToolStripMenuItem.Name = "_fileToolStripMenuItem";
+            _fileToolStripMenuItem.ShortcutKeyDisplayString = "";
+            _fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            _fileToolStripMenuItem.Text = Resources.MainWindow_MenuItemFile_Text;
             // 
             // closeToolStripMenuItem
             // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.closeToolStripMenuItem.Text = "Close";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItemClick);
+            _closeToolStripMenuItem.Name = "_closeToolStripMenuItem";
+            _closeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            _closeToolStripMenuItem.Text = Resources.MainWindow_MenuItemClose_Text;
+            _closeToolStripMenuItem.Click += CloseToolStripMenuItemClick;
             // 
             // developerOptionsToolStripMenuItem
             // 
-            this.developerOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addModToolStripMenuItem,
-            this.editModToolStripMenuItem});
-            this.developerOptionsToolStripMenuItem.Name = "developerOptionsToolStripMenuItem";
-            this.developerOptionsToolStripMenuItem.Size = new System.Drawing.Size(117, 20);
-            this.developerOptionsToolStripMenuItem.Text = "Developer Options";
+            _developerOptionsToolStripMenuItem.DropDownItems.AddRange(
+                                                                     new System.Windows.Forms.ToolStripItem[]
+                                                                     {
+                                                                         _addModToolStripMenuItem,
+                                                                         _editModToolStripMenuItem
+                                                                     });
+            _developerOptionsToolStripMenuItem.Name = "_developerOptionsToolStripMenuItem";
+            _developerOptionsToolStripMenuItem.Size = new System.Drawing.Size(117, 20);
+            _developerOptionsToolStripMenuItem.Text = Resources.MainWindow_MenuItemDevOp_Text;
             // 
             // addModToolStripMenuItem
             // 
-            this.addModToolStripMenuItem.Name = "addModToolStripMenuItem";
-            this.addModToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.addModToolStripMenuItem.Text = "Add Mod...";
-            this.addModToolStripMenuItem.Click += new System.EventHandler(this.AddModToolStripMenuItemClick);
+            _addModToolStripMenuItem.Name = "_addModToolStripMenuItem";
+            _addModToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            _addModToolStripMenuItem.Text = Resources.MainWindow_MenuItemAddMod_Text;
+            _addModToolStripMenuItem.Click += AddModToolStripMenuItemClick;
             // 
             // editModToolStripMenuItem
             // 
-            this.editModToolStripMenuItem.Name = "editModToolStripMenuItem";
-            this.editModToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.editModToolStripMenuItem.Text = "Edit Mod...";
-            this.editModToolStripMenuItem.Click += new System.EventHandler(this.EditModToolStripMenuItemClick);
+            _editModToolStripMenuItem.Name = "_editModToolStripMenuItem";
+            _editModToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            _editModToolStripMenuItem.Text = Resources.MainWindow_MenuItemEditMod_Text;
+            _editModToolStripMenuItem.Click += EditModToolStripMenuItemClick;
             // 
             // helpToolStripMenuItem
             // 
-            this.helpToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
+            _helpToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            _helpToolStripMenuItem.DropDownItems.AddRange(
+                                                         new System.Windows.Forms.ToolStripItem[]
+                                                         {
+                                                             _aboutToolStripMenuItem
+                                                         });
+            _helpToolStripMenuItem.Name = "_helpToolStripMenuItem";
+            _helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            _helpToolStripMenuItem.Text = Resources.MainWindow_MenuItemHelp_Text;
             // 
             // aboutToolStripMenuItem
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.aboutToolStripMenuItem.Text = "About...";
+            _aboutToolStripMenuItem.Name = "_aboutToolStripMenuItem";
+            _aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            _aboutToolStripMenuItem.Text = Resources.MainWindow_MenuItemAbout_Text;
             // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 381);
-            this.Controls.Add(this.tableLayoutPanel);
-            this.Controls.Add(this.menuStrip1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "MainWindow";
-            this.Text = "Ackander\'s Vertical Tech Tree Config Tool v0.2.2";
-            this.Load += new System.EventHandler(this.MainWindowLoad);
-            this.tableLayoutPanel.ResumeLayout(false);
-            this.tableLayoutPanel.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(574, 381);
+            Controls.Add(_tableLayoutPanel);
+            Controls.Add(_menuStrip1);
+            Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
+            MainMenuStrip = _menuStrip1;
+            Name = "MainWindow";
+            Text = Resources.MainWindow_Title_Text;
+            Load += MainWindowLoad;
+            _tableLayoutPanel.ResumeLayout(false);
+            _tableLayoutPanel.PerformLayout();
+            _tableLayoutPanel1.ResumeLayout(false);
+            _tableLayoutPanel1.PerformLayout();
+            _flowLayoutPanel1.ResumeLayout(false);
+            _menuStrip1.ResumeLayout(false);
+            _menuStrip1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private System.Windows.Forms.Label labelStatusBar;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label labelTreeLoc;
-        private System.Windows.Forms.Button buttonTreeLoad;
-        private System.Windows.Forms.CheckedListBox checkedListMods;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button buttonSaveTree;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem developerOptionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addModToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editModToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button buttonCheckAll;
-        private System.Windows.Forms.Button buttonUncheckAll;
-        private System.Windows.Forms.Button buttonRestoreBackup;
-
+        private System.Windows.Forms.Label _labelStatusBar;
+        private System.Windows.Forms.TableLayoutPanel _tableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel _tableLayoutPanel1;
+        private System.Windows.Forms.Label _labelTreeLoc;
+        private System.Windows.Forms.Button _buttonTreeLoad;
+        private System.Windows.Forms.CheckedListBox _checkedListMods;
+        private System.Windows.Forms.OpenFileDialog _openFileDialog1;
+        private System.Windows.Forms.Button _buttonSaveTree;
+        private System.Windows.Forms.MenuStrip _menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem _fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _closeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _developerOptionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _addModToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _editModToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _aboutToolStripMenuItem;
+        private System.Windows.Forms.FlowLayoutPanel _flowLayoutPanel1;
+        private System.Windows.Forms.Button _buttonCheckAll;
+        private System.Windows.Forms.Button _buttonUncheckAll;
+        private System.Windows.Forms.Button _buttonRestoreBackup;
     }
 }
-

@@ -14,7 +14,6 @@ namespace KSPTechTreeEditor
         {
             FilePath = fileName;
         }
-
     }
 
     /// <summary>
@@ -32,6 +31,7 @@ namespace KSPTechTreeEditor
         public Attribute AnyParent = new Attribute();
         public Attribute HideIfEmpty = new Attribute();
         public Attribute Parents = new Attribute();
+
         /// <summary>
         /// All the parts in this node
         /// </summary>
@@ -42,9 +42,10 @@ namespace KSPTechTreeEditor
         /// <summary>
         /// A list of all attributes in this node (not including the parts)
         /// </summary>
-        public List<Attribute> Attributes {
+        public List<Attribute> Attributes
+        {
             get { return _attributeList; }
-        } 
+        }
 
         public Node()
         {

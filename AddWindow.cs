@@ -7,7 +7,7 @@ namespace KSPTechTreeEditor
     {
         public Node SelectedNode { get; private set; }
         public string NewPart { get; private set; }
-        private Tree tree;
+        private readonly Tree _tree;
 
         public event EventHandler OnDataAvailable;
 
@@ -19,25 +19,25 @@ namespace KSPTechTreeEditor
         public AddWindow(Tree tree)
         {
             InitializeComponent();
-            this.tree = tree;
+            _tree = tree;
         }
 
         public void PopulateNodesComboBox()
         {
-            foreach (var node in tree.Nodes)
+            foreach (var node in _tree.Nodes)
             {
-                comboBoxNodes.Items.Add((string)node.Name);
+                _comboBoxNodes.Items.Add((string) node.Name);
             }
 
-            if (comboBoxNodes.Items.Count > 0) comboBoxNodes.SelectedIndex = 0;
+            if (_comboBoxNodes.Items.Count > 0) _comboBoxNodes.SelectedIndex = 0;
         }
 
         private void ButtonAddConfirmClick(object sender, EventArgs e)
         {
-            NewPart = textBoxNewPart.Text;
-            foreach (var node in tree.Nodes)
+            NewPart = _textBoxNewPart.Text;
+            foreach (var node in _tree.Nodes)
             {
-                if (node.Name != (string)comboBoxNodes.SelectedItem) continue;
+                if (node.Name != (string) _comboBoxNodes.SelectedItem) continue;
                 SelectedNode = node;
                 if (OnDataAvailable != null)
                     OnDataAvailable(this, EventArgs.Empty);

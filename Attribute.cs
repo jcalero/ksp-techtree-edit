@@ -13,9 +13,7 @@ namespace KSPTechTreeEditor
         /// <summary>
         /// Instantiates an empty attribute
         /// </summary>
-        public Attribute()
-        {
-        }
+        public Attribute() {}
 
         /// <summary>
         /// Instantiates an attribute with the item name and value
@@ -59,7 +57,7 @@ namespace KSPTechTreeEditor
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((Attribute)obj);
+            return obj.GetType() == GetType() && Equals((Attribute) obj);
         }
 
         /// <summary>
@@ -100,8 +98,8 @@ namespace KSPTechTreeEditor
 
             // If one is null, but not both, return false.
             // ReSharper disable RedundantCast.0
-            if (((object)param1 == null) || ((object)param2 == null))
-            // ReSharper restore RedundantCast.0
+            if (((object) param1 == null) || ((object) param2 == null))
+                // ReSharper restore RedundantCast.0
             {
                 return false;
             }
@@ -124,8 +122,8 @@ namespace KSPTechTreeEditor
 
             // If one is null, but not both, return false.
             // ReSharper disable RedundantCast.0
-            if (((object)param1 == null) || ((object)param2 == null))
-            // ReSharper restore RedundantCast.0
+            if (((object) param1 == null) || ((object) param2 == null))
+                // ReSharper restore RedundantCast.0
             {
                 return false;
             }

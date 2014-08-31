@@ -9,12 +9,10 @@ namespace KSPTechTreeEditor
     public class ModCollection
     {
         public List<Mod> Mods { get; set; }
+
         public int Count
         {
-            get
-            {
-                return Mods.Count;
-            }
+            get { return Mods.Count; }
         }
 
         public ModCollection()
@@ -30,12 +28,12 @@ namespace KSPTechTreeEditor
 
         public ModCollection Clone()
         {
-            var tmpMC = new ModCollection();
+            var tmpMc = new ModCollection();
             foreach (var m in Mods)
             {
-                tmpMC.Mods.Add(m.Clone());
+                tmpMc.Mods.Add(m.Clone());
             }
-            return tmpMC;
+            return tmpMc;
         }
     }
 
@@ -90,7 +88,7 @@ namespace KSPTechTreeEditor
     public class ModCollectionParser
     {
         public ModCollection Collection { get; set; }
-        private string path = "modlist.cfg";
+        private const string Path = "modlist.cfg";
 
         public ModCollectionParser()
         {
@@ -105,9 +103,9 @@ namespace KSPTechTreeEditor
 
         public void Load()
         {
-            if (!File.Exists(path)) return;
+            if (!File.Exists(Path)) return;
             var modlistString = "";
-            using (var reader = new StreamReader(path))
+            using (var reader = new StreamReader(Path))
             {
                 string line;
                 while ((line = reader.ReadLine()) != null)
@@ -134,7 +132,10 @@ namespace KSPTechTreeEditor
                         break;
                 }
 
-                if (!b) { continue; }
+                if (!b)
+                {
+                    continue;
+                }
 
                 switch (n)
                 {
@@ -169,7 +170,7 @@ namespace KSPTechTreeEditor
             var newLine = Environment.NewLine;
             var cfgOutput = "";
 
-            var file = new StreamWriter(path);
+            var file = new StreamWriter(Path);
 
             foreach (var mod in mods)
             {

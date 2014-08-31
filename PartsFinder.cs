@@ -8,7 +8,7 @@ namespace KSPTechTreeEditor
 {
     public delegate void ProgressFileSearch(object sender, EventArgs e);
 
-    class PartsFinder
+    internal class PartsFinder
     {
         public event ProgressFileSearch Progress;
 
@@ -49,7 +49,7 @@ namespace KSPTechTreeEditor
             return FindParts(directory).Aggregate("", (current, part) => current + (part + ", "));
         }
 
-        static List<string> GetParts(FileSystemInfo file, bool specialCase = false)
+        private static List<string> GetParts(FileSystemInfo file, bool specialCase = false)
         {
             var parts = new List<string>();
             var reader = new StreamReader(file.FullName);
@@ -74,7 +74,7 @@ namespace KSPTechTreeEditor
                 if (line.StartsWith("PART")) isPart = true;
 
                 if (!isPart) continue;
-                
+
                 if (line.Contains("{")) depth++;
 
                 if (line.Contains("}")) depth--;
@@ -83,7 +83,7 @@ namespace KSPTechTreeEditor
 
                 if (!line.StartsWith("name=")) continue;
 
-                var partName = line.Remove(0, line.LastIndexOf(char.Parse("=")) + 1).Trim().Replace('_','.');
+                var partName = line.Remove(0, line.LastIndexOf(char.Parse("=")) + 1).Trim().Replace('_', '.');
                 if (partName.Length >= 1 && !parts.Contains(partName)) parts.Add(partName);
             }
             reader.Close();

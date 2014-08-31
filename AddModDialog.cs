@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Forms;
+using KSPTechTreeEditor.Properties;
 
 namespace KSPTechTreeEditor
 {
@@ -25,12 +26,12 @@ namespace KSPTechTreeEditor
 
         private void TextBoxPartsTextChanged(object sender, EventArgs e)
         {
-            ModParts = textBoxParts.Text;
+            ModParts = _textBoxParts.Text;
         }
 
         private void TextBoxModNameTextChanged(object sender, EventArgs e)
         {
-            ModTitle = textBoxModName.Text;
+            ModTitle = _textBoxModName.Text;
         }
 
         private void ButtonModFolderClick(object sender, EventArgs e)
@@ -42,29 +43,32 @@ namespace KSPTechTreeEditor
             var pf = new PartsFinder();
 
             ModFolder = _fb.SelectedPath;
-            progressBar.Value = 0;
-            progressBar.Maximum = pf.FilesCount(ModFolder);
+            _progressBar.Value = 0;
+            _progressBar.Maximum = pf.FilesCount(ModFolder);
             pf.Progress += FileProgress;
 
             ModParts = pf.FindPartsString(ModFolder);
-            textBoxParts.Text = ModParts;
+            _textBoxParts.Text = ModParts;
         }
 
         private void FileProgress(object sender, EventArgs e)
         {
-            progressBar.Increment(1);
+            _progressBar.Increment(1);
         }
 
         private void ButtonSaveClick(object sender, EventArgs e)
         {
-            if (textBoxModName.Text.Trim().Length > 0)
+            if (_textBoxModName.Text.Trim().Length > 0)
             {
                 Close();
                 DialogResult = DialogResult.OK;
             }
             else
             {
-                MessageBox.Show("Please put a mod name", "Missing mod name", MessageBoxButtons.OK);
+                MessageBox.Show(
+                                Resources.AddModDialog_MissingModName_Content,
+                                Resources.AddModDialog_MissingModName_Title,
+                                MessageBoxButtons.OK);
             }
         }
     }

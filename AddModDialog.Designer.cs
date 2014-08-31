@@ -1,3 +1,5 @@
+using KSPTechTreeEditor.Properties;
+
 namespace KSPTechTreeEditor
 {
     partial class AddModDialog
@@ -5,7 +7,7 @@ namespace KSPTechTreeEditor
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private readonly System.ComponentModel.IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -28,216 +30,256 @@ namespace KSPTechTreeEditor
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxModName = new System.Windows.Forms.TextBox();
-            this.labelPartListInfo = new System.Windows.Forms.Label();
-            this.textBoxParts = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
-            this.labelUseWildcards = new System.Windows.Forms.Label();
-            this.labelModFolder = new System.Windows.Forms.Label();
-            this.buttonModFolder = new System.Windows.Forms.Button();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.SuspendLayout();
+            _tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            _label1 = new System.Windows.Forms.Label();
+            _textBoxModName = new System.Windows.Forms.TextBox();
+            _labelPartListInfo = new System.Windows.Forms.Label();
+            _textBoxParts = new System.Windows.Forms.TextBox();
+            _tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            _buttonSave = new System.Windows.Forms.Button();
+            _buttonCancel = new System.Windows.Forms.Button();
+            _labelUseWildcards = new System.Windows.Forms.Label();
+            _labelModFolder = new System.Windows.Forms.Label();
+            _buttonModFolder = new System.Windows.Forms.Button();
+            _progressBar = new System.Windows.Forms.ProgressBar();
+            _tableLayoutPanel1.SuspendLayout();
+            _tableLayoutPanel2.SuspendLayout();
+            SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.textBoxModName, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.labelPartListInfo, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.textBoxParts, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.labelUseWildcards, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.labelModFolder, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.buttonModFolder, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.progressBar, 0, 5);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 7;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(421, 339);
-            this.tableLayoutPanel1.TabIndex = 0;
+            _tableLayoutPanel1.ColumnCount = 2;
+            _tableLayoutPanel1.ColumnStyles.Add(
+                                               new System.Windows.Forms.ColumnStyle(
+                                                   System.Windows.Forms.SizeType.Absolute,
+                                                   50F));
+            _tableLayoutPanel1.ColumnStyles.Add(
+                                               new System.Windows.Forms.ColumnStyle(
+                                                   System.Windows.Forms.SizeType.Percent,
+                                                   100F));
+            _tableLayoutPanel1.Controls.Add(_label1, 0, 0);
+            _tableLayoutPanel1.Controls.Add(_textBoxModName, 1, 0);
+            _tableLayoutPanel1.Controls.Add(_labelPartListInfo, 0, 2);
+            _tableLayoutPanel1.Controls.Add(_textBoxParts, 0, 4);
+            _tableLayoutPanel1.Controls.Add(_tableLayoutPanel2, 0, 6);
+            _tableLayoutPanel1.Controls.Add(_labelUseWildcards, 0, 3);
+            _tableLayoutPanel1.Controls.Add(_labelModFolder, 0, 1);
+            _tableLayoutPanel1.Controls.Add(_buttonModFolder, 1, 1);
+            _tableLayoutPanel1.Controls.Add(_progressBar, 0, 5);
+            _tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            _tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            _tableLayoutPanel1.Name = "_tableLayoutPanel1";
+            _tableLayoutPanel1.RowCount = 7;
+            _tableLayoutPanel1.RowStyles.Add(
+                                            new System.Windows.Forms.RowStyle(
+                                                System.Windows.Forms.SizeType.Absolute,
+                                                25F));
+            _tableLayoutPanel1.RowStyles.Add(
+                                            new System.Windows.Forms.RowStyle(
+                                                System.Windows.Forms.SizeType.Absolute,
+                                                30F));
+            _tableLayoutPanel1.RowStyles.Add(
+                                            new System.Windows.Forms.RowStyle(
+                                                System.Windows.Forms.SizeType.Absolute,
+                                                21F));
+            _tableLayoutPanel1.RowStyles.Add(
+                                            new System.Windows.Forms.RowStyle(
+                                                System.Windows.Forms.SizeType.Absolute,
+                                                19F));
+            _tableLayoutPanel1.RowStyles.Add(
+                                            new System.Windows.Forms.RowStyle(
+                                                System.Windows.Forms.SizeType.Percent,
+                                                100F));
+            _tableLayoutPanel1.RowStyles.Add(
+                                            new System.Windows.Forms.RowStyle(
+                                                System.Windows.Forms.SizeType.Absolute,
+                                                25F));
+            _tableLayoutPanel1.RowStyles.Add(
+                                            new System.Windows.Forms.RowStyle(
+                                                System.Windows.Forms.SizeType.Absolute,
+                                                35F));
+            _tableLayoutPanel1.Size = new System.Drawing.Size(421, 339);
+            _tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Name:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            _label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            _label1.AutoSize = true;
+            _label1.Location = new System.Drawing.Point(9, 6);
+            _label1.Name = "_label1";
+            _label1.Size = new System.Drawing.Size(38, 13);
+            _label1.TabIndex = 0;
+            _label1.Text = Resources.AddModDialog_ModName_Label;
+            _label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // textBoxModName
             // 
-            this.textBoxModName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxModName.Location = new System.Drawing.Point(53, 3);
-            this.textBoxModName.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.textBoxModName.MaxLength = 1000;
-            this.textBoxModName.Name = "textBoxModName";
-            this.textBoxModName.Size = new System.Drawing.Size(358, 20);
-            this.textBoxModName.TabIndex = 1;
-            this.textBoxModName.TextChanged += new System.EventHandler(this.TextBoxModNameTextChanged);
+            _textBoxModName.Dock = System.Windows.Forms.DockStyle.Fill;
+            _textBoxModName.Location = new System.Drawing.Point(53, 3);
+            _textBoxModName.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            _textBoxModName.MaxLength = 1000;
+            _textBoxModName.Name = "_textBoxModName";
+            _textBoxModName.Size = new System.Drawing.Size(358, 20);
+            _textBoxModName.TabIndex = 1;
+            _textBoxModName.TextChanged += TextBoxModNameTextChanged;
             // 
             // labelPartListInfo
             // 
-            this.labelPartListInfo.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.labelPartListInfo, 2);
-            this.labelPartListInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelPartListInfo.Location = new System.Drawing.Point(13, 55);
-            this.labelPartListInfo.Margin = new System.Windows.Forms.Padding(13, 0, 3, 0);
-            this.labelPartListInfo.Name = "labelPartListInfo";
-            this.labelPartListInfo.Size = new System.Drawing.Size(405, 21);
-            this.labelPartListInfo.TabIndex = 2;
-            this.labelPartListInfo.Text = "Parts that correspond to mod: (Separate by comma)";
-            this.labelPartListInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            _labelPartListInfo.AutoSize = true;
+            _tableLayoutPanel1.SetColumnSpan(_labelPartListInfo, 2);
+            _labelPartListInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            _labelPartListInfo.Location = new System.Drawing.Point(13, 55);
+            _labelPartListInfo.Margin = new System.Windows.Forms.Padding(13, 0, 3, 0);
+            _labelPartListInfo.Name = "_labelPartListInfo";
+            _labelPartListInfo.Size = new System.Drawing.Size(405, 21);
+            _labelPartListInfo.TabIndex = 2;
+            _labelPartListInfo.Text = Resources.AddModDialog_PartsField_Label;
+            _labelPartListInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // textBoxParts
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.textBoxParts, 2);
-            this.textBoxParts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxParts.Location = new System.Drawing.Point(10, 98);
-            this.textBoxParts.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
-            this.textBoxParts.Multiline = true;
-            this.textBoxParts.Name = "textBoxParts";
-            this.textBoxParts.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxParts.Size = new System.Drawing.Size(401, 178);
-            this.textBoxParts.TabIndex = 3;
-            this.textBoxParts.TextChanged += new System.EventHandler(this.TextBoxPartsTextChanged);
+            _tableLayoutPanel1.SetColumnSpan(_textBoxParts, 2);
+            _textBoxParts.Dock = System.Windows.Forms.DockStyle.Fill;
+            _textBoxParts.Location = new System.Drawing.Point(10, 98);
+            _textBoxParts.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            _textBoxParts.Multiline = true;
+            _textBoxParts.Name = "_textBoxParts";
+            _textBoxParts.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            _textBoxParts.Size = new System.Drawing.Size(401, 178);
+            _textBoxParts.TabIndex = 3;
+            _textBoxParts.TextChanged += TextBoxPartsTextChanged;
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel2, 2);
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.64371F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.35629F));
-            this.tableLayoutPanel2.Controls.Add(this.buttonSave, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.buttonCancel, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 304);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(421, 35);
-            this.tableLayoutPanel2.TabIndex = 4;
+            _tableLayoutPanel2.ColumnCount = 2;
+            _tableLayoutPanel1.SetColumnSpan(_tableLayoutPanel2, 2);
+            _tableLayoutPanel2.ColumnStyles.Add(
+                                               new System.Windows.Forms.ColumnStyle(
+                                                   System.Windows.Forms.SizeType.Percent,
+                                                   49.64371F));
+            _tableLayoutPanel2.ColumnStyles.Add(
+                                               new System.Windows.Forms.ColumnStyle(
+                                                   System.Windows.Forms.SizeType.Percent,
+                                                   50.35629F));
+            _tableLayoutPanel2.Controls.Add(_buttonSave, 1, 0);
+            _tableLayoutPanel2.Controls.Add(_buttonCancel, 0, 0);
+            _tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            _tableLayoutPanel2.Location = new System.Drawing.Point(0, 304);
+            _tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            _tableLayoutPanel2.Name = "_tableLayoutPanel2";
+            _tableLayoutPanel2.RowCount = 1;
+            _tableLayoutPanel2.RowStyles.Add(
+                                            new System.Windows.Forms.RowStyle(
+                                                System.Windows.Forms.SizeType.Percent,
+                                                50F));
+            _tableLayoutPanel2.Size = new System.Drawing.Size(421, 35);
+            _tableLayoutPanel2.TabIndex = 4;
             // 
             // buttonSave
             // 
-            this.buttonSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonSave.Location = new System.Drawing.Point(336, 3);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(75, 29);
-            this.buttonSave.TabIndex = 0;
-            this.buttonSave.Text = "Save";
-            this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.ButtonSaveClick);
+            _buttonSave.Dock = System.Windows.Forms.DockStyle.Right;
+            _buttonSave.Location = new System.Drawing.Point(336, 3);
+            _buttonSave.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            _buttonSave.Name = "_buttonSave";
+            _buttonSave.Size = new System.Drawing.Size(75, 29);
+            _buttonSave.TabIndex = 0;
+            _buttonSave.Text = Resources.AddModDialog_SaveButton_Text;
+            _buttonSave.UseVisualStyleBackColor = true;
+            _buttonSave.Click += ButtonSaveClick;
             // 
             // buttonCancel
             // 
-            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.buttonCancel.Location = new System.Drawing.Point(10, 3);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 29);
-            this.buttonCancel.TabIndex = 1;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
+            _buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            _buttonCancel.Dock = System.Windows.Forms.DockStyle.Left;
+            _buttonCancel.Location = new System.Drawing.Point(10, 3);
+            _buttonCancel.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            _buttonCancel.Name = "_buttonCancel";
+            _buttonCancel.Size = new System.Drawing.Size(75, 29);
+            _buttonCancel.TabIndex = 1;
+            _buttonCancel.Text = Resources.AddModDialog_CancelButton_Text;
+            _buttonCancel.UseVisualStyleBackColor = true;
             // 
             // labelUseWildcards
             // 
-            this.labelUseWildcards.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.labelUseWildcards.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.labelUseWildcards, 2);
-            this.labelUseWildcards.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUseWildcards.Location = new System.Drawing.Point(15, 79);
-            this.labelUseWildcards.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
-            this.labelUseWildcards.Name = "labelUseWildcards";
-            this.labelUseWildcards.Size = new System.Drawing.Size(190, 13);
-            this.labelUseWildcards.TabIndex = 5;
-            this.labelUseWildcards.Text = "Use wildcards! (E.g.: B9.*, KW*)";
-            this.labelUseWildcards.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            _labelUseWildcards.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            _labelUseWildcards.AutoSize = true;
+            _tableLayoutPanel1.SetColumnSpan(_labelUseWildcards, 2);
+            _labelUseWildcards.Font = new System.Drawing.Font(
+                "Microsoft Sans Serif",
+                8.25F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                0);
+            _labelUseWildcards.Location = new System.Drawing.Point(15, 79);
+            _labelUseWildcards.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
+            _labelUseWildcards.Name = "_labelUseWildcards";
+            _labelUseWildcards.Size = new System.Drawing.Size(190, 13);
+            _labelUseWildcards.TabIndex = 5;
+            _labelUseWildcards.Text = Resources.AddModDialog_WildcardsHint_Label;
+            _labelUseWildcards.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelModFolder
             // 
-            this.labelModFolder.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelModFolder.AutoSize = true;
-            this.labelModFolder.Location = new System.Drawing.Point(8, 33);
-            this.labelModFolder.Name = "labelModFolder";
-            this.labelModFolder.Size = new System.Drawing.Size(39, 13);
-            this.labelModFolder.TabIndex = 6;
-            this.labelModFolder.Text = "Folder:";
-            this.labelModFolder.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            _labelModFolder.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            _labelModFolder.AutoSize = true;
+            _labelModFolder.Location = new System.Drawing.Point(8, 33);
+            _labelModFolder.Name = "_labelModFolder";
+            _labelModFolder.Size = new System.Drawing.Size(39, 13);
+            _labelModFolder.TabIndex = 6;
+            _labelModFolder.Text = Resources.AddModDialog_ModFolder_Label;
+            _labelModFolder.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // buttonModFolder
             // 
-            this.buttonModFolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonModFolder.Location = new System.Drawing.Point(53, 28);
-            this.buttonModFolder.Name = "buttonModFolder";
-            this.buttonModFolder.Size = new System.Drawing.Size(365, 24);
-            this.buttonModFolder.TabIndex = 7;
-            this.buttonModFolder.Text = "Autofind part names";
-            this.buttonModFolder.UseVisualStyleBackColor = true;
-            this.buttonModFolder.Click += new System.EventHandler(this.ButtonModFolderClick);
+            _buttonModFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            _buttonModFolder.Location = new System.Drawing.Point(53, 28);
+            _buttonModFolder.Name = "_buttonModFolder";
+            _buttonModFolder.Size = new System.Drawing.Size(365, 24);
+            _buttonModFolder.TabIndex = 7;
+            _buttonModFolder.Text = Resources.AddModDialog_ModFolderButton_Text;
+            _buttonModFolder.UseVisualStyleBackColor = true;
+            _buttonModFolder.Click += ButtonModFolderClick;
             // 
             // progressBar
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.progressBar, 2);
-            this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBar.Location = new System.Drawing.Point(3, 282);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(415, 19);
-            this.progressBar.Step = 1;
-            this.progressBar.TabIndex = 8;
+            _tableLayoutPanel1.SetColumnSpan(_progressBar, 2);
+            _progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            _progressBar.Location = new System.Drawing.Point(3, 282);
+            _progressBar.Name = "_progressBar";
+            _progressBar.Size = new System.Drawing.Size(415, 19);
+            _progressBar.Step = 1;
+            _progressBar.TabIndex = 8;
             // 
             // AddModDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(421, 339);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "AddModDialog";
-            this.Text = "Add a new mod";
-            this.Load += new System.EventHandler(this.AddModDialogLoad);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            CancelButton = _buttonCancel;
+            ClientSize = new System.Drawing.Size(421, 339);
+            Controls.Add(_tableLayoutPanel1);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            Name = "AddModDialog";
+            Text = Resources.AddModDialog_Title_Text;
+            Load += AddModDialogLoad;
+            _tableLayoutPanel1.ResumeLayout(false);
+            _tableLayoutPanel1.PerformLayout();
+            _tableLayoutPanel2.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxModName;
-        private System.Windows.Forms.Label labelPartListInfo;
-        private System.Windows.Forms.TextBox textBoxParts;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.Label labelUseWildcards;
-        private System.Windows.Forms.Label labelModFolder;
-        private System.Windows.Forms.Button buttonModFolder;
-        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.TableLayoutPanel _tableLayoutPanel1;
+        private System.Windows.Forms.Label _label1;
+        private System.Windows.Forms.TextBox _textBoxModName;
+        private System.Windows.Forms.Label _labelPartListInfo;
+        private System.Windows.Forms.TextBox _textBoxParts;
+        private System.Windows.Forms.TableLayoutPanel _tableLayoutPanel2;
+        private System.Windows.Forms.Button _buttonSave;
+        private System.Windows.Forms.Button _buttonCancel;
+        private System.Windows.Forms.Label _labelUseWildcards;
+        private System.Windows.Forms.Label _labelModFolder;
+        private System.Windows.Forms.Button _buttonModFolder;
+        private System.Windows.Forms.ProgressBar _progressBar;
     }
 }

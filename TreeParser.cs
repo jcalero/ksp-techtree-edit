@@ -10,12 +10,13 @@ namespace KSPTechTreeEditor
     /// <summary>
     /// Parser and writer for tree.cfg files
     /// </summary>
-    class TreeParser
+    internal class TreeParser
     {
         /// <summary>
         /// The file path to the tree.cfg
         /// </summary>
         public string Path { get; private set; }
+
         /// <summary>
         /// The tree bound to this parser instance
         /// </summary>
@@ -68,7 +69,12 @@ namespace KSPTechTreeEditor
                 switch (n)
                 {
                     case 1:
-                        if (b) { nodes.Add(new Node()); nodes.Last().Parts = new List<Attribute>(); }
+                        if (b)
+                        {
+                            nodes.Add(new Node());
+                            nodes.Last().Parts = new List<Attribute>();
+                        }
+
                         if (str.Contains('=') == false)
                             break;
 
@@ -173,15 +179,16 @@ namespace KSPTechTreeEditor
         public void Backup(string filename)
         {
             if (File.Exists(filename)) return;
+
             var reader = new StreamReader(Path);
             var writer = new StreamWriter(filename);
             string line;
 
             while ((line = reader.ReadLine()) != null)
             {
-                writer.WriteLine(line);    
+                writer.WriteLine(line);
             }
-            
+
             reader.Close();
             writer.Close();
         }

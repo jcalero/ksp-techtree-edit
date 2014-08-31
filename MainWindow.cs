@@ -28,10 +28,15 @@ namespace KSPTechTreeEditor
             if (Settings.Default.TreeLocation != null && File.Exists(Settings.Default.TreeLocation))
             {
                 _treeFile = Settings.Default.TreeLocation;
-                buttonTreeLoad.Text = _treeFile;
+                _buttonTreeLoad.Text = _treeFile;
             }
             var versionNr = Assembly.GetEntryAssembly().GetName().Version;
-            Text = string.Format("{0}{1}.{2}.{3}", Resources.GUI_TitleLabel, versionNr.Major, versionNr.Minor, versionNr.Build);
+            Text = string.Format(
+                                 "{0}{1}.{2}.{3}",
+                                 Resources.GUI_TitleLabel,
+                                 versionNr.Major,
+                                 versionNr.Minor,
+                                 versionNr.Build);
 
             // Initialise tree
             if (_treeFile != null) InitialiseTree();
@@ -51,11 +56,11 @@ namespace KSPTechTreeEditor
 
         private void ButtonTreeLoadClick(object sender, EventArgs e)
         {
-            var result = openFileDialog1.ShowDialog();
+            var result = _openFileDialog1.ShowDialog();
             if (result != DialogResult.OK) return;
 
-            _treeFile = openFileDialog1.FileName;
-            buttonTreeLoad.Text = _treeFile;
+            _treeFile = _openFileDialog1.FileName;
+            _buttonTreeLoad.Text = _treeFile;
             Settings.Default.TreeLocation = _treeFile;
             InitialiseTree();
             Settings.Default.Save();
@@ -81,24 +86,23 @@ namespace KSPTechTreeEditor
 
         private void ReloadCheckList()
         {
-            checkedListMods.Items.Clear();
+            _checkedListMods.Items.Clear();
             foreach (var mod in _mc.Mods)
             {
-                checkedListMods.Items.Add(mod.Name);
+                _checkedListMods.Items.Add(mod.Name);
             }
         }
 
         private static Dictionary<string, string> ParsePartList(string parts)
         {
             return Regex.Split(parts, ",")
-                   .Where(part => part.Trim().Length >= 1 && part.Trim().Last() != '*')
-                   .ToDictionary(part => part.Trim(), part => "");
+                        .Where(part => part.Trim().Length >= 1 && part.Trim().Last() != '*')
+                        .ToDictionary(part => part.Trim(), part => "");
         }
 
         private static List<string> ParsePrefixList(string prefixes)
         {
-            return (from part
-                    in Regex.Split(prefixes, ",")
+            return (from part in Regex.Split(prefixes, ",")
                     where part.Trim().Length >= 1 && part.Trim().Last() == '*'
                     select part.Trim()).ToList();
         }
@@ -107,15 +111,15 @@ namespace KSPTechTreeEditor
         {
             using (var dialog = new EditModDialog())
             {
-                dialog.MC = _mc;
+                dialog.Mc = _mc;
 
                 var result = dialog.ShowDialog();
 
                 switch (result)
                 {
                     case DialogResult.OK:
-                        _mc = dialog.MC;
-                        _mcp.Collection = dialog.MC;
+                        _mc = dialog.Mc;
+                        _mcp.Collection = dialog.Mc;
                         ReloadCheckList();
                         _mcp.Save();
                         break;
@@ -131,9 +135,8 @@ namespace KSPTechTreeEditor
         private void ButtonSaveTreeClick(object sender, EventArgs e)
         {
             _tp.Backup();
-            var unCheckedItems = (from object t
-                                  in checkedListMods.Items
-                                  where !checkedListMods.CheckedItems.Contains(t)
+            var unCheckedItems = (from object t in _checkedListMods.Items
+                                  where !_checkedListMods.CheckedItems.Contains(t)
                                   select t.ToString()).ToList();
 
             foreach (var modtitle in unCheckedItems)
@@ -144,24 +147,23 @@ namespace KSPTechTreeEditor
                     DeletePartsByMod(mod);
                     break;
                 }
-
             }
             _mcp.Collection = _mc;
             _mcp.Save();
             _tp.Tree = _tree;
             _tp.Save();
-            SetTextByTimer(labelStatusBar, Resources.STATUSBAR_TreeUpdatedSuccess, 5);
+            SetTextByTimer(_labelStatusBar, Resources.STATUSBAR_TreeUpdatedSuccess, 5);
         }
 
         private void SetTextByTimer(Control label, string text, double seconds)
         {
             label.Text = text;
-            var timer = new Timer { Interval = (int)(seconds * 1000) };
+            var timer = new Timer {Interval = (int) (seconds*1000)};
             timer.Tick += (s, eventargs) =>
-            {
-                label.Text = "";
-                timer.Stop();
-            };
+                          {
+                              label.Text = "";
+                              timer.Stop();
+                          };
             timer.Start();
         }
 
@@ -175,7 +177,7 @@ namespace KSPTechTreeEditor
                 {
                     foreach (var part in node.Parts)
                     {
-                        if ((string)part.Value == modpart.Key)
+                        if ((string) part.Value == modpart.Key)
                         {
                             nodesToEdit.Add(node);
                             break;
@@ -191,8 +193,8 @@ namespace KSPTechTreeEditor
                     {
                         if (part.Value.ToString().StartsWith(modprefix.TrimEnd('*')))
                         {
-                            if(!mod.Parts.ContainsKey(part))
-                                mod.Parts.Add(part,"");
+                            if (!mod.Parts.ContainsKey(part))
+                                mod.Parts.Add(part, "");
                             if (!nodesToEdit.Contains(node))
                                 nodesToEdit.Add(node);
                             break;
@@ -203,24 +205,24 @@ namespace KSPTechTreeEditor
 
             foreach (var node in nodesToEdit)
             {
-                node.Parts.RemoveAll(p => mod.Parts.Any(p2 => (string)p.Value == p2.Key));
+                node.Parts.RemoveAll(p => mod.Parts.Any(p2 => (string) p.Value == p2.Key));
                 node.Parts.RemoveAll(p => mod.Prefixes.Any(p2 => p.Value.ToString().StartsWith(p2.TrimEnd('*'))));
             }
         }
 
         private void ButtonCheckAllClick(object sender, EventArgs e)
         {
-            for (var i = 0; i < checkedListMods.Items.Count; i++)
+            for (var i = 0; i < _checkedListMods.Items.Count; i++)
             {
-                checkedListMods.SetItemChecked(i, true);
+                _checkedListMods.SetItemChecked(i, true);
             }
         }
 
         private void ButtonUncheckAllClick(object sender, EventArgs e)
         {
-            for (var i = 0; i < checkedListMods.Items.Count; i++)
+            for (var i = 0; i < _checkedListMods.Items.Count; i++)
             {
-                checkedListMods.SetItemChecked(i, false);
+                _checkedListMods.SetItemChecked(i, false);
             }
         }
 
@@ -228,16 +230,13 @@ namespace KSPTechTreeEditor
         {
             if (!File.Exists(Settings.Default.BackupLocation))
             {
-                SetTextByTimer(labelStatusBar, Resources.STATUSBAR_Nobackup, 5);
+                SetTextByTimer(_labelStatusBar, Resources.STATUSBAR_Nobackup, 5);
                 return;
             }
             _tp.Restore();
-            SetTextByTimer(labelStatusBar, Resources.STATUSBAR_RestoreSuccess, 5);
+            SetTextByTimer(_labelStatusBar, Resources.STATUSBAR_RestoreSuccess, 5);
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) {}
     }
 }
