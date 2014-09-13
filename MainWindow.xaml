@@ -1,0 +1,12 @@
+﻿<Window x:Class="ksp_techtree_edit.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="438" Width="622">
+	<Grid>
+		<Canvas x:Name="Canvas">
+			<Button Content="Load" Width="75" Canvas.Left="468" Canvas.Top="339" Click="Button_Click"/>
+			<Button Content="Clean Up" Width="75" Canvas.Left="123" Canvas.Top="339" Click="Button_Click_1"/>
+		</Canvas>
+
+	</Grid>
+</Window>

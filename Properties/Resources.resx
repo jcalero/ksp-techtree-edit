@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,7 +60,6 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -69,10 +68,9 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -87,10 +85,9 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -117,127 +114,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="STATUSBAR_TreeUpdatedSuccess" xml:space="preserve">
-    <value>Tree updated successfully!</value>
-  </data>
-  <data name="STATUSBAR_Nobackup" xml:space="preserve">
-    <value>There is no backup to restore!</value>
-  </data>
-  <data name="STATUSBAR_RestoreSuccess" xml:space="preserve">
-    <value>Tree was restored successfully!</value>
-  </data>
-  <data name="GUI_TitleLabel" xml:space="preserve">
-    <value>KSP Tech Tree Edit Tool v</value>
-  </data>
-  <data name="AddModDialog_MissingModName_Content" xml:space="preserve">
-    <value>Please put a mod name</value>
-  </data>
-  <data name="AddModDialog_MissingModName_Title" xml:space="preserve">
-    <value>Missing mod name</value>
-  </data>
-  <data name="AddWindow_Node_Label" xml:space="preserve">
-    <value>Tech Node:  </value>
-  </data>
-  <data name="AddWindow_Node_AddPart" xml:space="preserve">
-    <value>Add part to node</value>
-  </data>
-  <data name="AddWindow_Part_Name_Label" xml:space="preserve">
-    <value>Part name: </value>
-  </data>
-  <data name="AddWindow_Part_AddButton_Text" xml:space="preserve">
-    <value>Add part</value>
-  </data>
-  <data name="AddWindow_Node_AddWindow_Title" xml:space="preserve">
-    <value>AddWindow</value>
-  </data>
-  <data name="AddModDialog_ModName_Label" xml:space="preserve">
-    <value>Name:</value>
-  </data>
-  <data name="AddModDialog_PartsField_Label" xml:space="preserve">
-    <value>Parts that correspond to mod: (Separate by comma)</value>
-  </data>
-  <data name="AddModDialog_SaveButton_Text" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="AddModDialog_CancelButton_Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="AddModDialog_WildcardsHint_Label" xml:space="preserve">
-    <value>Use wildcards! (E.g.: B9.*, KW*)</value>
-  </data>
-  <data name="AddModDialog_ModFolder_Label" xml:space="preserve">
-    <value>Folder:</value>
-  </data>
-  <data name="AddModDialog_ModFolderButton_Text" xml:space="preserve">
-    <value>Autofind part names</value>
-  </data>
-  <data name="AddModDialog_Title_Text" xml:space="preserve">
-    <value>Add a new mod</value>
-  </data>
-  <data name="EditModDialog_Mod_Label" xml:space="preserve">
-    <value>Mod:</value>
-  </data>
-  <data name="EditModDialog_PartsField_Label" xml:space="preserve">
-    <value>Parts that correspond to mod: (Separate by comma)</value>
-  </data>
-  <data name="EditModDialog_SaveButton_Text" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="EditModDialog_CancelButton_Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="EditModDialog_DeleteButton_Text" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="EditModDialog_AutoFindButton_Text" xml:space="preserve">
-    <value>Auto find parts</value>
-  </data>
-  <data name="EditModDialog_Title_Text" xml:space="preserve">
-    <value>Edit mod</value>
-  </data>
-  <data name="MainWindow_TreeLocation_Label" xml:space="preserve">
-    <value>Location of tree.cfg</value>
-  </data>
-  <data name="MainWindow_TreeLocationBrowseButton_Text" xml:space="preserve">
-    <value>Browse...</value>
-  </data>
-  <data name="MainWindow_UpdateTreeButton_Text" xml:space="preserve">
-    <value>Update Tree</value>
-  </data>
-  <data name="MainWindow_CheckAllButton_Text" xml:space="preserve">
-    <value>Check All</value>
-  </data>
-  <data name="MainWindow_UncheckButtonAll_Text" xml:space="preserve">
-    <value>Uncheck All</value>
-  </data>
-  <data name="MainWindow_RestoreTreeButton_Text" xml:space="preserve">
-    <value>Restore tree</value>
-  </data>
-  <data name="MainWindow_MenuStrip_Text" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="MainWindow_MenuItemFile_Text" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="MainWindow_MenuItemClose_Text" xml:space="preserve">
-    <value>Close</value>
-  </data>
-  <data name="MainWindow_MenuItemDevOp_Text" xml:space="preserve">
-    <value>Developer Options</value>
-  </data>
-  <data name="MainWindow_MenuItemAddMod_Text" xml:space="preserve">
-    <value>Add Mod...</value>
-  </data>
-  <data name="MainWindow_MenuItemEditMod_Text" xml:space="preserve">
-    <value>Edit Mod...</value>
-  </data>
-  <data name="MainWindow_MenuItemHelp_Text" xml:space="preserve">
-    <value>Help</value>
-  </data>
-  <data name="MainWindow_MenuItemAbout_Text" xml:space="preserve">
-    <value>About...</value>
-  </data>
-  <data name="MainWindow_Title_Text" xml:space="preserve">
-    <value>KSP Tech Tree Edit v0.0.0.1</value>
-  </data>
 </root>
