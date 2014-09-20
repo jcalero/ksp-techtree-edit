@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls.Primitives;
@@ -90,8 +91,8 @@ namespace ksp_techtree_edit
 			Mouse.OverrideCursor = Cursors.Hand;
 
 			var newPos = new Point(
-				techNode.Pos.X + e.HorizontalChange,
-				techNode.Pos.Y + e.VerticalChange);
+				Math.Round(techNode.Pos.X + e.HorizontalChange, 2),
+				Math.Round(techNode.Pos.Y - e.VerticalChange, 2));
 			techNode.Pos = newPos;
 		}
 
@@ -103,11 +104,13 @@ namespace ksp_techtree_edit
 
 		private void Thumb_OnDragStarted(object sender, DragStartedEventArgs e)
 		{
-			var selfBtn = sender as Thumb;
-			if (selfBtn == null) return;
+			var thumb = sender as Thumb;
+			if (thumb == null) return;
 
-			var node = selfBtn.DataContext as TechNode;
+			var node = thumb.DataContext as TechNode;
 			if (node == null) return;
+
+			node.IsSelected = true;
 
 			NodePropertyGrid.SelectedObject = node;
 			NodePropertyGrid.SelectedObjectName = node.Title;

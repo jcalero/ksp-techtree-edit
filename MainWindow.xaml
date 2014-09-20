@@ -4,13 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:ext="http://schemas.xceed.com/wpf/xaml/toolkit"
-		xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
 		xmlns:local="clr-namespace:ksp_techtree_edit"
 		mc:Ignorable="d" x:Class="ksp_techtree_edit.MainWindow"
         Title="KSP Tech Tree Edit" Height="513" Width="718"
 		MinWidth="700" MinHeight="500">
 	<Window.Resources>
+		<local:PosXToCanvasPointConverter x:Key="PosXToCanvasConverter"/>
+		<local:PosYToCanvasPointConverter x:Key="PosYToCanvasConverter"/>
 	</Window.Resources>
+
 	<Window.DataContext>
 		<local:TechTreeModel/>
 	</Window.DataContext>
@@ -38,17 +40,18 @@
 				VerticalScrollBarVisibility="Auto"                         
 				Height="Auto" Width="Auto"
 				local:DragScrolling.IsEnabled="True">
-				<ItemsControl Name="TechItemsControl" ItemsSource="{Binding TechTree, diag:PresentationTraceSources.TraceLevel=High}">
+				<ItemsControl Name="TechItemsControl" ItemsSource="{Binding TechTree}">
 					<ItemsControl.ItemsPanel>
 						<ItemsPanelTemplate>
 							<Canvas x:Name="TechTreeCanvas" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-								Background="LightBlue" Width="2000" Height="1000" />
+								Background="LightBlue" Width="2000" Height="1500" />
 						</ItemsPanelTemplate>
 					</ItemsControl.ItemsPanel>
 					<ItemsControl.ItemContainerStyle>
 						<Style d:DataContext="{d:DesignInstance local:TechNode}">
-							<Setter Property="Canvas.Left" Value="{Binding Pos.X}"/>
-							<Setter Property="Canvas.Top" Value="{Binding Pos.Y}"/>
+							<Setter Property="Canvas.Left" Value="{Binding Pos.X, Converter={StaticResource PosXToCanvasConverter}}"/>
+							<Setter Property="Canvas.Bottom" Value="{Binding Pos.Y, Converter={StaticResource PosYToCanvasConverter}}"/>
+							<Setter Property="Canvas.ZIndex" Value="{Binding Zlayer}"/>
 						</Style>
 					</ItemsControl.ItemContainerStyle>
 					<ItemsControl.ItemTemplate>
@@ -56,16 +59,16 @@
 							<Thumb Width="40px" Height="40px"
 								DragDelta="TechNode_OnDragDelta"
 								DragCompleted="Thumb_OnDragCompleted"
-								DragStarted="Thumb_OnDragStarted"> 
+								DragStarted="Thumb_OnDragStarted">
 								<Thumb.Template>
 									<ControlTemplate>
-									<Grid>
-										<Rectangle Fill="CadetBlue"/>
-										<Label Content="{Binding Icon[0]}"
-											HorizontalAlignment="Center"
-											VerticalAlignment="Center"/>
-										<Rectangle Fill="Transparent" Cursor="Hand"/>
-									</Grid>
+										<Grid>
+											<Rectangle Fill="CadetBlue"/>
+											<Label Content="{Binding Icon[0]}"
+												HorizontalAlignment="Center"
+												VerticalAlignment="Center"/>
+											<Rectangle Fill="Transparent" Cursor="Hand"/>
+										</Grid>
 									</ControlTemplate>
 								</Thumb.Template>
 							</Thumb>
