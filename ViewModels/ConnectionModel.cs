@@ -1,41 +1,40 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using ksp_techtree_edit.Annotations;
 
-namespace ksp_techtree_edit
+namespace ksp_techtree_edit.ViewModels
 {
 	public class ConnectionModel : INotifyPropertyChanged
 	{
 		#region Data Members
 
-		private TechNode _startNode;
-		private TechNode _endNode;
+		private TechNodeModel _startNodeModel;
+		private TechNodeModel _endNodeModel;
 
-		public ConnectionModel(TechNode startNode, TechNode endNode)
+		public ConnectionModel(TechNodeModel startNodeModel, TechNodeModel endNodeModel)
 		{
-			_startNode = startNode;
-			_endNode = endNode;
+			_startNodeModel = startNodeModel;
+			_endNodeModel = endNodeModel;
 		}
 
-		public TechNode StartNode
+		public TechNodeModel StartNodeModel
 		{
-			get { return _startNode; }
+			get { return _startNodeModel; }
 			set
 			{
-				if (_startNode == value) return;
-				_startNode = value;
+				if (_startNodeModel == value) return;
+				_startNodeModel = value;
 				OnPropertyChanged();
 			}
 		}
 
-		public TechNode EndNode
+		public TechNodeModel EndNodeModel
 		{
-			get { return _endNode; }
+			get { return _endNodeModel; }
 			set
 			{
-				if (_endNode == value) return;
-				_endNode = value;
+				if (_endNodeModel == value) return;
+				_endNodeModel = value;
 				OnPropertyChanged();
 			}
 		}

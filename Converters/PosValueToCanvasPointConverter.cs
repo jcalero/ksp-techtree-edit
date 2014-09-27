@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace ksp_techtree_edit
+namespace ksp_techtree_edit.Converters
 {
 	internal class PosXToCanvasPointConverter : IValueConverter
 	{

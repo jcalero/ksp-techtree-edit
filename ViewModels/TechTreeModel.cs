@@ -1,16 +1,16 @@
 using System.Collections.ObjectModel;
 
-namespace ksp_techtree_edit
+namespace ksp_techtree_edit.ViewModels
 {
 	public class TechTreeModel
 	{
-		private readonly ObservableCollection<TechNode> _techTree =
-			new ObservableCollection<TechNode>();
+		private readonly ObservableCollection<TechNodeModel> _techTree =
+			new ObservableCollection<TechNodeModel>();
 
 		private readonly ObservableCollection<ConnectionModel> _connections =
 			new ObservableCollection<ConnectionModel>();
 
-		public ObservableCollection<TechNode> TechTree
+		public ObservableCollection<TechNodeModel> TechTree
 		{
 			get { return _techTree; }
 		}

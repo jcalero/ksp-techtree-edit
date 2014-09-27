@@ -7,10 +7,10 @@ using System.Runtime.Serialization;
 using System.Windows;
 using KerbalParser;
 
-namespace ksp_techtree_edit
+namespace ksp_techtree_edit.ViewModels
 {
 	[DataContract]
-	public class TechNode : INotifyPropertyChanged
+	public class TechNodeModel : INotifyPropertyChanged
 	{
 		#region Data Members
 
@@ -83,14 +83,14 @@ namespace ksp_techtree_edit
 		public bool HideIfEmpty { get; set; }
 
 		[DataMember]
-		public List<TechNode> Parents { get; set; }
+		public List<TechNodeModel> Parents { get; set; }
 
 		[DataMember]
 		public List<string> Parts { get; set; }
 
 		#endregion
 
-		public TechNode()
+		public TechNodeModel()
 		{
 			Width = 40;
 			Height = 40;
@@ -172,7 +172,7 @@ namespace ksp_techtree_edit
 				}
 			}
 
-			Parents = new List<TechNode>();
+			Parents = new List<TechNodeModel>();
 
 			Parts = new List<string>();
 			foreach (var child in

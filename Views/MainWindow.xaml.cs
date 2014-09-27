@@ -5,8 +5,9 @@ using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using KerbalParser;
+using ksp_techtree_edit.ViewModels;
 
-namespace ksp_techtree_edit
+namespace ksp_techtree_edit.Views
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
@@ -29,7 +30,7 @@ namespace ksp_techtree_edit
 		private void LoadDataButton_Click(object sender, RoutedEventArgs e)
 		{
 			var treeData = DataContext as TechTreeModel;
-			var nameNodeHashtable = new Dictionary<string, TechNode>();
+			var nameNodeHashtable = new Dictionary<string, TechNodeModel>();
 
 			if (treeData == null)
 			{
@@ -46,19 +47,19 @@ namespace ksp_techtree_edit
 			{
 				var v = tree.Values;
 				var name = v["name"].First();
-				TechNode techNode;
+				TechNodeModel techNodeModel;
 
 				if (nameNodeHashtable.ContainsKey(name))
 				{
-					techNode = nameNodeHashtable[name];
+					techNodeModel = nameNodeHashtable[name];
 				}
 				else
 				{
-					techNode = new TechNode();
-					nameNodeHashtable.Add(name, techNode);
+					techNodeModel = new TechNodeModel();
+					nameNodeHashtable.Add(name, techNodeModel);
 				}
 
-				techNode.PopulateFromSource(tree);
+				techNodeModel.PopulateFromSource(tree);
 
 				if (v.ContainsKey("parents"))
 				{
@@ -71,7 +72,7 @@ namespace ksp_techtree_edit
 							      parent =>
 							      !nameNodeHashtable.ContainsKey(parent)))
 					{
-						nameNodeHashtable.Add(parent, new TechNode());
+						nameNodeHashtable.Add(parent, new TechNodeModel());
 					}
 
 					foreach (var parent
@@ -81,11 +82,11 @@ namespace ksp_techtree_edit
 							                 nameNodeHashtable.
 								                 ContainsKey(parent)))
 					{
-						techNode.Parents.Add(nameNodeHashtable[parent]);
+						techNodeModel.Parents.Add(nameNodeHashtable[parent]);
 					}
 				}
 
-				treeData.TechTree.Add(techNode);
+				treeData.TechTree.Add(techNodeModel);
 			}
 			Console.WriteLine(treeData.TechTree);
 
@@ -129,7 +130,7 @@ namespace ksp_techtree_edit
 		{
 			var nodeThumb = sender as Thumb;
 			if (nodeThumb == null) return;
-			var techNode = nodeThumb.DataContext as TechNode;
+			var techNode = nodeThumb.DataContext as TechNodeModel;
 			if (techNode == null) return;
 
 			_totalDelta.X += e.HorizontalChange;
@@ -156,7 +157,7 @@ namespace ksp_techtree_edit
 			var thumb = sender as Thumb;
 			if (thumb == null) return;
 
-			var node = thumb.DataContext as TechNode;
+			var node = thumb.DataContext as TechNodeModel;
 			if (node == null) return;
 
 			node.IsSelected = true;
