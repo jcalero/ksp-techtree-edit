@@ -11,6 +11,7 @@
 	<Window.Resources>
 		<local:PosXToCanvasPointConverter x:Key="PosXToCanvasConverter"/>
 		<local:PosYToCanvasPointConverter x:Key="PosYToCanvasConverter"/>
+		<local:PointToCanvasPointConverter x:Key="PointToCanvasConverter"/>
 	</Window.Resources>
 
 	<Window.DataContext>
@@ -26,7 +27,7 @@
 		<Menu Grid.Row="0" Margin="0,0,0,5">
 			<MenuItem Header="Load"/>
 			<MenuItem Header="Load (Data)" Click="LoadDataButton_Click"/>
-			<MenuItem Header="Clear" Click="Button_Click_1"/>
+			<MenuItem Header="Clear" Click="ClearButtonClick"/>
 		</Menu>
 		
 		<Grid Name="ContentGrid"  Grid.Row="1">
@@ -40,47 +41,72 @@
 				VerticalScrollBarVisibility="Auto"                         
 				Height="Auto" Width="Auto"
 				local:DragScrolling.IsEnabled="True">
-				<ItemsControl Name="TechItemsControl" ItemsSource="{Binding TechTree}">
-					<ItemsControl.ItemsPanel>
-						<ItemsPanelTemplate>
-							<Canvas x:Name="TechTreeCanvas" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-								Background="LightBlue" Width="2000" Height="1500" />
-						</ItemsPanelTemplate>
-					</ItemsControl.ItemsPanel>
-					<ItemsControl.ItemContainerStyle>
-						<Style d:DataContext="{d:DesignInstance local:TechNode}">
-							<Setter Property="Canvas.Left" Value="{Binding Pos.X, Converter={StaticResource PosXToCanvasConverter}}"/>
-							<Setter Property="Canvas.Bottom" Value="{Binding Pos.Y, Converter={StaticResource PosYToCanvasConverter}}"/>
-							<Setter Property="Canvas.ZIndex" Value="{Binding Zlayer}"/>
-						</Style>
-					</ItemsControl.ItemContainerStyle>
-					<ItemsControl.ItemTemplate>
-						<DataTemplate DataType="{x:Type local:TechNode}">
-							<Thumb Width="40px" Height="40px"
-								DragDelta="TechNode_OnDragDelta"
-								DragCompleted="Thumb_OnDragCompleted"
-								DragStarted="Thumb_OnDragStarted">
-								<Thumb.Template>
-									<ControlTemplate>
-										<Grid>
-											<Rectangle Fill="CadetBlue"/>
-											<Label Content="{Binding Icon[0]}"
-												HorizontalAlignment="Center"
-												VerticalAlignment="Center"/>
-											<Rectangle Fill="Transparent" Cursor="Hand"/>
-										</Grid>
-									</ControlTemplate>
-								</Thumb.Template>
-							</Thumb>
-						</DataTemplate>
-					</ItemsControl.ItemTemplate>
-				</ItemsControl>
+				<Grid>
+					<ItemsControl Name="TechItemsControl" ItemsSource="{Binding TechTree}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<Canvas x:Name="TechTreeCanvas" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+									Background="DarkSlateBlue" Width="2000" Height="1500" />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemContainerStyle>
+							<Style d:DataContext="{d:DesignInstance d:Type=local:TechNode}">
+								<Setter Property="Canvas.Left" Value="{Binding Pos.X, Converter={StaticResource PosXToCanvasConverter}}"/>
+								<Setter Property="Canvas.Bottom" Value="{Binding Pos.Y, Converter={StaticResource PosYToCanvasConverter}}"/>
+								<Setter Property="Canvas.ZIndex" Value="{Binding Zlayer}"/>
+							</Style>
+						</ItemsControl.ItemContainerStyle>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate DataType="{x:Type local:TechNode}">
+								<Thumb Width="40" Height="40"
+									DragDelta="TechNode_OnDragDelta"
+									DragCompleted="Thumb_OnDragCompleted"
+									DragStarted="Thumb_OnDragStarted">
+									<Thumb.Template>
+										<ControlTemplate>
+											<Grid>
+												<Rectangle Fill="CadetBlue"/>
+												<Label Content="{Binding Icon[0]}"
+													HorizontalAlignment="Center"
+													VerticalAlignment="Center"/>
+												<Rectangle Fill="Transparent" Cursor="Hand"/>
+											</Grid>
+										</ControlTemplate>
+									</Thumb.Template>
+								</Thumb>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+					<ItemsControl Name="NodeConnectionsControl" ItemsSource="{Binding Connections}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<Canvas VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+									Width="2000" Height="1500" ZIndex="-99">
+									<Canvas.LayoutTransform>
+										<ScaleTransform ScaleX="1" ScaleY="-1" CenterX=".5" CenterY=".5" />
+									</Canvas.LayoutTransform>
+								</Canvas>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate DataType="{x:Type local:ConnectionModel}">
+								<Path Stroke="Chocolate" StrokeThickness="1">
+									<Path.Data>
+										<LineGeometry
+											StartPoint="{Binding StartNode.Pos, Converter={StaticResource PointToCanvasConverter}}"
+											EndPoint="{Binding EndNode.Pos, Converter={StaticResource PointToCanvasConverter}}"/>
+									</Path.Data>
+								</Path>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</Grid>
 			</ScrollViewer>
 
 			<GridSplitter Grid.Column="1" Width="5" Margin="2,0,2,0" HorizontalAlignment="Center" Background="Black"/>
 			<DockPanel Grid.Column="2">
 				<Border DockPanel.Dock="Top" BorderThickness="2,0,0,0">
-					<StackPanel>
+					<StackPanel d:DataContext="{d:DesignInstance d:Type=local:TechNode}">
 						<Border BorderBrush="LawnGreen" BorderThickness="0,0,0,2">
 							<Grid Margin="10,10,10,5"  HorizontalAlignment="Left" MinHeight="180">
 								<Grid.RowDefinitions>
@@ -106,7 +132,7 @@
 							ShowSortOptions="False"
 							ShowTitle="True"
 							SelectedObjectName="{Binding Title}"
-							d:DataContext="{d:DesignInstance local:TechNode}" />
+							 />
 					</StackPanel>
 				</Border>
 			</DockPanel>

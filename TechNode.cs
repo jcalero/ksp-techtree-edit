@@ -17,6 +17,10 @@ namespace ksp_techtree_edit
 		private Point _pos;
 		private int _zlayer;
 		private bool _isSelected;
+
+		public int Width { get; set; }
+		public int Height { get; set; }
+
 		public bool IsSelected
 		{
 			get { return _isSelected; }
@@ -28,7 +32,6 @@ namespace ksp_techtree_edit
 			}
 		}
 
-		[DataMember]
 		public KerbalNode Source { get; set; }
 
 		[DataMember]
@@ -44,7 +47,7 @@ namespace ksp_techtree_edit
 			set
 			{
 				if (_pos == value) return;
-				_pos = value;
+				_pos = new Point(value.X,value.Y);
 				OnPropertyChanged();
 			}
 		}
@@ -87,15 +90,20 @@ namespace ksp_techtree_edit
 
 		#endregion
 
-		public TechNode(
-			KerbalNode nodeToClone,
-			IEnumerable<TechNode> parents = null)
+		public TechNode()
 		{
-			Source = nodeToClone;
+			Width = 40;
+			Height = 40;
+		}
+
+		public void PopulateFromSource(KerbalNode sourceNode)
+		{
+			Source = sourceNode;
 
 			var v = Source.Values;
 
 			NodeName = v.ContainsKey("name") ? v["name"].First() : "";
+
 			TechId = v.ContainsKey("techID") ? v["techID"].First() : "";
 
 			if (v.ContainsKey("pos"))
@@ -150,9 +158,6 @@ namespace ksp_techtree_edit
 					case "true":
 						AnyParent = true;
 						break;
-					default:
-						AnyParent = false;
-						break;
 				}
 			}
 
@@ -164,20 +169,13 @@ namespace ksp_techtree_edit
 					case "true":
 						HideIfEmpty = true;
 						break;
-					default:
-						HideIfEmpty = false;
-						break;
 				}
 			}
 
 			Parents = new List<TechNode>();
-			if (parents != null)
-			{
-				Parents.AddRange(parents);
-			}
 
 			Parts = new List<string>();
-			foreach (var child in 
+			foreach (var child in
 				Source.Children.
 				       Where(child => child.Name == "PARTS").
 				       Where(child => child.Values.ContainsKey("name")))

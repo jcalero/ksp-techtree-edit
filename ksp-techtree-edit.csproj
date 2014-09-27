@@ -91,7 +91,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ConnectionModel.cs" />
     <Compile Include="PosValueToCanvasPointConverter.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="TechNode.cs" />
     <Compile Include="TechTreeModel.cs" />
     <Compile Include="DragScrolling.cs" />

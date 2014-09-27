@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls.Primitives;
@@ -28,6 +29,7 @@ namespace ksp_techtree_edit
 		private void LoadDataButton_Click(object sender, RoutedEventArgs e)
 		{
 			var treeData = DataContext as TechTreeModel;
+			var nameNodeHashtable = new Dictionary<string, TechNode>();
 
 			if (treeData == null)
 			{
@@ -37,14 +39,60 @@ namespace ksp_techtree_edit
 
 			_config = ParseTree();
 
-			foreach (var tree in _config.
-				Where(tree => tree.Name != "REMOVENODE"))
+			foreach (var tree in
+				_config.Where(
+				              tree => tree.Name != "REMOVENODE" &&
+				                      tree.Values.ContainsKey("name")))
 			{
-				treeData.AddTechNode(tree);
+				var v = tree.Values;
+				var name = v["name"].First();
+				TechNode techNode;
+
+				if (nameNodeHashtable.ContainsKey(name))
+				{
+					techNode = nameNodeHashtable[name];
+				}
+				else
+				{
+					techNode = new TechNode();
+					nameNodeHashtable.Add(name, techNode);
+				}
+
+				techNode.PopulateFromSource(tree);
+
+				if (v.ContainsKey("parents"))
+				{
+					var parentsString = v["parents"].First();
+					var parents = parentsString.Split(',');
+
+					foreach (var parent
+						in parents.
+							Where(
+							      parent =>
+							      !nameNodeHashtable.ContainsKey(parent)))
+					{
+						nameNodeHashtable.Add(parent, new TechNode());
+					}
+
+					foreach (var parent
+						in parents
+							.Where(
+							       parent => !String.IsNullOrEmpty(parent) &&
+							                 nameNodeHashtable.
+								                 ContainsKey(parent)))
+					{
+						techNode.Parents.Add(nameNodeHashtable[parent]);
+					}
+				}
+
+				treeData.TechTree.Add(techNode);
 			}
+			Console.WriteLine(treeData.TechTree);
+
+			treeData.LinkNodes();
 		}
 
-		private void Button_Click_1(object sender, RoutedEventArgs e)
+		private void ClearButtonClick(object sender, RoutedEventArgs e)
 		{
 			StatusBarText = "Cleared Tree";
 			var treeData = DataContext as TechTreeModel;
@@ -55,6 +103,7 @@ namespace ksp_techtree_edit
 			}
 
 			treeData.TechTree.Clear();
+			treeData.Connections.Clear();
 		}
 
 		public string StatusBarText
