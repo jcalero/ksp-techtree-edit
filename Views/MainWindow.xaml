@@ -1,24 +1,14 @@
-﻿<Window
+<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:ext="http://schemas.xceed.com/wpf/xaml/toolkit"
 		xmlns:local="clr-namespace:ksp_techtree_edit"
+		xmlns:controls="clr-namespace:ksp_techtree_edit.Controls"
 		xmlns:viewModels="clr-namespace:ksp_techtree_edit.ViewModels"
-		xmlns:converters="clr-namespace:ksp_techtree_edit.Converters"
 		mc:Ignorable="d" x:Class="ksp_techtree_edit.Views.MainWindow"
         Title="KSP Tech Tree Edit" Height="513" Width="718"
 		MinWidth="700" MinHeight="500">
-	<Window.Resources>
-		<converters:PosXToCanvasPointConverter x:Key="PosXToCanvasConverter"/>
-		<converters:PosYToCanvasPointConverter x:Key="PosYToCanvasConverter"/>
-		<converters:PointToCanvasPointConverter x:Key="PointToCanvasConverter"/>
-	</Window.Resources>
-
-	<Window.DataContext>
-		<viewModels:TechTreeModel/>
-	</Window.DataContext>
 	<Grid Name="WindowGrid">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
@@ -27,12 +17,14 @@
 		</Grid.RowDefinitions>
 
 		<Menu Grid.Row="0" Margin="0,0,0,5">
-			<MenuItem Header="Load"/>
-			<MenuItem Header="Load (Data)" Click="LoadDataButton_Click"/>
+			<MenuItem Header="Load" Click="LoadButtonClick"/>
 			<MenuItem Header="Clear" Click="ClearButtonClick"/>
 		</Menu>
 		
 		<Grid Name="ContentGrid"  Grid.Row="1">
+			<Grid.DataContext>
+				<viewModels:WorkspaceViewModel/>
+			</Grid.DataContext>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*" MinWidth="450"/>
 				<ColumnDefinition Width="7"/>
@@ -43,101 +35,11 @@
 				VerticalScrollBarVisibility="Auto"                         
 				Height="Auto" Width="Auto"
 				local:DragScrolling.IsEnabled="True">
-				<Grid>
-					<ItemsControl Name="NodeConnectionsControl" ItemsSource="{Binding Connections}">
-						<ItemsControl.ItemsPanel>
-							<ItemsPanelTemplate>
-								<Canvas VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-									Width="2000" Height="1500" Background="DarkSlateBlue">
-									<Canvas.LayoutTransform>
-										<ScaleTransform ScaleX="1" ScaleY="-1" CenterX=".5" CenterY=".5" />
-									</Canvas.LayoutTransform>
-								</Canvas>
-							</ItemsPanelTemplate>
-						</ItemsControl.ItemsPanel>
-						<ItemsControl.ItemTemplate>
-							<DataTemplate DataType="{x:Type viewModels:ConnectionModel}">
-								<Path Stroke="Chocolate" StrokeThickness="1">
-									<Path.Data>
-										<LineGeometry
-											StartPoint="{Binding StartNodeModel.Pos, Converter={StaticResource PointToCanvasConverter}}"
-											EndPoint="{Binding EndNodeModel.Pos, Converter={StaticResource PointToCanvasConverter}}"/>
-									</Path.Data>
-								</Path>
-							</DataTemplate>
-						</ItemsControl.ItemTemplate>
-					</ItemsControl>
-					<ItemsControl Name="TechItemsControl" ItemsSource="{Binding TechTree}">
-						<ItemsControl.ItemsPanel>
-							<ItemsPanelTemplate>
-								<Canvas x:Name="TechTreeCanvas" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-									Width="2000" Height="1500" />
-							</ItemsPanelTemplate>
-						</ItemsControl.ItemsPanel>
-						<ItemsControl.ItemContainerStyle>
-							<Style d:DataContext="{d:DesignInstance d:Type=viewModels:TechNodeModel}">
-								<Setter Property="Canvas.Left" Value="{Binding Pos.X, Converter={StaticResource PosXToCanvasConverter}}"/>
-								<Setter Property="Canvas.Bottom" Value="{Binding Pos.Y, Converter={StaticResource PosYToCanvasConverter}}"/>
-								<Setter Property="Canvas.ZIndex" Value="{Binding Zlayer}"/>
-							</Style>
-						</ItemsControl.ItemContainerStyle>
-						<ItemsControl.ItemTemplate>
-							<DataTemplate DataType="{x:Type viewModels:TechNodeModel}">
-								<Thumb Width="40" Height="40"
-									DragDelta="TechNode_OnDragDelta"
-									DragCompleted="Thumb_OnDragCompleted"
-									DragStarted="Thumb_OnDragStarted">
-									<Thumb.Template>
-										<ControlTemplate>
-											<Grid>
-												<Rectangle Fill="CadetBlue"/>
-												<Label Content="{Binding Icon[0]}"
-													HorizontalAlignment="Center"
-													VerticalAlignment="Center"/>
-												<Rectangle Fill="Transparent" Cursor="Hand"/>
-											</Grid>
-										</ControlTemplate>
-									</Thumb.Template>
-								</Thumb>
-							</DataTemplate>
-						</ItemsControl.ItemTemplate>
-					</ItemsControl>
-				</Grid>
+				<controls:TechTreeDiagram x:Name="TechTreeDiagram"/>
 			</ScrollViewer>
 
 			<GridSplitter Grid.Column="1" Width="5" Margin="2,0,2,0" HorizontalAlignment="Center" Background="Black"/>
-			<DockPanel Grid.Column="2">
-				<Border DockPanel.Dock="Top" BorderThickness="2,0,0,0">
-					<StackPanel d:DataContext="{d:DesignInstance d:Type=viewModels:TechNodeModel}">
-						<Border BorderBrush="LawnGreen" BorderThickness="0,0,0,2">
-							<Grid Margin="10,10,10,5"  HorizontalAlignment="Left" MinHeight="180">
-								<Grid.RowDefinitions>
-									<RowDefinition Height="40*"/>
-									<RowDefinition Height="40*"/>
-									<RowDefinition Height="40*"/>
-									<RowDefinition Height="40*"/>
-								</Grid.RowDefinitions>
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition MinWidth="200px"/>
-								</Grid.ColumnDefinitions>
-
-								<Label x:Name="NodeName" Grid.Row="0" Content="Label" HorizontalAlignment="Left" Margin="8,9,0,0" VerticalAlignment="Top"/>
-								<Label x:Name="NodeTitle" Grid.Row="1" Content="Label" HorizontalAlignment="Left" Margin="8,9,0,0" VerticalAlignment="Top"/>
-								<Label x:Name="NodeCost" Grid.Row="2" Content="Label" HorizontalAlignment="Left" Margin="8,9,0,0" VerticalAlignment="Top"/>
-								<TextBlock x:Name="NodeDescription" Grid.Row="3" Text="Label" HorizontalAlignment="Left" Margin="14,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.105,0.462" MinWidth="160" TextWrapping="WrapWithOverflow"/>
-							</Grid>
-						</Border>
-						<ext:PropertyGrid
-							Name="NodePropertyGrid"
-							IsCategorized="False"
-							ShowSearchBox="False"
-							ShowSortOptions="False"
-							ShowTitle="True"
-							SelectedObjectName="{Binding Title}"
-							 />
-					</StackPanel>
-				</Border>
-			</DockPanel>
+			<controls:SideBar x:Name="MainSideBar" Grid.Column="2"/>
 		</Grid>
 		<StatusBar Grid.Row="2">
 			<StatusBarItem>

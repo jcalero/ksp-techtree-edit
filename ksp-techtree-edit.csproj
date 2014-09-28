@@ -94,12 +94,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModels\ConnectionModel.cs" />
+    <Compile Include="Controls\PartCatalog.xaml.cs">
+      <DependentUpon>PartCatalog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SideBar.xaml.cs">
+      <DependentUpon>SideBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TechTreeDiagram.xaml.cs">
+      <DependentUpon>TechTreeDiagram.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TechNode.cs" />
+    <Compile Include="ViewModels\ApplicationViewModel.cs" />
+    <Compile Include="ViewModels\NotificationViewModel.cs" />
+    <Compile Include="ViewModels\ConnectionViewModel.cs" />
     <Compile Include="Converters\PosValueToCanvasPointConverter.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="ViewModels\TechNodeModel.cs" />
-    <Compile Include="ViewModels\TechTreeModel.cs" />
+    <Compile Include="ViewModels\PartCollectionViewModel.cs" />
+    <Compile Include="ViewModels\SideBarViewModel.cs" />
+    <Compile Include="ViewModels\TechNodeViewModel.cs" />
+    <Compile Include="ViewModels\TechTreeViewModel.cs" />
     <Compile Include="DragScrolling.cs" />
+    <Page Include="Controls\PartCatalog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SideBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TechTreeDiagram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -108,6 +134,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

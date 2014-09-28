@@ -56,10 +56,10 @@ namespace ksp_techtree_edit.Converters
 			CultureInfo culture)
 		{
 			return new Point
-			            {
-				            X = ((((Point) value).X + 3000) * 0.85),
-				            Y = (((Point) value).Y * 0.7)
-			            };
+			       {
+				       X = ((((Point) value).X + 3000) * 0.85),
+				       Y = (((Point) value).Y * 0.7)
+			       };
 		}
 
 		public object ConvertBack(
@@ -69,10 +69,10 @@ namespace ksp_techtree_edit.Converters
 			CultureInfo culture)
 		{
 			return new Point
-			{
-				X = Math.Round((((Point) value).X / 0.85) - 3000, 2),
-				Y = Math.Round(((Point) value).Y / 0.7, 2)
-			};
+			       {
+				       X = Math.Round((((Point) value).X / 0.85) - 3000, 2),
+				       Y = Math.Round(((Point) value).Y / 0.7, 2)
+			       };
 		}
 	}
 }

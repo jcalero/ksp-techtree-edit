@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls.Primitives;
-using System.Windows.Input;
 using KerbalParser;
 using ksp_techtree_edit.ViewModels;
 
@@ -15,10 +13,21 @@ namespace ksp_techtree_edit.Views
 	public partial class MainWindow
 	{
 		private KerbalConfig _config;
+		private readonly TechTreeViewModel _treeData;
 
 		public MainWindow()
 		{
 			InitializeComponent();
+			_treeData = TechTreeDiagram.TechTreeGrid.DataContext
+			            as TechTreeViewModel;
+
+			if (_treeData == null) return;
+			var workspaceViewModel = new WorkspaceViewModel();
+			_treeData.WorkspaceViewModel = workspaceViewModel;
+
+			var sidebar = MainSideBar.DataContext as TechTreeViewModel;
+			if (sidebar == null) return;
+			sidebar.WorkspaceViewModel = workspaceViewModel;
 		}
 
 		public KerbalConfig ParseTree()
@@ -27,12 +36,11 @@ namespace ksp_techtree_edit.Views
 			return parser.ParseConfig("..//..//tree.cfg");
 		}
 
-		private void LoadDataButton_Click(object sender, RoutedEventArgs e)
+		private void LoadButtonClick(object sender, RoutedEventArgs e)
 		{
-			var treeData = DataContext as TechTreeModel;
-			var nameNodeHashtable = new Dictionary<string, TechNodeModel>();
+			var nameNodeHashtable = new Dictionary<string, TechNodeViewModel>();
 
-			if (treeData == null)
+			if (_treeData == null)
 			{
 				StatusBarText = "No tech tree data.";
 				return;
@@ -47,19 +55,19 @@ namespace ksp_techtree_edit.Views
 			{
 				var v = tree.Values;
 				var name = v["name"].First();
-				TechNodeModel techNodeModel;
+				TechNodeViewModel techNodeViewModel;
 
 				if (nameNodeHashtable.ContainsKey(name))
 				{
-					techNodeModel = nameNodeHashtable[name];
+					techNodeViewModel = nameNodeHashtable[name];
 				}
 				else
 				{
-					techNodeModel = new TechNodeModel();
-					nameNodeHashtable.Add(name, techNodeModel);
+					techNodeViewModel = new TechNodeViewModel();
+					nameNodeHashtable.Add(name, techNodeViewModel);
 				}
 
-				techNodeModel.PopulateFromSource(tree);
+				techNodeViewModel.TechNode.PopulateFromSource(tree);
 
 				if (v.ContainsKey("parents"))
 				{
@@ -72,7 +80,7 @@ namespace ksp_techtree_edit.Views
 							      parent =>
 							      !nameNodeHashtable.ContainsKey(parent)))
 					{
-						nameNodeHashtable.Add(parent, new TechNodeModel());
+						nameNodeHashtable.Add(parent, new TechNodeViewModel());
 					}
 
 					foreach (var parent
@@ -82,29 +90,28 @@ namespace ksp_techtree_edit.Views
 							                 nameNodeHashtable.
 								                 ContainsKey(parent)))
 					{
-						techNodeModel.Parents.Add(nameNodeHashtable[parent]);
+						techNodeViewModel.Parents.Add(nameNodeHashtable[parent]);
 					}
 				}
 
-				treeData.TechTree.Add(techNodeModel);
+				_treeData.TechTree.Add(techNodeViewModel);
 			}
-			Console.WriteLine(treeData.TechTree);
+			Console.WriteLine(_treeData.TechTree);
 
-			treeData.LinkNodes();
+			_treeData.LinkNodes();
 		}
 
 		private void ClearButtonClick(object sender, RoutedEventArgs e)
 		{
 			StatusBarText = "Cleared Tree";
-			var treeData = DataContext as TechTreeModel;
-			if (treeData == null)
+			if (_treeData == null)
 			{
 				StatusBarText = "No tech tree data.";
 				return;
 			}
 
-			treeData.TechTree.Clear();
-			treeData.Connections.Clear();
+			_treeData.TechTree.Clear();
+			_treeData.Connections.Clear();
 		}
 
 		public string StatusBarText
@@ -113,57 +120,11 @@ namespace ksp_techtree_edit.Views
 			set { SetValue(StatusBarTextProperty, value); }
 		}
 
-		// Using a DependencyProperty as the backing store for StatusBarText.  This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty StatusBarTextProperty =
-			DependencyProperty.Register("StatusBarText", typeof (string), typeof (MainWindow), new UIPropertyMetadata(""));
-
-		private Vector _totalDelta = new Vector(0d, 0d);
-		private int _nodeStickiness = 25;
-
-		public int NodeStickiness
-		{
-			get { return _nodeStickiness; }
-			set { _nodeStickiness = value; }
-		}
-
-		private void TechNode_OnDragDelta(object sender, DragDeltaEventArgs e)
-		{
-			var nodeThumb = sender as Thumb;
-			if (nodeThumb == null) return;
-			var techNode = nodeThumb.DataContext as TechNodeModel;
-			if (techNode == null) return;
-
-			_totalDelta.X += e.HorizontalChange;
-			_totalDelta.Y += e.VerticalChange;
-
-			if (_totalDelta.Length < NodeStickiness) return;
-
-			Mouse.OverrideCursor = Cursors.Hand;
-
-			var newPos = new Point(
-				Math.Round(techNode.Pos.X + e.HorizontalChange, 2),
-				Math.Round(techNode.Pos.Y - e.VerticalChange, 2));
-			techNode.Pos = newPos;
-		}
-
-		private void Thumb_OnDragCompleted(object sender, DragCompletedEventArgs e)
-		{
-			_totalDelta = new Vector(0d, 0d);
-			Mouse.OverrideCursor = null;
-		}
-
-		private void Thumb_OnDragStarted(object sender, DragStartedEventArgs e)
-		{
-			var thumb = sender as Thumb;
-			if (thumb == null) return;
-
-			var node = thumb.DataContext as TechNodeModel;
-			if (node == null) return;
-
-			node.IsSelected = true;
-
-			NodePropertyGrid.SelectedObject = node;
-			NodePropertyGrid.SelectedObjectName = node.Title;
-		}
+			DependencyProperty.Register(
+			                            "StatusBarText",
+			                            typeof (string),
+			                            typeof (MainWindow),
+			                            new UIPropertyMetadata(""));
 	}
 }
