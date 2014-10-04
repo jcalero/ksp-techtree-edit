@@ -12,8 +12,13 @@
 	</UserControl.DataContext>
 	<DockPanel>
 		<Border DockPanel.Dock="Top" BorderThickness="2,0,0,0">
-			<StackPanel>
-				<Border BorderBrush="LawnGreen" BorderThickness="0,0,0,2">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="2*"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+				<Border Grid.Row="0" BorderBrush="LawnGreen" BorderThickness="0,0,0,2">
 					<Grid Margin="10,10,10,5"  HorizontalAlignment="Left" MinHeight="180">
 						<Grid.RowDefinitions>
 							<RowDefinition Height="40*"/>
@@ -32,6 +37,7 @@
 					</Grid>
 				</Border>
 				<xctk:PropertyGrid
+							Grid.Row="1"
 							Name="NodePropertyGrid"
 							IsCategorized="False"
 							ShowSearchBox="False"
@@ -40,7 +46,18 @@
 							SelectedObjectName="{Binding WorkspaceViewModel.SelectedNode.Title}"
 							SelectedObject="{Binding WorkspaceViewModel.SelectedNode}"
 							 />
-			</StackPanel>
+				<ListBox Grid.Row="2" Name="PartsListBox"
+					ItemsSource="{Binding PartCollection}">
+					<ListBox.DataContext>
+						<viewModels:PartCollectionViewModel/>
+					</ListBox.DataContext>
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Label Content="{Binding Title}" />
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</Grid>
 		</Border>
 	</DockPanel>
 </UserControl>

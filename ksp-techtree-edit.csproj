@@ -54,7 +54,7 @@
   <ItemGroup>
     <Reference Include="KerbalParser, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\kerbal-parser\KerbalParser\bin\Debug\KerbalParser.dll</HintPath>
+      <HintPath>..\kerbal-parser\KerbalParser\bin\Release\KerbalParser.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -103,6 +103,8 @@
     <Compile Include="Controls\TechTreeDiagram.xaml.cs">
       <DependentUpon>TechTreeDiagram.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Part.cs" />
+    <Compile Include="Models\PartCollection.cs" />
     <Compile Include="Models\TechNode.cs" />
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\NotificationViewModel.cs" />
@@ -110,6 +112,7 @@
     <Compile Include="Converters\PosValueToCanvasPointConverter.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\PartCollectionViewModel.cs" />
+    <Compile Include="ViewModels\PartViewModel.cs" />
     <Compile Include="ViewModels\SideBarViewModel.cs" />
     <Compile Include="ViewModels\TechNodeViewModel.cs" />
     <Compile Include="ViewModels\TechTreeViewModel.cs" />

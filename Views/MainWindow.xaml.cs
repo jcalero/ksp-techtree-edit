@@ -36,6 +36,18 @@ namespace ksp_techtree_edit.Views
 			return parser.ParseConfig("..//..//tree.cfg");
 		}
 
+		public void FindParts()
+		{
+			var partListData = MainSideBar.PartsListBox.DataContext
+			                   as PartCollectionViewModel;
+
+			if (partListData == null) return;
+			const string ksppath = "C://Program Files (x86)//" +
+			                       "Steam//SteamApps//common//" +
+			                       "Kerbal Space Program//GameData";
+			partListData.LoadParts(ksppath);
+		}
+
 		private void LoadButtonClick(object sender, RoutedEventArgs e)
 		{
 			var nameNodeHashtable = new Dictionary<string, TechNodeViewModel>();
@@ -126,5 +138,10 @@ namespace ksp_techtree_edit.Views
 			                            typeof (string),
 			                            typeof (MainWindow),
 			                            new UIPropertyMetadata(""));
+
+		private void LoadPartsClick(object sender, RoutedEventArgs e)
+		{
+			FindParts();
+		}
 	}
 }

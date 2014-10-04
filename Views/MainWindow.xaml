@@ -19,6 +19,7 @@
 		<Menu Grid.Row="0" Margin="0,0,0,5">
 			<MenuItem Header="Load" Click="LoadButtonClick"/>
 			<MenuItem Header="Clear" Click="ClearButtonClick"/>
+			<MenuItem Header="Load Parts" Click="LoadPartsClick"/>
 		</Menu>
 		
 		<Grid Name="ContentGrid"  Grid.Row="1">
