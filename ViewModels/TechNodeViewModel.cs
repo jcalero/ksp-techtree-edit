@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using System.Windows;
@@ -11,9 +12,17 @@ namespace ksp_techtree_edit.ViewModels
 		#region Data Members
 
 		private bool _isSelected;
+
 		private TechNode _techNode;
 
+		private ObservableCollection<TechNodeViewModel> _parents =
+			new ObservableCollection<TechNodeViewModel>();
+
+		private ObservableCollection<PartViewModel> _parts =
+			new ObservableCollection<PartViewModel>();
+
 		public int Width { get; set; }
+
 		public int Height { get; set; }
 
 		public bool IsSelected
@@ -38,11 +47,17 @@ namespace ksp_techtree_edit.ViewModels
 			}
 		}
 
-		public ObservableCollection<TechNodeViewModel> Parents =
-			new ObservableCollection<TechNodeViewModel>();
+		public ObservableCollection<TechNodeViewModel> Parents
+		{
+			get { return _parents; }
+			set { _parents = value; }
+		}
 
-		public ObservableCollection<TechNodeViewModel> Parts =
-			new ObservableCollection<TechNodeViewModel>();
+		public ObservableCollection<PartViewModel> Parts
+		{
+			get { return _parts; }
+			set { _parts = value; }
+		}
 
 		#region Model Wrappers
 
@@ -168,6 +183,27 @@ namespace ksp_techtree_edit.ViewModels
 			Height = 40;
 
 			TechNode = new TechNode();
+		}
+
+		#endregion
+
+		#region Helper Methods
+
+		public void PopulateParts(PartCollectionViewModel pc)
+		{
+			var partTable = new Dictionary<string, PartViewModel>();
+			foreach (var part in pc.PartCollection)
+			{
+				partTable.Add(part.PartName, part);
+			}
+
+			foreach (var part in _techNode.Parts)
+			{
+				if (partTable.ContainsKey(part))
+				{
+					_parts.Add(partTable[part]);
+				}
+			}
 		}
 
 		#endregion

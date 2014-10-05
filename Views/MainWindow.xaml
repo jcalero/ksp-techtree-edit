@@ -22,7 +22,7 @@
 			<MenuItem Header="Load Parts" Click="LoadPartsClick"/>
 		</Menu>
 		
-		<Grid Name="ContentGrid"  Grid.Row="1">
+		<Grid Name="ContentGrid" Grid.Row="1">
 			<Grid.DataContext>
 				<viewModels:WorkspaceViewModel/>
 			</Grid.DataContext>
