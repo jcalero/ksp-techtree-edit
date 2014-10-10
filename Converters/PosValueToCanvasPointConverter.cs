@@ -13,7 +13,7 @@ namespace ksp_techtree_edit.Converters
 			object parameter,
 			CultureInfo culture)
 		{
-			return ((double) value + 3000) * 0.85;
+			return ((double)value + 3000) * 0.85;
 		}
 
 		public object ConvertBack(
@@ -22,7 +22,7 @@ namespace ksp_techtree_edit.Converters
 			object parameter,
 			CultureInfo culture)
 		{
-			return Math.Round(((double) value / 0.85) - 3000, 2);
+			return Math.Round(((double)value / 0.85) - 3000, 2);
 		}
 	}
 
@@ -34,7 +34,7 @@ namespace ksp_techtree_edit.Converters
 			object parameter,
 			CultureInfo culture)
 		{
-			return ((double) value * 0.7);
+			return ((double)value * 0.7);
 		}
 
 		public object ConvertBack(
@@ -43,7 +43,7 @@ namespace ksp_techtree_edit.Converters
 			object parameter,
 			CultureInfo culture)
 		{
-			return Math.Round((double) value / 0.7, 2);
+			return Math.Round((double)value / 0.7, 2);
 		}
 	}
 
@@ -57,8 +57,8 @@ namespace ksp_techtree_edit.Converters
 		{
 			return new Point
 			       {
-				       X = ((((Point) value).X + 3000) * 0.85),
-				       Y = (((Point) value).Y * 0.7)
+				       X = ((((Point)value).X + 3000) * 0.85),
+				       Y = (((Point)value).Y * 0.7)
 			       };
 		}
 
@@ -70,8 +70,8 @@ namespace ksp_techtree_edit.Converters
 		{
 			return new Point
 			       {
-				       X = Math.Round((((Point) value).X / 0.85) - 3000, 2),
-				       Y = Math.Round(((Point) value).Y / 0.7, 2)
+				       X = Math.Round((((Point)value).X / 0.85) - 3000, 2),
+				       Y = Math.Round(((Point)value).Y / 0.7, 2)
 			       };
 		}
 	}

@@ -16,7 +16,7 @@ namespace ksp_techtree_edit.ViewModels
 			TechTree = new ObservableCollection<TechNodeViewModel>();
 		}
 
-		#endregion
+		#endregion Private
 
 		#region Public
 
@@ -37,9 +37,9 @@ namespace ksp_techtree_edit.ViewModels
 			}
 		}
 
-		#endregion
+		#endregion Public
 
-		#endregion
+		#endregion Members
 
 		#region Methods
 
@@ -60,6 +60,6 @@ namespace ksp_techtree_edit.ViewModels
 				}
 		}
 
-		#endregion
+		#endregion Methods
 	}
 }

@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using KerbalParser;
 using ksp_techtree_edit.ViewModels;
-using Xceed.Wpf.DataGrid.ValidationRules;
 
 namespace ksp_techtree_edit.Models
 {
@@ -17,11 +16,13 @@ namespace ksp_techtree_edit.Models
 
 		private readonly IList<Part> _parts = new List<Part>();
 
-		#endregion
+		#endregion Members
 
 		#region Constructors
 
-		public PartCollection() {}
+		public PartCollection()
+		{
+		}
 
 		public PartCollection(string path)
 		{
@@ -33,7 +34,7 @@ namespace ksp_techtree_edit.Models
 			Directory = directory;
 		}
 
-		#endregion
+		#endregion Constructors
 
 		#region Methods
 
@@ -70,7 +71,7 @@ namespace ksp_techtree_edit.Models
 			return partlist;
 		}
 
-		#endregion
+		#endregion Methods
 
 		#region Interface Members
 
@@ -81,7 +82,7 @@ namespace ksp_techtree_edit.Models
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{
-			return ((IEnumerable) _parts).GetEnumerator();
+			return ((IEnumerable)_parts).GetEnumerator();
 		}
 
 		public void Add(Part item)
@@ -140,6 +141,6 @@ namespace ksp_techtree_edit.Models
 			set { _parts[index] = value; }
 		}
 
-		#endregion
+		#endregion Interface Members
 	}
 }

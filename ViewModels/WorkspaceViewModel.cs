@@ -1,7 +1,3 @@
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using ksp_techtree_edit.Annotations;
-
 namespace ksp_techtree_edit.ViewModels
 {
 	public class WorkspaceViewModel : NotificationViewModel
@@ -21,6 +17,6 @@ namespace ksp_techtree_edit.ViewModels
 			}
 		}
 
-		#endregion
+		#endregion Members
 	}
 }

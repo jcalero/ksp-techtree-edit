@@ -1,11 +1,11 @@
 ﻿<UserControl x:Class="ksp_techtree_edit.Controls.TechTreeDiagram"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:ksp_techtree_edit.ViewModels"
              xmlns:converters="clr-namespace:ksp_techtree_edit.Converters"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
 	<UserControl.Resources>
 		<converters:PosXToCanvasPointConverter x:Key="PosXToCanvasConverter"/>
@@ -22,7 +22,7 @@
 					<Canvas VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
 									Width="2000" Height="1500" Background="DarkSlateBlue">
 						<Canvas.LayoutTransform>
-							<ScaleTransform ScaleX="1" ScaleY="-1" CenterX=".5" CenterY=".5" />
+							<ScaleTransform ScaleX="1" ScaleY="-1" CenterX=".5" CenterY=".5"/>
 						</Canvas.LayoutTransform>
 					</Canvas>
 				</ItemsPanelTemplate>
@@ -43,7 +43,7 @@
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>
 					<Canvas x:Name="TechTreeCanvas" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-									Width="2000" Height="1500" />
+									Width="2000" Height="1500"/>
 				</ItemsPanelTemplate>
 			</ItemsControl.ItemsPanel>
 			<ItemsControl.ItemContainerStyle>
@@ -75,5 +75,4 @@
 			</ItemsControl.ItemTemplate>
 		</ItemsControl>
 	</Grid>
-
 </UserControl>

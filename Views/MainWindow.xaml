@@ -21,7 +21,7 @@
 			<MenuItem Header="Clear" Click="ClearButtonClick"/>
 			<MenuItem Header="Load Parts" Click="LoadPartsClick"/>
 		</Menu>
-		
+
 		<Grid Name="ContentGrid" Grid.Row="1">
 			<Grid.DataContext>
 				<viewModels:WorkspaceViewModel/>
@@ -32,8 +32,8 @@
 				<ColumnDefinition Width="200" MinWidth="200"/>
 			</Grid.ColumnDefinitions>
 
-			<ScrollViewer Name="TechTreeScrollViewer" Grid.Column="0" HorizontalScrollBarVisibility="Auto" 
-				VerticalScrollBarVisibility="Auto"                         
+			<ScrollViewer Name="TechTreeScrollViewer" Grid.Column="0" HorizontalScrollBarVisibility="Auto"
+				VerticalScrollBarVisibility="Auto"
 				Height="Auto" Width="Auto"
 				local:DragScrolling.IsEnabled="True">
 				<controls:TechTreeDiagram x:Name="TechTreeDiagram"/>

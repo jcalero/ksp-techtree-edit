@@ -13,7 +13,7 @@ namespace ksp_techtree_edit.ViewModels
 		public ObservableCollection<PartViewModel>
 			PartCollection { get; private set; }
 
-		#endregion
+		#endregion Members
 
 		#region Construtctors
 
@@ -22,7 +22,7 @@ namespace ksp_techtree_edit.ViewModels
 			PartCollection = new ObservableCollection<PartViewModel>();
 		}
 
-		#endregion
+		#endregion Construtctors
 
 		#region Methods
 
@@ -38,6 +38,6 @@ namespace ksp_techtree_edit.ViewModels
 			}
 		}
 
-		#endregion
+		#endregion Methods
 	}
 }

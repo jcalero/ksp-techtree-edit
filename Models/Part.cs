@@ -17,18 +17,20 @@ namespace ksp_techtree_edit.Models
 		public string Category { get; set; }
 		public string Icon { get; set; }
 
-		#endregion
+		#endregion Members
 
 		#region Constructors
 
-		public Part() {}
+		public Part()
+		{
+		}
 
 		public Part(string name)
 		{
 			PartName = name;
 		}
 
-		#endregion
+		#endregion Constructors
 
 		#region Members
 
@@ -66,6 +68,6 @@ namespace ksp_techtree_edit.Models
 			}
 		}
 
-		#endregion
+		#endregion Members
 	}
 }

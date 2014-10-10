@@ -10,7 +10,7 @@ namespace ksp_techtree_edit
 	{
 		public static bool GetIsEnabled(DependencyObject obj)
 		{
-			return (bool) obj.GetValue(IsEnabledProperty);
+			return (bool)obj.GetValue(IsEnabledProperty);
 		}
 
 		public static void SetIsEnabled(DependencyObject obj, bool value)
@@ -20,7 +20,7 @@ namespace ksp_techtree_edit
 
 		public bool IsEnabled
 		{
-			get { return (bool) GetValue(IsEnabledProperty); }
+			get { return (bool)GetValue(IsEnabledProperty); }
 			set { SetValue(IsEnabledProperty, value); }
 		}
 
@@ -38,7 +38,7 @@ namespace ksp_techtree_edit
 			var target = d as ScrollViewer;
 			if (target == null) return;
 
-			if ((bool) e.NewValue)
+			if ((bool)e.NewValue)
 			{
 				target.Loaded += target_Loaded;
 			}

@@ -24,7 +24,7 @@ namespace ksp_techtree_edit.Controls
 			set { _nodeStickiness = value; }
 		}
 
-		#endregion
+		#endregion Members
 
 		#region Constructors
 
@@ -33,7 +33,7 @@ namespace ksp_techtree_edit.Controls
 			InitializeComponent();
 		}
 
-		#endregion
+		#endregion Constructors
 
 		#region Methods
 
@@ -79,6 +79,6 @@ namespace ksp_techtree_edit.Controls
 			techtree.WorkspaceViewModel.SelectedNode = node;
 		}
 
-		#endregion
+		#endregion Methods
 	}
 }

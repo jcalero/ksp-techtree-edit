@@ -25,7 +25,7 @@ namespace ksp_techtree_edit.Models
 
 		public List<string> Parts { get; set; }
 
-		#endregion
+		#endregion Members
 
 		#region Methods
 
@@ -62,7 +62,7 @@ namespace ksp_techtree_edit.Models
 					{
 						Zlayer = 0;
 					}
-					Zlayer = (int) z;
+					Zlayer = (int)z;
 				}
 			}
 
@@ -117,6 +117,6 @@ namespace ksp_techtree_edit.Models
 			Parts = new List<string>(tmpParts);
 		}
 
-		#endregion
+		#endregion Methods
 	}
 }

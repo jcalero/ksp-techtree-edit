@@ -171,9 +171,9 @@ namespace ksp_techtree_edit.ViewModels
 			}
 		}
 
-		#endregion
+		#endregion Model Wrappers
 
-		#endregion
+		#endregion Data Members
 
 		#region Constructors
 
@@ -185,7 +185,7 @@ namespace ksp_techtree_edit.ViewModels
 			TechNode = new TechNode();
 		}
 
-		#endregion
+		#endregion Constructors
 
 		#region Helper Methods
 
@@ -206,6 +206,6 @@ namespace ksp_techtree_edit.ViewModels
 			}
 		}
 
-		#endregion
+		#endregion Helper Methods
 	}
 }

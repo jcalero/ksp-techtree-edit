@@ -109,9 +109,9 @@ namespace ksp_techtree_edit.ViewModels
 			}
 		}
 
-		#endregion
+		#endregion Model Wrappers
 
-		#endregion
+		#endregion Members
 
 		#region Constructors
 
@@ -125,6 +125,6 @@ namespace ksp_techtree_edit.ViewModels
 			Part = part;
 		}
 
-		#endregion
+		#endregion Constructors
 	}
 }

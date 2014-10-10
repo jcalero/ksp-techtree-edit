@@ -41,7 +41,7 @@ namespace ksp_techtree_edit.Views
 		public void FindParts()
 		{
 			var partCollectionViewModel = MainSideBar.PartsListBox.DataContext
-			                   as PartCollectionViewModel;
+			                              as PartCollectionViewModel;
 
 			if (partCollectionViewModel == null) return;
 			const string ksppath = "C://Program Files (x86)//" +
@@ -135,7 +135,7 @@ namespace ksp_techtree_edit.Views
 
 		public string StatusBarText
 		{
-			get { return (string) GetValue(StatusBarTextProperty); }
+			get { return (string)GetValue(StatusBarTextProperty); }
 			set { SetValue(StatusBarTextProperty, value); }
 		}
 

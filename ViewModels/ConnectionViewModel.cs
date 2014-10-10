@@ -29,7 +29,7 @@ namespace ksp_techtree_edit.ViewModels
 			}
 		}
 
-		#endregion
+		#endregion Members
 
 		#region Constructors
 
@@ -39,6 +39,6 @@ namespace ksp_techtree_edit.ViewModels
 			_endNodeViewModel = endNodeViewModel;
 		}
 
-		#endregion
+		#endregion Constructors
 	}
 }
