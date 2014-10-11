@@ -65,17 +65,21 @@ namespace ksp_techtree_edit.Controls
 
 		private void Thumb_OnDragStarted(object sender, DragStartedEventArgs e)
 		{
+			var techtree = DataContext as TechTreeViewModel;
+			if (techtree == null) return;
 			var thumb = sender as Thumb;
 			if (thumb == null) return;
-
 			var node = thumb.DataContext as TechNodeViewModel;
 			if (node == null) return;
 
+			if (Keyboard.IsKeyDown(Key.LeftShift))
+			{
+				techtree.DeleteNode(node);
+				return;
+			}
+
 			node.IsSelected = true;
 
-			var techtree = DataContext as TechTreeViewModel;
-
-			if (techtree == null) return;
 			techtree.WorkspaceViewModel.SelectedNode = node;
 		}
 

@@ -60,6 +60,26 @@ namespace ksp_techtree_edit.ViewModels
 				}
 		}
 
+		public void DeleteNode(TechNodeViewModel node)
+		{
+			TechTree.Remove(node);
+			UnlinkParent(node);
+			LinkNodes();
+		}
+
+		//TODO: Remove this terrible terrible method and replace with proper
+		//MVVM model-viewmodel dependencies.
+		public void UnlinkParent(TechNodeViewModel parentToRemove)
+		{
+			foreach (var node in TechTree)
+			{
+				if (node.Parents.Contains(parentToRemove))
+				{
+					node.Parents.Remove(parentToRemove);
+				}
+			}
+		}
+
 		#endregion Methods
 	}
 }
