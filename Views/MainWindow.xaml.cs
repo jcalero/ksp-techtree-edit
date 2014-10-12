@@ -150,5 +150,11 @@ namespace ksp_techtree_edit.Views
 		{
 			FindParts();
 		}
+
+		private void SaveClick(object sender, RoutedEventArgs e)
+		{
+			var saver = new TreeLoaderSaver();
+			_treeData.Save(saver);
+		}
 	}
 }

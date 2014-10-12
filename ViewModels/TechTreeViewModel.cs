@@ -1,4 +1,8 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 
 namespace ksp_techtree_edit.ViewModels
 {
@@ -80,6 +84,151 @@ namespace ksp_techtree_edit.ViewModels
 			}
 		}
 
+		public void Save(TreeSaver saver)
+		{
+			saver.StartTree();
+			foreach (var node in TechTree)
+			{
+				var parts = new List<string>();
+				foreach (var part in node.Parts)
+				{
+					parts.Add(part.PartName);
+				}
+				var parents = new List<string>();
+				foreach (var parent in node.Parents)
+				{
+					parents.Add(parent.NodeName);
+				}
+				saver.StartNode().
+				      SaveAttribute(new KeyValuePair<string, string>("name", node.NodeName)).
+				      SaveAttribute(new KeyValuePair<string, string>("techID", node.TechId)).
+				      SavePosition(node.Pos.X, node.Pos.Y, node.Zlayer).
+				      SaveAttribute(new KeyValuePair<string, string>("icon", node.Icon)).
+				      SaveAttribute(new KeyValuePair<string, string>("cost", node.Cost.ToString(CultureInfo.InvariantCulture))).
+				      SaveAttribute(new KeyValuePair<string, string>("tile", node.Title)).
+				      SaveAttribute(new KeyValuePair<string, string>("description", node.Description)).
+				      SaveAttribute(new KeyValuePair<string, string>("anyParent", node.AnyParent.ToString())).
+				      SaveAttribute(new KeyValuePair<string, string>("hideIfEmpty", node.HideIfEmpty.ToString())).
+				      StartParents().
+				      SaveParents(parents).
+				      EndParents().
+				      StartParts().
+				      SaveParts(parts).
+				      EndParts().
+				      EndNode();
+			}
+			saver.EndTree();
+			saver.Save("../../test.cfg");
+		}
+
 		#endregion Methods
+	}
+
+	public abstract class TreeSaver
+	{
+		protected readonly List<string> Output = new List<string>();
+
+		public abstract TreeSaver StartTree();
+		public abstract TreeSaver StartNode();
+		public abstract TreeSaver SavePosition(double x, double y, double z);
+		public abstract TreeSaver StartParents();
+		public abstract TreeSaver SaveParents(IEnumerable<string> parentsList);
+		public abstract TreeSaver EndParents();
+		public abstract TreeSaver StartParts();
+		public abstract TreeSaver SaveParts(IEnumerable<string> partsList);
+		public abstract TreeSaver EndParts();
+		public abstract TreeSaver EndNode();
+		public abstract TreeSaver EndTree();
+
+		public void Save(string path)
+		{
+			File.WriteAllLines(path, Output);
+		}
+
+		public TreeSaver SaveAttribute(KeyValuePair<string, string> nameAttributePair)
+		{
+			Output.Add("  " + nameAttributePair.Key + " = " + nameAttributePair.Value);
+			return this;
+		}
+	}
+
+	public class TreeLoaderSaver : TreeSaver
+	{
+		public override TreeSaver StartTree()
+		{
+			return this;
+		}
+
+		public override TreeSaver StartNode()
+		{
+			Output.Add("NODE");
+			Output.Add("{");
+			return this;
+		}
+
+		public override TreeSaver SavePosition(double x, double y, double z)
+		{
+			var pos = x + "," + y + "," + z;
+			Output.Add("  pos = " + pos);
+			return this;
+		}
+
+		public override TreeSaver StartParents()
+		{
+			return this;
+		}
+
+		public override TreeSaver SaveParents(IEnumerable<string> parentsList)
+		{
+			var parentsOutput = "";
+			var parents = parentsList as string[] ?? parentsList.ToArray();
+
+			for (var i = 0; i < parents.Length; i++)
+			{
+				parentsOutput += parents[i];
+				if (i < parents.Length - 1) parentsOutput += ",";
+			}
+
+			Output.Add("  parents = " + parentsOutput);
+			return this;
+		}
+
+		public override TreeSaver EndParents()
+		{
+			return this;
+		}
+
+		public override TreeSaver EndNode()
+		{
+			Output.Add("}");
+			return this;
+		}
+
+		public override TreeSaver StartParts()
+		{
+			Output.Add("  PARTS");
+			Output.Add("  {");
+			return this;
+		}
+
+		public override TreeSaver SaveParts(IEnumerable<string> partsList)
+		{
+			foreach (var part in partsList)
+			{
+				Output.Add("    name = " + part);
+			}
+			return this;
+		}
+
+		public override TreeSaver EndParts()
+		{
+			Output.Add("  }");
+			return this;
+		}
+
+		public override TreeSaver EndTree()
+		{
+			return this;
+		}
 	}
 }
