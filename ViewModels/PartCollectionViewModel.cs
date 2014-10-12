@@ -6,12 +6,25 @@ namespace ksp_techtree_edit.ViewModels
 {
 	public delegate void ProgressFileSearch(object sender, EventArgs e);
 
-	public class PartCollectionViewModel
+	public class PartCollectionViewModel : NotificationViewModel
 	{
+		private WorkspaceViewModel _workspaceViewModel;
+
 		#region Members
 
 		public ObservableCollection<PartViewModel>
 			PartCollection { get; private set; }
+
+		public WorkspaceViewModel WorkspaceViewModel
+		{
+			get { return _workspaceViewModel; }
+			set
+			{
+				if (_workspaceViewModel == value) return;
+				_workspaceViewModel = value;
+				OnPropertyChanged();
+			}
+		}
 
 		#endregion Members
 

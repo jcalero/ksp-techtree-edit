@@ -206,6 +206,18 @@ namespace ksp_techtree_edit.ViewModels
 			}
 		}
 
+		public void RemovePart(PartViewModel part)
+		{
+			Parts.Remove(part);
+			TechNode.Parts.Remove(part.PartName);
+		}
+
+		public void AddPart(PartViewModel part)
+		{
+			Parts.Add(part);
+			TechNode.Parts.Add(part.PartName);
+		}
+
 		#endregion Helper Methods
 	}
 }

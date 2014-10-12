@@ -1,3 +1,5 @@
+using ksp_techtree_edit.ViewModels;
+
 namespace ksp_techtree_edit.Controls
 {
 	/// <summary>
@@ -8,6 +10,13 @@ namespace ksp_techtree_edit.Controls
 		public SideBar()
 		{
 			InitializeComponent();
+			var techTreeViewModel = DataContext as TechTreeViewModel;
+
+			if (techTreeViewModel == null) return;
+
+			NodePartsListBox.DataContext = techTreeViewModel;
+
+			PartsListBox.AddPartButton.DataContext = techTreeViewModel;
 		}
 	}
 }

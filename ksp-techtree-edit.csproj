@@ -94,6 +94,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\NodePartsList.xaml.cs">
+      <DependentUpon>NodePartsList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PartCatalog.xaml.cs">
       <DependentUpon>PartCatalog.xaml</DependentUpon>
     </Compile>
@@ -117,6 +120,10 @@
     <Compile Include="ViewModels\TechNodeViewModel.cs" />
     <Compile Include="ViewModels\TechTreeViewModel.cs" />
     <Compile Include="DragScrolling.cs" />
+    <Page Include="Controls\NodePartsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\PartCatalog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
