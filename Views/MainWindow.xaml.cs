@@ -229,5 +229,11 @@ namespace ksp_techtree_edit.Views
 
 			_treeData.LinkNodes();
 		}
+
+		private void SaveATCClick(object sender, RoutedEventArgs e)
+		{
+			var saver = new ATCSaver();
+			_treeData.Save(saver);
+		}
 	}
 }

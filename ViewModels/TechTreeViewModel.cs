@@ -105,7 +105,7 @@ namespace ksp_techtree_edit.ViewModels
 				      SavePosition(node.Pos.X, node.Pos.Y, node.Zlayer).
 				      SaveAttribute(new KeyValuePair<string, string>("icon", node.Icon)).
 				      SaveAttribute(new KeyValuePair<string, string>("cost", node.Cost.ToString(CultureInfo.InvariantCulture))).
-				      SaveAttribute(new KeyValuePair<string, string>("tile", node.Title)).
+				      SaveAttribute(new KeyValuePair<string, string>("title", node.Title)).
 				      SaveAttribute(new KeyValuePair<string, string>("description", node.Description)).
 				      SaveAttribute(new KeyValuePair<string, string>("anyParent", node.AnyParent.ToString())).
 				      SaveAttribute(new KeyValuePair<string, string>("hideIfEmpty", node.HideIfEmpty.ToString())).
@@ -130,6 +130,7 @@ namespace ksp_techtree_edit.ViewModels
 
 		public abstract TreeSaver StartTree();
 		public abstract TreeSaver StartNode();
+		public abstract TreeSaver SaveAttribute(KeyValuePair<string, string> nameAttributePair);
 		public abstract TreeSaver SavePosition(double x, double y, double z);
 		public abstract TreeSaver StartParents();
 		public abstract TreeSaver SaveParents(IEnumerable<string> parentsList);
@@ -144,12 +145,6 @@ namespace ksp_techtree_edit.ViewModels
 		{
 			File.WriteAllLines(path, Output);
 		}
-
-		public TreeSaver SaveAttribute(KeyValuePair<string, string> nameAttributePair)
-		{
-			Output.Add("  " + nameAttributePair.Key + " = " + nameAttributePair.Value);
-			return this;
-		}
 	}
 
 	public class TreeLoaderSaver : TreeSaver
@@ -163,6 +158,12 @@ namespace ksp_techtree_edit.ViewModels
 		{
 			Output.Add("NODE");
 			Output.Add("{");
+			return this;
+		}
+
+		public override TreeSaver SaveAttribute(KeyValuePair<string, string> nameAttributePair)
+		{
+			Output.Add("  " + nameAttributePair.Key + " = " + nameAttributePair.Value);
 			return this;
 		}
 
@@ -228,6 +229,106 @@ namespace ksp_techtree_edit.ViewModels
 
 		public override TreeSaver EndTree()
 		{
+			return this;
+		}
+	}
+
+	public class ATCSaver : TreeSaver
+	{
+		public override TreeSaver StartTree()
+		{
+			Output.Add("TECH_TREE");
+			Output.Add("{");
+			return this;
+		}
+
+		public override TreeSaver StartNode()
+		{
+			Output.Add("	TECH_NODE");
+			Output.Add("	{");
+			return this;
+		}
+
+		public override TreeSaver SaveAttribute(KeyValuePair<string, string> nameAttributePair)
+		{
+			var key = nameAttributePair.Key;
+			switch (nameAttributePair.Key)
+			{
+				case "anyParent":
+					key = "anyParentUnlocks";
+					break;
+
+				case "hideIfEmpty":
+					key = "hideIfNoparts";
+					break;
+
+				case "cost":
+					key = "scienceCost";
+					break;
+			}
+			Output.Add("		" + key + " = " + nameAttributePair.Value);
+			return this;
+		}
+
+		public override TreeSaver SavePosition(double x, double y, double z)
+		{
+			Output.Add("		posX = " + x);
+			Output.Add("		posY = " + y);
+			return this;
+		}
+
+		public override TreeSaver StartParents()
+		{
+			return this;
+		}
+
+		public override TreeSaver SaveParents(IEnumerable<string> parentsList)
+		{
+			var parents = parentsList as string[] ?? parentsList.ToArray();
+
+			foreach (var parent in parents)
+			{
+				Output.Add("		PARENT_NODE");
+				Output.Add("		{");
+				Output.Add("			name = " + parent);
+				Output.Add("		}");
+			}
+
+			return this;
+		}
+
+		public override TreeSaver EndParents()
+		{
+			return this;
+		}
+
+		public override TreeSaver EndNode()
+		{
+			Output.Add("	}");
+			return this;
+		}
+
+		public override TreeSaver StartParts()
+		{
+			// TODO : Buffer parts and stream to end of file as MM configs
+			return this;
+		}
+
+		public override TreeSaver SaveParts(IEnumerable<string> partsList)
+		{
+			// TODO
+			return this;
+		}
+
+		public override TreeSaver EndParts()
+		{
+			// TODO
+			return this;
+		}
+
+		public override TreeSaver EndTree()
+		{
+			Output.Add("}");
 			return this;
 		}
 	}

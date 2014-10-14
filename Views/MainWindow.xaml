@@ -22,6 +22,7 @@
 			<MenuItem Header="Clear" Click="ClearButtonClick"/>
 			<MenuItem Header="Load Parts" Click="LoadPartsClick"/>
 			<MenuItem Header="Save" Click="SaveClick"/>
+			<MenuItem Header="Save (ATC)" Click="SaveATCClick"/>
 		</Menu>
 
 		<Grid Name="ContentGrid" Grid.Row="1">
