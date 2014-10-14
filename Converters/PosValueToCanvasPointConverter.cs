@@ -57,7 +57,7 @@ namespace ksp_techtree_edit.Converters
 		{
 			return new Point
 			       {
-				       X = ((((Point)value).X + 3000) * 0.85),
+				       X = ((((Point)value).X + 3400) * 0.85),
 				       Y = (((Point)value).Y * 0.7)
 			       };
 		}
@@ -70,7 +70,7 @@ namespace ksp_techtree_edit.Converters
 		{
 			return new Point
 			       {
-				       X = Math.Round((((Point)value).X / 0.85) - 3000, 2),
+				       X = Math.Round((((Point)value).X / 0.85) - 3400, 2),
 				       Y = Math.Round(((Point)value).Y / 0.7, 2)
 			       };
 		}

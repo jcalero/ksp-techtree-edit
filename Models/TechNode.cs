@@ -29,7 +29,9 @@ namespace ksp_techtree_edit.Models
 
 		#region Methods
 
-		public void PopulateFromSource(KerbalNode sourceNode)
+		public void PopulateFromSource(
+			KerbalNode sourceNode,
+			TreeType treeType = TreeType.TreeLoader)
 		{
 			var v = sourceNode.Values;
 
@@ -37,69 +39,127 @@ namespace ksp_techtree_edit.Models
 
 			TechId = v.ContainsKey("techID") ? v["techID"].First() : "";
 
-			if (v.ContainsKey("pos"))
+			double x;
+			double y;
+			switch (treeType)
 			{
-				var posString = v["pos"].First();
-				var coordinates = posString.Split(',');
-
-				if (coordinates.Length >= 2)
-				{
-					double x;
-					if (!Double.TryParse(coordinates[0], out x))
+				case TreeType.TreeLoader:
+					if (v.ContainsKey("pos"))
 					{
-						x = 0;
+						var posString = v["pos"].First();
+						var coordinates = posString.Split(',');
+
+						if (coordinates.Length >= 2)
+						{
+							if (!Double.TryParse(coordinates[0], out x))
+							{
+								x = 0;
+							}
+
+							if (!Double.TryParse(coordinates[1], out y))
+							{
+								y = 0;
+							}
+							Pos = new Point(x, y);
+
+							decimal z;
+							if (!Decimal.TryParse(coordinates[2], out z))
+							{
+								Zlayer = 0;
+							}
+							Zlayer = (int)z;
+						}
+					}
+					break;
+
+				case TreeType.ATC:
+					x = 0;
+					y = 0;
+					if (v.ContainsKey("posX"))
+					{
+						if (!Double.TryParse(v["posX"].First(), out x))
+						{
+							x = 0;
+						}
 					}
 
-					double y;
-					if (!Double.TryParse(coordinates[1], out y))
+					if (v.ContainsKey("posY"))
 					{
-						y = 0;
+						if (!Double.TryParse(v["posY"].First(), out y))
+						{
+							y = 0;
+						}
 					}
 					Pos = new Point(x, y);
-
-					decimal z;
-					if (!Decimal.TryParse(coordinates[2], out z))
-					{
-						Zlayer = 0;
-					}
-					Zlayer = (int)z;
-				}
+					break;
 			}
 
 			Icon = v.ContainsKey("icon") ? v["icon"].First() : "";
-
-			if (v.ContainsKey("cost"))
-			{
-				int c;
-				if (!Int32.TryParse(v["cost"].First(), out c))
-				{
-					Cost = 0;
-				}
-				Cost = c;
-			}
 
 			Title = v.ContainsKey("title") ? v["title"].First() : "";
 			Description = v.ContainsKey("description") ? v["description"].First() : "";
 
 			AnyParent = false;
-			if (v.ContainsKey("anyParent"))
+			HideIfEmpty = false;
+
+			if (treeType == TreeType.ATC)
 			{
-				switch (v["anyParent"].First().Trim().ToLower())
+				if (v.ContainsKey("scienceCost"))
 				{
-					case "true":
-						AnyParent = true;
-						break;
+					int c;
+					if (!Int32.TryParse(v["scienceCost"].First(), out c))
+					{
+						Cost = 0;
+					}
+					Cost = c;
+				}
+				if (v.ContainsKey("anyParentUnlocks"))
+				{
+					switch (v["anyParentUnlocks"].First().Trim().ToLower())
+					{
+						case "true":
+							AnyParent = true;
+							break;
+					}
+				}
+				if (v.ContainsKey("hideIfNoparts"))
+				{
+					switch (v["hideIfNoparts"].First().Trim().ToLower())
+					{
+						case "true":
+							HideIfEmpty = true;
+							break;
+					}
 				}
 			}
-
-			HideIfEmpty = false;
-			if (v.ContainsKey("hideIfEmpty"))
+			else
 			{
-				switch (v["hideIfEmpty"].First().Trim().ToLower())
+				if (v.ContainsKey("cost"))
 				{
-					case "true":
-						HideIfEmpty = true;
-						break;
+					int c;
+					if (!Int32.TryParse(v["cost"].First(), out c))
+					{
+						Cost = 0;
+					}
+					Cost = c;
+				}
+				if (v.ContainsKey("anyParent"))
+				{
+					switch (v["anyParent"].First().Trim().ToLower())
+					{
+						case "true":
+							AnyParent = true;
+							break;
+					}
+				}
+				if (v.ContainsKey("hideIfEmpty"))
+				{
+					switch (v["hideIfEmpty"].First().Trim().ToLower())
+					{
+						case "true":
+							HideIfEmpty = true;
+							break;
+					}
 				}
 			}
 
@@ -119,4 +179,10 @@ namespace ksp_techtree_edit.Models
 
 		#endregion Methods
 	}
+}
+
+public enum TreeType
+{
+	ATC,
+	TreeLoader
 }

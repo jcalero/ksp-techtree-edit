@@ -18,6 +18,7 @@
 
 		<Menu Grid.Row="0" Margin="0,0,0,5">
 			<MenuItem Header="Load" Click="LoadButtonClick"/>
+			<MenuItem Header="Load (ATC)" Click="LoadATCButtonClick"/>
 			<MenuItem Header="Clear" Click="ClearButtonClick"/>
 			<MenuItem Header="Load Parts" Click="LoadPartsClick"/>
 			<MenuItem Header="Save" Click="SaveClick"/>

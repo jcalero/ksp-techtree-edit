@@ -32,10 +32,10 @@ namespace ksp_techtree_edit.Views
 			ContentGrid.DataContext = workspaceViewModel;
 		}
 
-		public KerbalConfig ParseTree()
+		public KerbalConfig ParseTree(string path)
 		{
 			var parser = new Parser();
-			return parser.ParseConfig("..//..//tree.cfg");
+			return parser.ParseConfig(path);
 		}
 
 		public void FindParts()
@@ -65,7 +65,7 @@ namespace ksp_techtree_edit.Views
 				return;
 			}
 
-			_config = ParseTree();
+			_config = ParseTree("..//..//tree.cfg");
 
 			foreach (var tree in
 				_config.Where(
@@ -155,6 +155,79 @@ namespace ksp_techtree_edit.Views
 		{
 			var saver = new TreeLoaderSaver();
 			_treeData.Save(saver);
+		}
+
+		private void LoadATCButtonClick(object sender, RoutedEventArgs e)
+		{
+			var nameNodeHashtable = new Dictionary<string, TechNodeViewModel>();
+
+			if (_treeData == null)
+			{
+				StatusBarText = "No tech tree data.";
+				return;
+			}
+
+			_config = ParseTree("..//..//atctree.cfg");
+
+			var atcNodes =
+				_config.First(child => child.Name == "TECH_TREE").
+				        Children.Where(node => node.Name == "TECH_NODE").
+				        ToArray();
+
+			foreach (var node in
+				atcNodes.Where(
+				               kerbalNode =>
+				               kerbalNode.Values.ContainsKey("name")))
+			{
+				var v = node.Values;
+				var name = v["name"].First();
+				TechNodeViewModel techNodeViewModel;
+
+				if (nameNodeHashtable.ContainsKey(name))
+				{
+					techNodeViewModel = nameNodeHashtable[name];
+				}
+				else
+				{
+					techNodeViewModel = new TechNodeViewModel();
+					nameNodeHashtable.Add(name, techNodeViewModel);
+				}
+
+				techNodeViewModel.TechNode.PopulateFromSource(node, TreeType.ATC);
+
+				foreach (var parentNode in node.Children.Where(child => child.Name == "PARENT_NODE"))
+				{
+					var parentKeyValuePairs = parentNode.Values.Where(pair => pair.Key == "name");
+					var parents = new List<string>();
+					foreach (var parentKeyValuePair in parentKeyValuePairs)
+					{
+						parents.Add(parentKeyValuePair.Value.First());
+					}
+
+					foreach (var parent
+						in parents.
+							Where(
+							      parent =>
+							      !nameNodeHashtable.ContainsKey(parent)))
+					{
+						nameNodeHashtable.Add(parent, new TechNodeViewModel());
+					}
+
+					foreach (var parent
+						in parents
+							.Where(
+							       parent => !String.IsNullOrEmpty(parent) &&
+							                 nameNodeHashtable.
+								                 ContainsKey(parent)))
+					{
+						techNodeViewModel.Parents.Add(nameNodeHashtable[parent]);
+					}
+				}
+
+				_treeData.TechTree.Add(techNodeViewModel);
+			}
+
+			_treeData.LinkNodes();
 		}
 	}
 }
