@@ -86,7 +86,7 @@ namespace ksp_techtree_edit.ViewModels
 
 		public void Save(TreeSaver saver)
 		{
-			saver.StartTree();
+			saver.StartTree(this);
 			foreach (var node in TechTree)
 			{
 				var parts = new List<string>();
@@ -128,7 +128,7 @@ namespace ksp_techtree_edit.ViewModels
 	{
 		protected readonly List<string> Output = new List<string>();
 
-		public abstract TreeSaver StartTree();
+		public abstract TreeSaver StartTree(TechTreeViewModel techTree = null);
 		public abstract TreeSaver StartNode();
 		public abstract TreeSaver SaveAttribute(KeyValuePair<string, string> nameAttributePair);
 		public abstract TreeSaver SavePosition(double x, double y, double z);
@@ -149,8 +149,25 @@ namespace ksp_techtree_edit.ViewModels
 
 	public class TreeLoaderSaver : TreeSaver
 	{
-		public override TreeSaver StartTree()
+		public override TreeSaver StartTree(TechTreeViewModel techTree = null)
 		{
+			if (techTree == null) return this;
+			var stockNodes = File.ReadAllLines("..//..//stocknodes.kted");
+			var nodeNames = new List<string>();
+
+			foreach (var node in techTree.TechTree)
+			{
+				nodeNames.Add(node.NodeName);
+			}
+
+			foreach (var stockNode in stockNodes)
+			{
+				if (nodeNames.Contains(stockNode)) continue;
+				Output.Add("REMOVENODE");
+				Output.Add("{");
+				Output.Add("	name = " + stockNode);
+				Output.Add("}");
+			}
 			return this;
 		}
 
@@ -237,7 +254,7 @@ namespace ksp_techtree_edit.ViewModels
 	{
 		private readonly List<string> _partsBuffer = new List<string>();
 
-		public override TreeSaver StartTree()
+		public override TreeSaver StartTree(TechTreeViewModel techTree = null)
 		{
 			Output.Add("TECH_TREE");
 			Output.Add("{");

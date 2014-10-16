@@ -176,6 +176,7 @@
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="README.md" />
+    <None Include="stocknodes.kted" />
     <None Include="tree.cfg" />
   </ItemGroup>
   <ItemGroup>
