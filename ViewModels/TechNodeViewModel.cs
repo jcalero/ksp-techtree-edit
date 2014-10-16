@@ -212,11 +212,21 @@ namespace ksp_techtree_edit.ViewModels
 					{
 						partTable.Add(part.PartName, part);
 					}
+
 					foreach (var part in _techNode.Parts)
 					{
 						if (partTable.ContainsKey(part))
 						{
 							_parts.Add(partTable[part]);
+						}
+						else
+						{
+							var tmpPart = new Part(part)
+							              {
+								              Title = part,
+								              TechRequired = TechId
+							              };
+							_parts.Add(new PartViewModel(tmpPart));
 						}
 					}
 					break;
