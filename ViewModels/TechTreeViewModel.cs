@@ -163,14 +163,14 @@ namespace ksp_techtree_edit.ViewModels
 
 		public override TreeSaver SaveAttribute(KeyValuePair<string, string> nameAttributePair)
 		{
-			Output.Add("  " + nameAttributePair.Key + " = " + nameAttributePair.Value);
+			Output.Add("	" + nameAttributePair.Key + " = " + nameAttributePair.Value);
 			return this;
 		}
 
 		public override TreeSaver SavePosition(double x, double y, double z)
 		{
 			var pos = x + "," + y + "," + z;
-			Output.Add("  pos = " + pos);
+			Output.Add("	pos = " + pos);
 			return this;
 		}
 
@@ -190,7 +190,7 @@ namespace ksp_techtree_edit.ViewModels
 				if (i < parents.Length - 1) parentsOutput += ",";
 			}
 
-			Output.Add("  parents = " + parentsOutput);
+			Output.Add("	parents = " + parentsOutput);
 			return this;
 		}
 
@@ -207,8 +207,8 @@ namespace ksp_techtree_edit.ViewModels
 
 		public override TreeSaver StartParts()
 		{
-			Output.Add("  PARTS");
-			Output.Add("  {");
+			Output.Add("	PARTS");
+			Output.Add("	{");
 			return this;
 		}
 
@@ -216,14 +216,14 @@ namespace ksp_techtree_edit.ViewModels
 		{
 			foreach (var part in partsList)
 			{
-				Output.Add("    name = " + part.PartName);
+				Output.Add("		name = " + part.PartName);
 			}
 			return this;
 		}
 
 		public override TreeSaver EndParts()
 		{
-			Output.Add("  }");
+			Output.Add("	}");
 			return this;
 		}
 
