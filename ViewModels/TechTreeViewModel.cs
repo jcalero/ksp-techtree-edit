@@ -113,7 +113,7 @@ namespace ksp_techtree_edit.ViewModels
 				      SaveParents(parents).
 				      EndParents().
 				      StartParts().
-				      SaveParts(parts).
+				      SaveParts(node.Parts).
 				      EndParts().
 				      EndNode();
 			}
@@ -136,7 +136,7 @@ namespace ksp_techtree_edit.ViewModels
 		public abstract TreeSaver SaveParents(IEnumerable<string> parentsList);
 		public abstract TreeSaver EndParents();
 		public abstract TreeSaver StartParts();
-		public abstract TreeSaver SaveParts(IEnumerable<string> partsList);
+		public abstract TreeSaver SaveParts(IEnumerable<PartViewModel> partsList);
 		public abstract TreeSaver EndParts();
 		public abstract TreeSaver EndNode();
 		public abstract TreeSaver EndTree();
@@ -212,11 +212,11 @@ namespace ksp_techtree_edit.ViewModels
 			return this;
 		}
 
-		public override TreeSaver SaveParts(IEnumerable<string> partsList)
+		public override TreeSaver SaveParts(IEnumerable<PartViewModel> partsList)
 		{
 			foreach (var part in partsList)
 			{
-				Output.Add("    name = " + part);
+				Output.Add("    name = " + part.PartName);
 			}
 			return this;
 		}
@@ -235,6 +235,8 @@ namespace ksp_techtree_edit.ViewModels
 
 	public class ATCSaver : TreeSaver
 	{
+		private readonly List<string> _partsBuffer = new List<string>();
+
 		public override TreeSaver StartTree()
 		{
 			Output.Add("TECH_TREE");
@@ -314,21 +316,27 @@ namespace ksp_techtree_edit.ViewModels
 			return this;
 		}
 
-		public override TreeSaver SaveParts(IEnumerable<string> partsList)
+		public override TreeSaver SaveParts(IEnumerable<PartViewModel> partsList)
 		{
-			// TODO
+			foreach (var part in partsList)
+			{
+				_partsBuffer.Add("@PART[" + part.PartName + "]");
+				_partsBuffer.Add("{");
+				_partsBuffer.Add("  @TechRequired = " + part.TechRequired);
+				_partsBuffer.Add("}");
+			}
 			return this;
 		}
 
 		public override TreeSaver EndParts()
 		{
-			// TODO
 			return this;
 		}
 
 		public override TreeSaver EndTree()
 		{
 			Output.Add("}");
+			Output.AddRange(_partsBuffer);
 			return this;
 		}
 	}

@@ -21,6 +21,7 @@
 			<MenuItem Header="Load (ATC)" Click="LoadATCButtonClick"/>
 			<MenuItem Header="Clear" Click="ClearButtonClick"/>
 			<MenuItem Header="Load Parts" Click="LoadPartsClick"/>
+			<MenuItem Header="Load Parts (ATC)" Click="LoadPartsATCClick"/>
 			<MenuItem Header="Save" Click="SaveClick"/>
 			<MenuItem Header="Save (ATC)" Click="SaveATCClick"/>
 		</Menu>

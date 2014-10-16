@@ -37,13 +37,13 @@ namespace ksp_techtree_edit.Models
 
 			NodeName = v.ContainsKey("name") ? v["name"].First() : "";
 
-			TechId = v.ContainsKey("techID") ? v["techID"].First() : "";
-
 			double x;
 			double y;
 			switch (treeType)
 			{
 				case TreeType.TreeLoader:
+					TechId = v.ContainsKey("techID") ? v["techID"].First() : "";
+
 					if (v.ContainsKey("pos"))
 					{
 						var posString = v["pos"].First();
@@ -73,6 +73,18 @@ namespace ksp_techtree_edit.Models
 					break;
 
 				case TreeType.ATC:
+					if (v.ContainsKey("name"))
+					{
+						var i = v["name"].First().IndexOf('_');
+						TechId = i > 0 && i + 1 < v["name"].First().Length
+							         ? v["name"].First().Substring(i + 1)
+							         : v["name"].First();
+					}
+					else
+					{
+						TechId = "";
+					}
+
 					x = 0;
 					y = 0;
 					if (v.ContainsKey("posX"))

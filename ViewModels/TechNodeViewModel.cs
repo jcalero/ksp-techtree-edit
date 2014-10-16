@@ -189,20 +189,37 @@ namespace ksp_techtree_edit.ViewModels
 
 		#region Helper Methods
 
-		public void PopulateParts(PartCollectionViewModel pc)
+		public void PopulateParts(
+			PartCollectionViewModel pc,
+			TreeType type = TreeType.TreeLoader)
 		{
-			var partTable = new Dictionary<string, PartViewModel>();
-			foreach (var part in pc.PartCollection)
+			switch (type)
 			{
-				partTable.Add(part.PartName, part);
-			}
+				case TreeType.ATC:
+					foreach (var part in pc.PartCollection)
+					{
+						if (part.TechRequired == TechId)
+						{
+							_parts.Add(part);
+						}
+					}
+					break;
 
-			foreach (var part in _techNode.Parts)
-			{
-				if (partTable.ContainsKey(part))
-				{
-					_parts.Add(partTable[part]);
-				}
+				case TreeType.TreeLoader:
+					var partTable = new Dictionary<string, PartViewModel>();
+
+					foreach (var part in pc.PartCollection)
+					{
+						partTable.Add(part.PartName, part);
+					}
+					foreach (var part in _techNode.Parts)
+					{
+						if (partTable.ContainsKey(part))
+						{
+							_parts.Add(partTable[part]);
+						}
+					}
+					break;
 			}
 		}
 

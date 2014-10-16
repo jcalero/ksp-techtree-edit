@@ -38,7 +38,7 @@ namespace ksp_techtree_edit.Views
 			return parser.ParseConfig(path);
 		}
 
-		public void FindParts()
+		public void FindParts(TreeType type = TreeType.TreeLoader)
 		{
 			var partCollectionViewModel = MainSideBar.PartsListBox.DataContext
 			                              as PartCollectionViewModel;
@@ -51,7 +51,7 @@ namespace ksp_techtree_edit.Views
 
 			foreach (var node in _treeData.TechTree)
 			{
-				node.PopulateParts(partCollectionViewModel);
+				node.PopulateParts(partCollectionViewModel, type);
 			}
 		}
 
@@ -234,6 +234,11 @@ namespace ksp_techtree_edit.Views
 		{
 			var saver = new ATCSaver();
 			_treeData.Save(saver);
+		}
+
+		private void LoadPartsATCClick(object sender, RoutedEventArgs e)
+		{
+			FindParts(TreeType.ATC);
 		}
 	}
 }
