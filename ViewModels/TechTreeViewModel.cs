@@ -258,6 +258,7 @@ namespace ksp_techtree_edit.ViewModels
 		{
 			Output.Add("TECH_TREE");
 			Output.Add("{");
+			Output.Add("	name = test");
 			return this;
 		}
 
