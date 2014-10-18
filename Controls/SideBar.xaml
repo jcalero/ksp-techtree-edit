@@ -39,14 +39,31 @@
 					</Grid>
 				</Border>
 				<xctk:PropertyGrid
-							Grid.Row="1"
-							Name="NodePropertyGrid"
-							IsCategorized="False"
-							ShowSearchBox="False"
-							ShowSortOptions="False"
-							ShowTitle="True"
-							SelectedObjectName="{Binding WorkspaceViewModel.SelectedNode.Title}"
-							SelectedObject="{Binding WorkspaceViewModel.SelectedNode}"/>
+					Grid.Row="1"
+					Name="NodePropertyGrid"
+					IsCategorized="False"
+					ShowSearchBox="False"
+					ShowSortOptions="False"
+					ShowTitle="True"
+					SelectedObjectName="{Binding WorkspaceViewModel.SelectedNode.Title}"
+					SelectedObject="{Binding WorkspaceViewModel.SelectedNode}"
+					>
+					<xctk:PropertyGrid.PropertyDefinitions>
+						<xctk:PropertyDefinition TargetProperties="Width" IsBrowsable="False"/>
+						<xctk:PropertyDefinition TargetProperties="Height" IsBrowsable="False"/>
+						<xctk:PropertyDefinition TargetProperties="IsSelected" IsBrowsable="False"/>
+						<xctk:PropertyDefinition TargetProperties="TechNode" IsBrowsable="False"/>
+						<xctk:PropertyDefinition TargetProperties="TechId" IsBrowsable="False"/>
+						<xctk:PropertyDefinition TargetProperties="Title" DisplayOrder="0"/>
+						<xctk:PropertyDefinition TargetProperties="Cost" DisplayOrder="1"/>
+						<xctk:PropertyDefinition TargetProperties="Description" DisplayOrder="2"/>
+						<xctk:PropertyDefinition TargetProperties="Icon" DisplayOrder="3"/>
+						<xctk:PropertyDefinition TargetProperties="NodeName" DisplayOrder="4"/>
+						<xctk:PropertyDefinition TargetProperties="Pos" DisplayOrder="5"/>
+						<xctk:PropertyDefinition TargetProperties="ZLayer" DisplayOrder="6"/>
+						<xctk:PropertyDefinition TargetProperties="AnyParent,HideIfEmpty" DisplayOrder="10"/>
+					</xctk:PropertyGrid.PropertyDefinitions>
+				</xctk:PropertyGrid>
 				<controls:NodePartsList Grid.Row="2" x:Name="NodePartsListBox"/>
 				<controls:PartCatalog Grid.Row="3" x:Name="PartsListBox" />
 			</Grid>
