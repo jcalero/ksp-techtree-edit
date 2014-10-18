@@ -106,6 +106,7 @@
     <Compile Include="Controls\TechTreeDiagram.xaml.cs">
       <DependentUpon>TechTreeDiagram.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IconsEnum.cs" />
     <Compile Include="Models\Part.cs" />
     <Compile Include="Models\PartCollection.cs" />
     <Compile Include="Models\TechNode.cs" />

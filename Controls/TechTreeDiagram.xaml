@@ -63,7 +63,7 @@
 							<ControlTemplate>
 								<Grid>
 									<Rectangle Fill="CadetBlue"/>
-									<Label Content="{Binding Icon[0]}"
+									<Label Content="{Binding Title[0]}"
 													HorizontalAlignment="Center"
 													VerticalAlignment="Center"/>
 									<Rectangle Fill="Transparent" Cursor="Hand"/>

@@ -17,7 +17,7 @@ namespace ksp_techtree_edit.Models
 		public Point Pos { get; set; }
 		public int Zlayer { get; set; }
 		public string TechId { get; set; }
-		public string Icon { get; set; }
+		public Icon Icon { get; set; }
 		public bool AnyParent { get; set; }
 		public bool HideIfEmpty { get; set; }
 
@@ -106,7 +106,15 @@ namespace ksp_techtree_edit.Models
 					break;
 			}
 
-			Icon = v.ContainsKey("icon") ? v["icon"].First() : "";
+			if (v.ContainsKey("icon"))
+			{
+				Icon icon;
+				if (!Enum.TryParse(v["icon"].First(), true, out icon))
+				{
+					icon = Icon.UNDEFINED;
+				}
+				Icon = icon;
+			}
 
 			Title = v.ContainsKey("title") ? v["title"].First() : "";
 			Description = v.ContainsKey("description") ? v["description"].First() : "";

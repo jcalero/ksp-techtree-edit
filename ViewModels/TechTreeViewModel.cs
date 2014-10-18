@@ -103,7 +103,7 @@ namespace ksp_techtree_edit.ViewModels
 				      SaveAttribute(new KeyValuePair<string, string>("name", node.NodeName)).
 				      SaveAttribute(new KeyValuePair<string, string>("techID", node.TechId)).
 				      SavePosition(node.Pos.X, node.Pos.Y, node.Zlayer).
-				      SaveAttribute(new KeyValuePair<string, string>("icon", node.Icon)).
+				      SaveAttribute(new KeyValuePair<string, string>("icon", node.Icon.ToString())).
 				      SaveAttribute(new KeyValuePair<string, string>("cost", node.Cost.ToString(CultureInfo.InvariantCulture))).
 				      SaveAttribute(new KeyValuePair<string, string>("title", node.Title)).
 				      SaveAttribute(new KeyValuePair<string, string>("description", node.Description)).

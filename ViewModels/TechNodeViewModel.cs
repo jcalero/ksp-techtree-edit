@@ -138,7 +138,7 @@ namespace ksp_techtree_edit.ViewModels
 			}
 		}
 
-		public string Icon
+		public Icon Icon
 		{
 			get { return _techNode.Icon; }
 			set
