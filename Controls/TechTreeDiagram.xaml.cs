@@ -77,6 +77,24 @@ namespace ksp_techtree_edit.Controls
 				techtree.DeleteNode(node);
 				return;
 			}
+			if (Keyboard.IsKeyDown(Key.LeftCtrl))
+			{
+				var selectedNode = techtree.WorkspaceViewModel.SelectedNode;
+				if (selectedNode == node) return;
+
+				if (selectedNode.Parents.Contains(node) || node.Parents.Contains(selectedNode))
+				{
+					node.RemoveParent(selectedNode);
+					selectedNode.RemoveParent(node);
+					techtree.LinkNodes();
+				}
+				else
+				{
+					node.AddParent(selectedNode);
+					techtree.LinkNodes();
+				}
+				return;
+			}
 
 			node.IsSelected = true;
 

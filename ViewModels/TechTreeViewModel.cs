@@ -79,7 +79,7 @@ namespace ksp_techtree_edit.ViewModels
 			{
 				if (node.Parents.Contains(parentToRemove))
 				{
-					node.Parents.Remove(parentToRemove);
+					node.RemoveParent(parentToRemove);
 				}
 			}
 		}
