@@ -27,6 +27,32 @@ namespace ksp_techtree_edit.Models
 
 		#endregion Members
 
+		#region Constructors
+
+		public TechNode()
+		{
+		}
+
+		public TechNode(string name)
+		{
+			NodeName = name;
+			Title = String.IsNullOrEmpty(name)
+				        ? String.Empty
+				        : char.ToUpper(name[0]) + name.Substring(1);
+			Description = "";
+			Cost = 0;
+			Pos = new Point(0, 0);
+			Zlayer = 0;
+			TechId = GenerateTechId();
+			Icon = Icon.BASICROCKETRY;
+			AnyParent = false;
+			HideIfEmpty = false;
+			Parents = new List<TechNode>();
+			Parts = new List<string>();
+		}
+
+		#endregion Constructors
+
 		#region Methods
 
 		public void PopulateFromSource(
@@ -73,17 +99,7 @@ namespace ksp_techtree_edit.Models
 					break;
 
 				case TreeType.ATC:
-					if (v.ContainsKey("name"))
-					{
-						var i = v["name"].First().IndexOf('_');
-						TechId = i > 0 && i + 1 < v["name"].First().Length
-							         ? v["name"].First().Substring(i + 1)
-							         : v["name"].First();
-					}
-					else
-					{
-						TechId = "";
-					}
+					TechId = GenerateTechId();
 
 					x = 0;
 					y = 0;
@@ -195,6 +211,15 @@ namespace ksp_techtree_edit.Models
 				tmpParts.AddRange(child.Values["name"]);
 			}
 			Parts = new List<string>(tmpParts);
+		}
+
+		public string GenerateTechId()
+		{
+			if (String.IsNullOrEmpty(NodeName)) return "";
+			var i = NodeName.IndexOf('_');
+			return i > 0 && i + 1 < NodeName.Length
+				       ? NodeName.Substring(i + 1)
+				       : NodeName;
 		}
 
 		#endregion Methods

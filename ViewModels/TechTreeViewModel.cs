@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Windows;
+using ksp_techtree_edit.Models;
 
 namespace ksp_techtree_edit.ViewModels
 {
@@ -13,12 +16,6 @@ namespace ksp_techtree_edit.ViewModels
 		#region Private
 
 		private WorkspaceViewModel _workspaceViewModel;
-
-		public TechTreeViewModel()
-		{
-			Connections = new ObservableCollection<ConnectionViewModel>();
-			TechTree = new ObservableCollection<TechNodeViewModel>();
-		}
 
 		#endregion Private
 
@@ -41,9 +38,22 @@ namespace ksp_techtree_edit.ViewModels
 			}
 		}
 
+		public string[] StockNodes { get; set; }
+
 		#endregion Public
 
 		#endregion Members
+
+		#region Constructors
+
+		public TechTreeViewModel()
+		{
+			Connections = new ObservableCollection<ConnectionViewModel>();
+			TechTree = new ObservableCollection<TechNodeViewModel>();
+			StockNodes = File.ReadAllLines("..//..//stocknodes.kted");
+		}
+
+		#endregion Constructors
 
 		#region Methods
 
@@ -69,6 +79,56 @@ namespace ksp_techtree_edit.ViewModels
 			TechTree.Remove(node);
 			UnlinkParent(node);
 			LinkNodes();
+		}
+
+		public TechNodeViewModel AddNode(Point pos)
+		{
+			var node = new TechNode(GenerateNodeName()) { Pos = pos };
+			var nodeViewModel = new TechNodeViewModel { TechNode = node };
+			TechTree.Add(nodeViewModel);
+			return nodeViewModel;
+		}
+
+		public string GenerateNodeName()
+		{
+			foreach (var stockNodeName in StockNodes)
+			{
+				if (!ContainsNodeName(stockNodeName)) return stockNodeName;
+			}
+
+			const string namePrefix = "newnode_";
+			var randGen = new Random();
+			var limit = 9999;
+			var name = namePrefix + randGen.Next(100, limit);
+
+			for (var i = 0; i < limit; i++)
+			{
+				if (!ContainsNodeName(name))
+				{
+					return name;
+				}
+
+				if (i == limit - 1)
+				{
+					limit = (limit * 10) + 9;
+				}
+
+				name = namePrefix + randGen.Next(100, limit);
+			}
+
+			return name;
+		}
+
+		public bool ContainsNodeName(string nodeName)
+		{
+			foreach (var nodeViewModel in TechTree)
+			{
+				if (nodeViewModel.NodeName == nodeName)
+				{
+					return true;
+				}
+			}
+			return false;
 		}
 
 		//TODO: Remove this terrible terrible method and replace with proper
@@ -152,7 +212,6 @@ namespace ksp_techtree_edit.ViewModels
 		public override TreeSaver StartTree(TechTreeViewModel techTree = null)
 		{
 			if (techTree == null) return this;
-			var stockNodes = File.ReadAllLines("..//..//stocknodes.kted");
 			var nodeNames = new List<string>();
 
 			foreach (var node in techTree.TechTree)
@@ -160,7 +219,7 @@ namespace ksp_techtree_edit.ViewModels
 				nodeNames.Add(node.NodeName);
 			}
 
-			foreach (var stockNode in stockNodes)
+			foreach (var stockNode in techTree.StockNodes)
 			{
 				if (nodeNames.Contains(stockNode)) continue;
 				Output.Add("REMOVENODE");

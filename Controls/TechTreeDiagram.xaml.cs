@@ -1,8 +1,11 @@
 using System;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using ksp_techtree_edit.ViewModels;
+using Xceed.Wpf.AvalonDock.Controls;
 
 namespace ksp_techtree_edit.Controls
 {
@@ -102,5 +105,22 @@ namespace ksp_techtree_edit.Controls
 		}
 
 		#endregion Methods
+
+		private void GridOnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+		{
+			var techtree = DataContext as TechTreeViewModel;
+			if (techtree == null) return;
+
+			if (!Keyboard.IsKeyDown(Key.LeftAlt)) return;
+
+			var grid = (Grid)sender;
+
+			var canvas = grid.FindVisualChildren<Canvas>().First();
+
+			var pos = e.MouseDevice.GetPosition(canvas);
+			var x = Math.Round((pos.X / 0.85) - 3400, 2) + 20;
+			var y = Math.Round(pos.Y / 0.7, 2) - 20;
+			techtree.AddNode(new Point(x, y));
+		}
 	}
 }

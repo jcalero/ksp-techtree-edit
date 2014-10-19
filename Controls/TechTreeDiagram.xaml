@@ -15,7 +15,7 @@
 	<UserControl.DataContext>
 		<viewModels:TechTreeViewModel/>
 	</UserControl.DataContext>
-	<Grid x:Name="TechTreeGrid" d:DataContext="{d:DesignInstance d:Type=viewModels:TechTreeViewModel}">
+	<Grid x:Name="TechTreeGrid" PreviewMouseDown="GridOnPreviewMouseDown" d:DataContext="{d:DesignInstance d:Type=viewModels:TechTreeViewModel}">
 		<ItemsControl Name="NodeConnectionsControl" ItemsSource="{Binding Connections}">
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>
