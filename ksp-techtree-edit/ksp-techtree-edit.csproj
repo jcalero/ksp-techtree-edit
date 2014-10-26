@@ -131,6 +131,7 @@
     <Compile Include="Models\Part.cs" />
     <Compile Include="Models\PartCollection.cs" />
     <Compile Include="Models\TechNode.cs" />
+    <Compile Include="Models\TechTree.cs" />
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\NotificationViewModel.cs" />
     <Compile Include="ViewModels\ConnectionViewModel.cs" />
