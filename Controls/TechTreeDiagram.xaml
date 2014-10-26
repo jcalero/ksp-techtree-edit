@@ -6,7 +6,8 @@
              xmlns:viewModels="clr-namespace:ksp_techtree_edit.ViewModels"
              xmlns:converters="clr-namespace:ksp_techtree_edit.Converters"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+			 MouseMove="OnMouseMove">
 	<UserControl.Resources>
 		<converters:PosXToCanvasPointConverter x:Key="PosXToCanvasConverter"/>
 		<converters:PosYToCanvasPointConverter x:Key="PosYToCanvasConverter"/>

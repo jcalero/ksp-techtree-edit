@@ -17,6 +17,19 @@ namespace ksp_techtree_edit.ViewModels
 			}
 		}
 
+		private string _statusBarText;
+
+		public string StatusBarText
+		{
+			get { return _statusBarText; }
+			set
+			{
+				if (value == _statusBarText) return;
+				_statusBarText = value;
+				OnPropertyChanged();
+			}
+		}
+
 		#endregion Members
 	}
 }

@@ -8,7 +8,8 @@
 		xmlns:viewModels="clr-namespace:ksp_techtree_edit.ViewModels"
 		mc:Ignorable="d" x:Class="ksp_techtree_edit.Views.MainWindow"
         Title="KSP Tech Tree Edit" Height="513" Width="718"
-		MinWidth="700" MinHeight="500">
+		MinWidth="700" MinHeight="500" Loaded="OnLoaded"
+		WindowStartupLocation="CenterScreen">
 	<Grid Name="WindowGrid">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
@@ -17,19 +18,12 @@
 		</Grid.RowDefinitions>
 
 		<Menu Grid.Row="0" Margin="0,0,0,5">
-			<MenuItem Header="Load" Click="LoadButtonClick"/>
-			<MenuItem Header="Load (ATC)" Click="LoadATCButtonClick"/>
-			<MenuItem Header="Clear" Click="ClearButtonClick"/>
-			<MenuItem Header="Load Parts" Click="LoadPartsClick"/>
-			<MenuItem Header="Load Parts (ATC)" Click="LoadPartsATCClick"/>
+			<MenuItem Header="Load/New" Click="LoadButtonClick"/>
 			<MenuItem Header="Save" Click="SaveClick"/>
 			<MenuItem Header="Save (ATC)" Click="SaveATCClick"/>
 		</Menu>
 
 		<Grid Name="ContentGrid" Grid.Row="1">
-			<Grid.DataContext>
-				<viewModels:WorkspaceViewModel/>
-			</Grid.DataContext>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*" MinWidth="450"/>
 				<ColumnDefinition Width="7"/>
@@ -48,7 +42,7 @@
 		</Grid>
 		<StatusBar Grid.Row="2">
 			<StatusBarItem>
-				<TextBlock x:Name="StatusBarMain">Status bar</TextBlock>
+				<TextBlock Text="{Binding StatusBarText}" d:DataContext="{d:DesignInstance viewModels:WorkspaceViewModel}" />
 			</StatusBarItem>
 		</StatusBar>
 	</Grid>

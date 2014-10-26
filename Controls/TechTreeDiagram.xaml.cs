@@ -19,6 +19,7 @@ namespace ksp_techtree_edit.Controls
 		private Vector _totalDelta = new Vector(0d, 0d);
 
 		private int _nodeStickiness = 25;
+		private readonly TechTreeViewModel _techTree;
 
 		//TODO: Move this to ViewModel (Workspace?)
 		public int NodeStickiness
@@ -34,6 +35,7 @@ namespace ksp_techtree_edit.Controls
 		public TechTreeDiagram()
 		{
 			InitializeComponent();
+			_techTree = DataContext as TechTreeViewModel;
 		}
 
 		#endregion Constructors
@@ -83,7 +85,7 @@ namespace ksp_techtree_edit.Controls
 			if (Keyboard.IsKeyDown(Key.LeftCtrl))
 			{
 				var selectedNode = techtree.WorkspaceViewModel.SelectedNode;
-				if (selectedNode == node) return;
+				if (selectedNode == node || selectedNode == null) return;
 
 				if (selectedNode.Parents.Contains(node) || node.Parents.Contains(selectedNode))
 				{
@@ -121,6 +123,11 @@ namespace ksp_techtree_edit.Controls
 			var x = Math.Round((pos.X / 0.85) - 3400, 2) + 20;
 			var y = Math.Round(pos.Y / 0.7, 2) - 20;
 			techtree.AddNode(new Point(x, y));
+		}
+
+		private void OnMouseMove(object sender, MouseEventArgs e)
+		{
+			_techTree.WorkspaceViewModel.StatusBarText = e.GetPosition(this).ToString();
 		}
 	}
 }
