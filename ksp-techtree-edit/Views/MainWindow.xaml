@@ -27,7 +27,7 @@
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*" MinWidth="450"/>
 				<ColumnDefinition Width="7"/>
-				<ColumnDefinition Width="200" MinWidth="200"/>
+				<ColumnDefinition Width="320" MinWidth="200"/>
 			</Grid.ColumnDefinitions>
 
 			<ScrollViewer Name="TechTreeScrollViewer" Grid.Column="0" HorizontalScrollBarVisibility="Auto"

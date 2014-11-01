@@ -24,22 +24,39 @@
 					<RowDefinition Height="*"/>
 				</Grid.RowDefinitions>
 				<Border Grid.Row="0" BorderBrush="LawnGreen" BorderThickness="0,0,0,2">
-					<Grid Margin="10,10,10,5"  HorizontalAlignment="Left" MinHeight="180">
-						<Grid.RowDefinitions>
-							<RowDefinition Height="40*"/>
-							<RowDefinition Height="40*"/>
-							<RowDefinition Height="40*"/>
-							<RowDefinition Height="40*"/>
-						</Grid.RowDefinitions>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition MinWidth="200px"/>
-						</Grid.ColumnDefinitions>
+					<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+						<Grid Margin="10,10,10,5" HorizontalAlignment="Left">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
 
-						<Label x:Name="NodeName" Grid.Row="0" Content="{Binding WorkspaceViewModel.SelectedNode.Title}" HorizontalAlignment="Left" Margin="8,9,0,0" VerticalAlignment="Top"/>
-						<Label x:Name="NodeTitle" Grid.Row="1" Content="Label" HorizontalAlignment="Left" Margin="8,9,0,0" VerticalAlignment="Top"/>
-						<Label x:Name="NodeCost" Grid.Row="2" Content="Label" HorizontalAlignment="Left" Margin="8,9,0,0" VerticalAlignment="Top"/>
-						<TextBlock x:Name="NodeDescription" Grid.Row="3" Text="Label" HorizontalAlignment="Left" Margin="14,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.105,0.462" MinWidth="160" TextWrapping="WrapWithOverflow"/>
-					</Grid>
+							<Label Grid.Row="0"
+								Content="Selected Node"
+								FontWeight="Bold"
+								HorizontalAlignment="Left"
+								Margin="8,9,0,0"
+								VerticalAlignment="Top"/>
+							<Label Grid.Row="1"
+								Content="{Binding WorkspaceViewModel.SelectedNode.Title}"
+								HorizontalAlignment="Left"
+								Margin="8,9,0,0"
+								VerticalAlignment="Top"/>
+							<Label Grid.Row="2"
+								Content="{Binding WorkspaceViewModel.SelectedNode.Cost}"
+								HorizontalAlignment="Left"
+								Margin="8,9,0,0"
+								VerticalAlignment="Top"/>
+							<TextBlock Grid.Row="3"
+								Text="{Binding WorkspaceViewModel.SelectedNode.Description}"
+								HorizontalAlignment="Left"
+								Margin="14,14,0,0"
+								VerticalAlignment="Top"
+								TextWrapping="WrapWithOverflow"/>
+						</Grid>
+					</ScrollViewer>
 				</Border>
 				<GridSplitter Grid.Row="1" Height="10" HorizontalAlignment="Stretch" Margin="0,2,0,2" Background="Black"/>
 				<xctk:PropertyGrid
