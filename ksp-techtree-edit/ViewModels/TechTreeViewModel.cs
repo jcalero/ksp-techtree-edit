@@ -88,6 +88,7 @@ namespace ksp_techtree_edit.ViewModels
 
 		public void DeleteNode(TechNodeViewModel node)
 		{
+			WorkspaceViewModel.SelectedNode = null;
 			TechTree.Remove(node);
 			UnlinkParent(node);
 			LinkNodes();

@@ -77,11 +77,6 @@ namespace ksp_techtree_edit.Controls
 			var node = thumb.DataContext as TechNodeViewModel;
 			if (node == null) return;
 
-			if (Keyboard.IsKeyDown(Key.LeftShift))
-			{
-				techtree.DeleteNode(node);
-				return;
-			}
 			if (Keyboard.IsKeyDown(Key.LeftCtrl))
 			{
 				var selectedNode = techtree.WorkspaceViewModel.SelectedNode;
@@ -117,7 +112,7 @@ namespace ksp_techtree_edit.Controls
 			var techtree = DataContext as TechTreeViewModel;
 			if (techtree == null) return;
 
-			if (!Keyboard.IsKeyDown(Key.LeftAlt)) return;
+			if (!Keyboard.IsKeyDown(Key.LeftShift)) return;
 
 			var grid = (Grid)sender;
 

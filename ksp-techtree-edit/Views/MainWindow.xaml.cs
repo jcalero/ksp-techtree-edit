@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using KerbalParser;
 using ksp_techtree_edit.ViewModels;
 using Microsoft.Win32;
@@ -267,6 +268,16 @@ namespace ksp_techtree_edit.Views
 		{
 			var dlg = new StartupDialog { Owner = this };
 			dlg.ShowDialog();
+		}
+
+		private void DeleteOnExecuted(object sender, ExecutedRoutedEventArgs e)
+		{
+			_treeData.DeleteNode(_treeData.WorkspaceViewModel.SelectedNode);
+		}
+
+		private void DeleteOnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = _treeData.WorkspaceViewModel.SelectedNode != null;
 		}
 	}
 }

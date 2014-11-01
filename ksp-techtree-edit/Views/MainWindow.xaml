@@ -10,6 +10,14 @@
         Title="KSP Tech Tree Edit" Height="513" Width="718"
 		MinWidth="700" MinHeight="500" Loaded="OnLoaded"
 		WindowStartupLocation="CenterScreen">
+	<Window.InputBindings>
+		<KeyBinding Key="Delete" Command="Delete"/>
+	</Window.InputBindings>
+	<Window.CommandBindings>
+		<CommandBinding Command="Delete"
+			Executed="DeleteOnExecuted"
+			CanExecute="DeleteOnCanExecute"/>
+	</Window.CommandBindings>
 	<Grid Name="WindowGrid">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
