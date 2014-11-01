@@ -143,6 +143,9 @@
     <Compile Include="ViewModels\TechNodeViewModel.cs" />
     <Compile Include="ViewModels\TechTreeViewModel.cs" />
     <Compile Include="DragScrolling.cs" />
+    <Compile Include="Views\HelpDialog.xaml.cs">
+      <DependentUpon>HelpDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StartupDialog.xaml.cs">
       <DependentUpon>StartupDialog.xaml</DependentUpon>
     </Compile>
@@ -159,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\TechTreeDiagram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HelpDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

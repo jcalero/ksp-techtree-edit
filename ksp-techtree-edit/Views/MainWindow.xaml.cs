@@ -279,5 +279,11 @@ namespace ksp_techtree_edit.Views
 		{
 			e.CanExecute = _treeData.WorkspaceViewModel.SelectedNode != null;
 		}
+
+		private void HelpClick(object sender, RoutedEventArgs e)
+		{
+			var dlg = new HelpDialog { Owner = this };
+			dlg.ShowDialog();
+		}
 	}
 }
