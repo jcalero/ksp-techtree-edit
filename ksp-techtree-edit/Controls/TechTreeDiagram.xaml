@@ -63,12 +63,20 @@
 						<Thumb.Template>
 							<ControlTemplate>
 								<Grid>
-									<Rectangle Fill="CadetBlue"/>
+									<Rectangle x:Name="NodeBackground" Fill="CadetBlue" />
 									<Label Content="{Binding Title[0]}"
 													HorizontalAlignment="Center"
 													VerticalAlignment="Center"/>
 									<Rectangle Fill="Transparent" Cursor="Hand"/>
 								</Grid>
+								<ControlTemplate.Triggers>
+									<Trigger Property="Thumb.IsMouseOver" Value="True">
+										<Setter TargetName="NodeBackground" Property="Fill" Value="PowderBlue"/>
+									</Trigger>
+									<DataTrigger Binding="{Binding IsSelected}" Value="True">
+										<Setter TargetName="NodeBackground" Property="Fill" Value="RoyalBlue"/>
+									</DataTrigger>
+								</ControlTemplate.Triggers>
 							</ControlTemplate>
 						</Thumb.Template>
 					</Thumb>

@@ -101,9 +101,13 @@ namespace ksp_techtree_edit.Controls
 				return;
 			}
 
+			if (techtree.WorkspaceViewModel.SelectedNode != null)
+				techtree.WorkspaceViewModel.SelectedNode.IsSelected = false;
 			node.IsSelected = true;
 
 			techtree.WorkspaceViewModel.SelectedNode = node;
+			techtree.WorkspaceViewModel.StatusBarText = node.NodeName +
+			                                            " selected.";
 		}
 
 		#endregion Methods
