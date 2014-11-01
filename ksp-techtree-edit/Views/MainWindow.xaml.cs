@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using KerbalParser;
 using ksp_techtree_edit.ViewModels;
+using Microsoft.Win32;
 
 namespace ksp_techtree_edit.Views
 {
@@ -212,14 +213,54 @@ namespace ksp_techtree_edit.Views
 
 		private void SaveClick(object sender, RoutedEventArgs e)
 		{
+			var dlg = new SaveFileDialog
+			          {
+				          DefaultExt = ".cfg",
+				          Filter = "Tech Tree Config Files|*.cfg",
+				          Title = "Select where to save...",
+				          AddExtension = true,
+			          };
+
+			var result = dlg.ShowDialog();
+
+			if (result == false) return;
+
 			var saver = new TreeLoaderSaver();
-			_treeData.Save(saver);
+			try
+			{
+				_treeData.Save(saver, dlg.FileName);
+			}
+			catch (Exception)
+			{
+				_treeData.WorkspaceViewModel.StatusBarText =
+					"Failed saving to file..";
+			}
 		}
 
 		private void SaveATCClick(object sender, RoutedEventArgs e)
 		{
+			var dlg = new SaveFileDialog
+			          {
+				          DefaultExt = ".cfg",
+				          Filter = "Tech Tree Config Files|*.cfg",
+				          Title = "Select where to save...",
+				          AddExtension = true,
+			          };
+
+			var result = dlg.ShowDialog();
+
+			if (result == false) return;
+
 			var saver = new ATCSaver();
-			_treeData.Save(saver);
+			try
+			{
+				_treeData.Save(saver, dlg.FileName);
+			}
+			catch (Exception)
+			{
+				_treeData.WorkspaceViewModel.StatusBarText =
+					"Failed saving to file..";
+			}
 		}
 
 		private void OnLoaded(object sender, RoutedEventArgs e)

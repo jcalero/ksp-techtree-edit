@@ -156,7 +156,7 @@ namespace ksp_techtree_edit.ViewModels
 			}
 		}
 
-		public void Save(TreeSaver saver)
+		public void Save(TreeSaver saver, string path)
 		{
 			saver.StartTree(this);
 			foreach (var node in TechTree)
@@ -190,7 +190,7 @@ namespace ksp_techtree_edit.ViewModels
 				      EndNode();
 			}
 			saver.EndTree();
-			saver.Save("../../test.cfg");
+			saver.Save(path);
 		}
 
 		#endregion Methods
