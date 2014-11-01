@@ -30,6 +30,7 @@
 			</ItemsControl.ItemsPanel>
 			<ItemsControl.ItemTemplate>
 				<DataTemplate DataType="{x:Type viewModels:ConnectionViewModel}">
+					<Canvas>
 					<Path Stroke="Chocolate" StrokeThickness="1">
 						<Path.Data>
 							<LineGeometry
@@ -37,6 +38,13 @@
 								EndPoint="{Binding EndNodeViewModel.Pos, Converter={StaticResource PointToCanvasConverter}}"/>
 						</Path.Data>
 					</Path>
+					<Path Stroke="Chocolate" StrokeThickness="1">
+						<Path.Data>
+							<EllipseGeometry Center="{Binding StartNodeViewModel.Pos, Converter={StaticResource PointToCanvasConverter}}"
+								RadiusX="3" RadiusY="3"/>
+						</Path.Data>
+					</Path>
+					</Canvas>
 				</DataTemplate>
 			</ItemsControl.ItemTemplate>
 		</ItemsControl>
