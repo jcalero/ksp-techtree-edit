@@ -1,6 +1,9 @@
 using System;
+using System.ComponentModel;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Windows;
+using ksp_techtree_edit.Annotations;
 using ksp_techtree_edit.Properties;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
@@ -10,9 +13,20 @@ namespace ksp_techtree_edit.Views
 	/// <summary>
 	/// Interaction logic for StartupDialog.xaml
 	/// </summary>
-	public partial class StartupDialog
+	public partial class StartupDialog : INotifyPropertyChanged
 	{
-		public bool CanLoad { get; set; }
+		private bool _canLoad;
+
+		public bool CanLoad
+		{
+			get { return _canLoad; }
+			set
+			{
+				if (_canLoad == value) return;
+				_canLoad = value;
+				OnPropertyChanged();
+			}
+		 }
 
 		public StartupDialog()
 		{
@@ -132,6 +146,15 @@ namespace ksp_techtree_edit.Views
 			mainWindow.NewTree();
 			mainWindow.FindParts();
 			Close();
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		[NotifyPropertyChangedInvocator]
+		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			var handler = PropertyChanged;
+			if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
