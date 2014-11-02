@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using ksp_techtree_edit.Models;
+using ksp_techtree_edit.Properties;
 
 namespace ksp_techtree_edit.ViewModels
 {
@@ -62,7 +63,11 @@ namespace ksp_techtree_edit.ViewModels
 		{
 			Connections = new ObservableCollection<ConnectionViewModel>();
 			TechTree = new ObservableCollection<TechNodeViewModel>();
-			StockNodes = File.ReadAllLines("..//..//stocknodes.kted");
+			StockNodes =
+				Resources.stocknodes.
+				          Split(
+				                new[] { ',' },
+				                StringSplitOptions.RemoveEmptyEntries);
 		}
 
 		#endregion Constructors
