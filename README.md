@@ -1,4 +1,4 @@
-TED - KSP Tech Tree Editor - v0.2 Alpha 2
+TED - KSP Tech Tree Editor - v0.2.1 Alpha 2
 =================
 
 Description
@@ -60,8 +60,12 @@ Known Issues
 Changelog
 -----
 
-###v0.2 Alpha 2 (2014-11-02)
+### v0.2.1 Alpha 2 (2014-11-02)
 
+* Fix UI overlaying issue by forcing ZLayer of nodes to stay between -1 and -24
+* Expanded workspace area slightly to accomodate larger trees (still not 1 on 1 with KSP though)
+
+### v0.2 Alpha 2 (2014-11-02)
 
    \[[Milestone - Alpha 1](https://github.com/jcalero/ksp-techtree-edit/issues?q=milestone%3A%22Basic+Features+v0.1%22+is%3Aclosed)\]\[[Milestone - Alpha 2](https://github.com/jcalero/ksp-techtree-edit/issues?q=milestone%3A%22First+Release+-+Alpha+v0.2%22+is%3Aclosed)\] - Total of 15 closed issues
 
