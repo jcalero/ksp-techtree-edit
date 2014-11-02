@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using KerbalParser;
+using ksp_techtree_edit.Util;
 
 namespace ksp_techtree_edit.Models
 {
@@ -15,7 +16,15 @@ namespace ksp_techtree_edit.Models
 		public string Description { get; set; }
 		public int Cost { get; set; }
 		public Point Pos { get; set; }
-		public int Zlayer { get; set; }
+
+		private int _zlayer;
+
+		public int Zlayer
+		{
+			get { return _zlayer; }
+			set { _zlayer = value.Clamp(-24, -1); }
+		}
+
 		public string TechId { get; set; }
 		public Icon Icon { get; set; }
 		public bool AnyParent { get; set; }
@@ -91,7 +100,7 @@ namespace ksp_techtree_edit.Models
 							decimal z;
 							if (!Decimal.TryParse(coordinates[2], out z))
 							{
-								Zlayer = 0;
+								Zlayer = -1;
 							}
 							Zlayer = (int)z;
 						}
