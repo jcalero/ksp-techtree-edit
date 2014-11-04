@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using KerbalParser;
+using ksp_techtree_edit.Properties;
 using ksp_techtree_edit.ViewModels;
 using Microsoft.Win32;
 
@@ -47,10 +48,7 @@ namespace ksp_techtree_edit.Views
 			                              as PartCollectionViewModel;
 
 			if (partCollectionViewModel == null) return;
-			const string ksppath = "C://Program Files (x86)//" +
-			                       "Steam//SteamApps//common//" +
-			                       "Kerbal Space Program//GameData";
-			partCollectionViewModel.LoadParts(ksppath);
+			partCollectionViewModel.LoadParts(Settings.Default.KspPath);
 
 			foreach (var node in _treeData.TechTree)
 			{
