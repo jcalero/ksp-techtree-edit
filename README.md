@@ -1,4 +1,4 @@
-TED - KSP Tech Tree Editor - v0.2.1 Alpha 2
+TED - KSP Tech Tree Editor - v0.2.2 Alpha 2
 =================
 
 Description
@@ -59,6 +59,9 @@ Known Issues
 
 Changelog
 -----
+
+### v0.2.2 Alpha 2 (2014-11-04)
+* Fix bug when loading parts from KSP folder
 
 ### v0.2.1 Alpha 2 (2014-11-02)
 
