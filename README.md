@@ -63,7 +63,7 @@ Changelog
 ### v0.2.3 Alpha (2014-11-15)
 * TechManager v1.3 support
 * No longer supports TreeLoader, TreeLoader has discontinued
-* Adding and removing parts from nodes should make more sense now as the list only shows parts that haven't already been assigned to a part
+* Adding and removing parts from nodes should make more sense now as the list only shows parts that haven't already been assigned to a node
 
 ### v0.2.2 Alpha 2 (2014-11-04)
 * Fix bug when loading parts from KSP folder
