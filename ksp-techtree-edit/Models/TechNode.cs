@@ -66,7 +66,7 @@ namespace ksp_techtree_edit.Models
 
 		public void PopulateFromSource(
 			KerbalNode sourceNode,
-			TreeType treeType = TreeType.TreeLoader)
+			TreeType treeType = TreeType.TechMananger)
 		{
 			var v = sourceNode.Values;
 
@@ -76,7 +76,7 @@ namespace ksp_techtree_edit.Models
 			double y;
 			switch (treeType)
 			{
-				case TreeType.TreeLoader:
+				case TreeType.TechMananger:
 					TechId = v.ContainsKey("techID") ? v["techID"].First() : "";
 
 					if (v.ContainsKey("pos"))
@@ -238,5 +238,5 @@ namespace ksp_techtree_edit.Models
 public enum TreeType
 {
 	ATC,
-	TreeLoader
+	TechMananger
 }

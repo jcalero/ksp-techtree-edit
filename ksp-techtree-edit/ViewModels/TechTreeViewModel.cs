@@ -204,7 +204,9 @@ namespace ksp_techtree_edit.ViewModels
 
 	public abstract class TreeSaver
 	{
-		protected readonly List<string> Output = new List<string>();
+		private readonly List<string> _output = new List<string>();
+
+		protected int IndentationLevel = 0;
 
 		public abstract TreeSaver StartTree(TechTreeViewModel techTree = null);
 		public abstract TreeSaver StartNode();
@@ -221,50 +223,58 @@ namespace ksp_techtree_edit.ViewModels
 
 		public void Save(string path)
 		{
-			File.WriteAllLines(path, Output);
+			File.WriteAllLines(path, _output);
+		}
+
+		protected void AddLine(string line)
+		{
+			_output.Add(Tabs + line);
+		}
+
+		protected void AddLineRange(ICollection<string> lines)
+		{
+			foreach (var line in lines)
+			{
+				AddLine(line);
+			}
+		}
+
+		private string Tabs
+		{
+			get { return new String('\t', IndentationLevel); }
 		}
 	}
 
-	public class TreeLoaderSaver : TreeSaver
+	public class TechManagerSaver : TreeSaver
 	{
 		public override TreeSaver StartTree(TechTreeViewModel techTree = null)
 		{
-			if (techTree == null) return this;
-			var nodeNames = new List<string>();
-
-			foreach (var node in techTree.TechTree)
-			{
-				nodeNames.Add(node.NodeName);
-			}
-
-			foreach (var stockNode in techTree.StockNodes)
-			{
-				if (nodeNames.Contains(stockNode)) continue;
-				Output.Add("REMOVENODE");
-				Output.Add("{");
-				Output.Add("	name = " + stockNode);
-				Output.Add("}");
-			}
+			AddLine("TECHNOLOGY_TREE_DEFINITION");
+			AddLine("{");
+			IndentationLevel++;
+			AddLine("id = TEDGeneratedTree");
+			AddLine("name = TED Generated Tree");
 			return this;
 		}
 
 		public override TreeSaver StartNode()
 		{
-			Output.Add("NODE");
-			Output.Add("{");
+			AddLine("NODE");
+			AddLine("{");
+			IndentationLevel++;
 			return this;
 		}
 
 		public override TreeSaver SaveAttribute(KeyValuePair<string, string> nameAttributePair)
 		{
-			Output.Add("	" + nameAttributePair.Key + " = " + nameAttributePair.Value);
+			AddLine(nameAttributePair.Key + " = " + nameAttributePair.Value);
 			return this;
 		}
 
 		public override TreeSaver SavePosition(double x, double y, double z)
 		{
 			var pos = x + "," + y + "," + z;
-			Output.Add("	pos = " + pos);
+			AddLine("pos = " + pos);
 			return this;
 		}
 
@@ -284,7 +294,7 @@ namespace ksp_techtree_edit.ViewModels
 				if (i < parents.Length - 1) parentsOutput += ",";
 			}
 
-			Output.Add("	parents = " + parentsOutput);
+			AddLine("parents = " + parentsOutput);
 			return this;
 		}
 
@@ -295,14 +305,16 @@ namespace ksp_techtree_edit.ViewModels
 
 		public override TreeSaver EndNode()
 		{
-			Output.Add("}");
+			IndentationLevel--;
+			AddLine("}");
 			return this;
 		}
 
 		public override TreeSaver StartParts()
 		{
-			Output.Add("	PARTS");
-			Output.Add("	{");
+			AddLine("PARTS");
+			AddLine("{");
+			IndentationLevel++;
 			return this;
 		}
 
@@ -310,19 +322,22 @@ namespace ksp_techtree_edit.ViewModels
 		{
 			foreach (var part in partsList)
 			{
-				Output.Add("		name = " + part.PartName);
+				AddLine("name = " + part.PartName);
 			}
 			return this;
 		}
 
 		public override TreeSaver EndParts()
 		{
-			Output.Add("	}");
+			IndentationLevel--;
+			AddLine("}");
 			return this;
 		}
 
 		public override TreeSaver EndTree()
 		{
+			IndentationLevel--;
+			AddLine("}");
 			return this;
 		}
 	}
@@ -333,16 +348,18 @@ namespace ksp_techtree_edit.ViewModels
 
 		public override TreeSaver StartTree(TechTreeViewModel techTree = null)
 		{
-			Output.Add("TECH_TREE");
-			Output.Add("{");
-			Output.Add("	name = test");
+			AddLine("TECH_TREE");
+			AddLine("{");
+			IndentationLevel++;
+			AddLine("name = test");
 			return this;
 		}
 
 		public override TreeSaver StartNode()
 		{
-			Output.Add("	TECH_NODE");
-			Output.Add("	{");
+			AddLine("TECH_NODE");
+			AddLine("{");
+			IndentationLevel++;
 			return this;
 		}
 
@@ -363,14 +380,14 @@ namespace ksp_techtree_edit.ViewModels
 					key = "scienceCost";
 					break;
 			}
-			Output.Add("		" + key + " = " + nameAttributePair.Value);
+			AddLine(key + " = " + nameAttributePair.Value);
 			return this;
 		}
 
 		public override TreeSaver SavePosition(double x, double y, double z)
 		{
-			Output.Add("		posX = " + x);
-			Output.Add("		posY = " + y);
+			AddLine("posX = " + x);
+			AddLine("posY = " + y);
 			return this;
 		}
 
@@ -385,10 +402,12 @@ namespace ksp_techtree_edit.ViewModels
 
 			foreach (var parent in parents)
 			{
-				Output.Add("		PARENT_NODE");
-				Output.Add("		{");
-				Output.Add("			name = " + parent);
-				Output.Add("		}");
+				AddLine("PARENT_NODE");
+				AddLine("{");
+				IndentationLevel++;
+				AddLine("name = " + parent);
+				IndentationLevel--;
+				AddLine("}");
 			}
 
 			return this;
@@ -401,13 +420,13 @@ namespace ksp_techtree_edit.ViewModels
 
 		public override TreeSaver EndNode()
 		{
-			Output.Add("	}");
+			IndentationLevel--;
+			AddLine("}");
 			return this;
 		}
 
 		public override TreeSaver StartParts()
 		{
-			// TODO : Buffer parts and stream to end of file as MM configs
 			return this;
 		}
 
@@ -417,7 +436,9 @@ namespace ksp_techtree_edit.ViewModels
 			{
 				_partsBuffer.Add("@PART[" + part.PartName + "]");
 				_partsBuffer.Add("{");
-				_partsBuffer.Add("  @TechRequired = " + part.TechRequired);
+				IndentationLevel++;
+				_partsBuffer.Add("@TechRequired = " + part.TechRequired);
+				IndentationLevel--;
 				_partsBuffer.Add("}");
 			}
 			return this;
@@ -430,8 +451,9 @@ namespace ksp_techtree_edit.ViewModels
 
 		public override TreeSaver EndTree()
 		{
-			Output.Add("}");
-			Output.AddRange(_partsBuffer);
+			IndentationLevel--;
+			AddLine("}");
+			AddLineRange(_partsBuffer);
 			return this;
 		}
 	}

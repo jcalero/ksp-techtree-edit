@@ -42,7 +42,7 @@ namespace ksp_techtree_edit.Views
 			return parser.ParseConfig(path);
 		}
 
-		public void FindParts(TreeType type = TreeType.TreeLoader)
+		public void FindParts(TreeType type = TreeType.TechMananger)
 		{
 			var partCollectionViewModel = MainSideBar.PartsListBox.DataContext
 			                              as PartCollectionViewModel;
@@ -61,7 +61,7 @@ namespace ksp_techtree_edit.Views
 			ResetTree();
 		}
 
-		public void LoadTree(string path, TreeType treeType = TreeType.TreeLoader)
+		public void LoadTree(string path, TreeType treeType = TreeType.TechMananger)
 		{
 			ResetTree();
 
@@ -76,13 +76,21 @@ namespace ksp_techtree_edit.Views
 
 			switch (treeType)
 			{
-				case TreeType.TreeLoader:
-					foreach (var tree in
-						_config.Where(
-						              tree => tree.Name != "REMOVENODE" &&
-						                      tree.Values.ContainsKey("name")))
+				case TreeType.TechMananger:
+					var techNodes =
+						_config.
+							First(
+							      child =>
+							      child.Name == "TECHNOLOGY_TREE_DEFINITION").
+							Children.Where(node => node.Name == "NODE").
+							ToArray();
+
+					foreach (var node in
+						techNodes.Where(
+						                kerbalNode =>
+						                kerbalNode.Values.ContainsKey("name")))
 					{
-						var v = tree.Values;
+						var v = node.Values;
 						var name = v["name"].First();
 						TechNodeViewModel techNodeViewModel;
 
@@ -96,7 +104,7 @@ namespace ksp_techtree_edit.Views
 							nameNodeHashtable.Add(name, techNodeViewModel);
 						}
 
-						techNodeViewModel.TechNode.PopulateFromSource(tree);
+						techNodeViewModel.TechNode.PopulateFromSource(node);
 
 						if (v.ContainsKey("parents"))
 						{
@@ -224,7 +232,7 @@ namespace ksp_techtree_edit.Views
 
 			if (result == false) return;
 
-			var saver = new TreeLoaderSaver();
+			var saver = new TechManagerSaver();
 			try
 			{
 				_treeData.Save(saver, dlg.FileName);

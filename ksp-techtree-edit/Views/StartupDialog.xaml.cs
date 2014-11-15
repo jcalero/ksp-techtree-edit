@@ -68,7 +68,7 @@ namespace ksp_techtree_edit.Views
 			          {
 				          DefaultExt = ".cfg",
 				          Filter = "Tech Tree Config Files|*.cfg",
-				          Title = "Select TreeLoader tree to load",
+				          Title = "Select TechMananger tree to load",
 			          };
 
 			var result = dlg.ShowDialog();

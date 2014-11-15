@@ -191,7 +191,7 @@ namespace ksp_techtree_edit.ViewModels
 
 		public void PopulateParts(
 			PartCollectionViewModel pc,
-			TreeType type = TreeType.TreeLoader)
+			TreeType type = TreeType.TechMananger)
 		{
 			switch (type)
 			{
@@ -205,7 +205,7 @@ namespace ksp_techtree_edit.ViewModels
 					}
 					break;
 
-				case TreeType.TreeLoader:
+				case TreeType.TechMananger:
 					var partTable = new Dictionary<string, PartViewModel>();
 
 					foreach (var part in pc.PartCollection)
