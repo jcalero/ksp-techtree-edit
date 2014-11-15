@@ -218,13 +218,15 @@ namespace ksp_techtree_edit.ViewModels
 						if (partTable.ContainsKey(part))
 						{
 							_parts.Add(partTable[part]);
+							pc.PartCollection.Remove(partTable[part]);
 						}
 						else
 						{
 							var tmpPart = new Part(part)
 							              {
 								              Title = part,
-								              TechRequired = TechId
+								              TechRequired = TechId,
+								              Category = "(Unknown)"
 							              };
 							_parts.Add(new PartViewModel(tmpPart));
 						}

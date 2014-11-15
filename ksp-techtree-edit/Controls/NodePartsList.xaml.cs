@@ -23,7 +23,7 @@ namespace ksp_techtree_edit.Controls
 
 			var node = techTree.WorkspaceViewModel.SelectedNode;
 
-			node.RemovePart(part);
+			techTree.PartCollectionViewModel.RemovePartFromNode(part, node);
 		}
 	}
 }

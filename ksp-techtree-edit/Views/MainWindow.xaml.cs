@@ -50,6 +50,10 @@ namespace ksp_techtree_edit.Views
 			if (partCollectionViewModel == null) return;
 			partCollectionViewModel.LoadParts(Settings.Default.KspPath);
 
+			var sidebar = MainSideBar.DataContext as TechTreeViewModel;
+			if (sidebar == null) return;
+			sidebar.PartCollectionViewModel = partCollectionViewModel;
+
 			foreach (var node in _treeData.TechTree)
 			{
 				node.PopulateParts(partCollectionViewModel, type);

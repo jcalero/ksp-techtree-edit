@@ -17,6 +17,7 @@ namespace ksp_techtree_edit.ViewModels
 		#region Private
 
 		private WorkspaceViewModel _workspaceViewModel;
+		private PartCollectionViewModel _partCollectionViewModel;
 		private Point _mousePosition;
 
 		#endregion Private
@@ -36,6 +37,17 @@ namespace ksp_techtree_edit.ViewModels
 			{
 				if (_workspaceViewModel == value) return;
 				_workspaceViewModel = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public PartCollectionViewModel PartCollectionViewModel
+		{
+			get { return _partCollectionViewModel; }
+			set
+			{
+				if (_partCollectionViewModel == value) return;
+				_partCollectionViewModel = value;
 				OnPropertyChanged();
 			}
 		}

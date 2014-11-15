@@ -26,7 +26,7 @@ namespace ksp_techtree_edit.Controls
 			var part = PartsList.SelectedItem as PartViewModel;
 			if (part == null) return;
 
-			selectedNode.AddPart(part);
+			techTreeViewModel.PartCollectionViewModel.AddPartToNode(part, selectedNode);
 		}
 	}
 }
