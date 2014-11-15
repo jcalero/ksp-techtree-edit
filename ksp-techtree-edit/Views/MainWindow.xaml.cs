@@ -53,6 +53,7 @@ namespace ksp_techtree_edit.Views
 			var sidebar = MainSideBar.DataContext as TechTreeViewModel;
 			if (sidebar == null) return;
 			sidebar.PartCollectionViewModel = partCollectionViewModel;
+			_treeData.PartCollectionViewModel = partCollectionViewModel;
 
 			foreach (var node in _treeData.TechTree)
 			{

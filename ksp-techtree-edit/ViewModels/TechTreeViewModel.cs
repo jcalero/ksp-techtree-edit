@@ -108,6 +108,12 @@ namespace ksp_techtree_edit.ViewModels
 			WorkspaceViewModel.SelectedNode = null;
 			TechTree.Remove(node);
 			UnlinkParent(node);
+			var parts = new PartViewModel[node.Parts.Count];
+			node.Parts.CopyTo(parts, 0);
+			foreach (var part in parts)
+			{
+				PartCollectionViewModel.RemovePartFromNode(part, node);
+			}
 			LinkNodes();
 		}
 
