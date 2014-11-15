@@ -1,9 +1,9 @@
-TED - KSP Tech Tree Editor - v0.2.2 Alpha 2
+TED - KSP Tech Tree Editor - v0.2.3 Alpha
 =================
 
 Description
 -----
-An external, visual, point-and-click tool for editing and creating custom tech trees for Kerbal Space Program. The tool generates the text files used by *other* plugins, such as **TechManager**, **TreeLoader** and **ATC**, hence one of these plugins are required for the trees to get loaded into the game itself.
+An external, visual, point-and-click tool for editing and creating custom tech trees for Kerbal Space Program. The tool generates the text files used by *other* plugins, such as **TechManager** and **ATC**, hence one of these plugins are required for the trees to get loaded into the game itself.
 
 Installation
 -----
@@ -22,7 +22,7 @@ Usage
 2. **Load**
   2. *(Option 1)* Load an existing tech tree file (*.cfg*)
      - **Make sure you select the right format!**
-     - For *TechManager* and *TreeLoader* files use **Load TreeLoader Tree..**
+     - For *TechManager* files use **Load TechManager Tree..**
      - For *ATC* files use **Load ATC Tree...**
   3. *(Option 2)* Create a new tech tree from scratch
      - Click on **New Blank Tree**
@@ -41,7 +41,7 @@ Usage
       - The little cirlce indicates the direction of the link.
 
 4. **Save**
-   1. Click **Save** at the top menu to save your file in **TechManager** (TreeLoader) format.
+   1. Click **Save** at the top menu to save your file in **TechManager** format.
    2. Click **Save (ATC)** to save in **ATC** format.
    3. You will be prompted to select the filename and where to save.
    4. **NOTE:** It does *not* matter what file the tree was when you loaded, you can save in any format (this can be used to convert a tree from one format to another!)
@@ -59,6 +59,11 @@ Known Issues
 
 Changelog
 -----
+
+### v0.2.3 Alpha (2014-11-15)
+* TechManager v1.3 support
+* No longer supports TreeLoader, TreeLoader has discontinued
+* Adding and removing parts from nodes should make more sense now as the list only shows parts that haven't already been assigned to a part
 
 ### v0.2.2 Alpha 2 (2014-11-04)
 * Fix bug when loading parts from KSP folder
