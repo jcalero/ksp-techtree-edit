@@ -271,7 +271,7 @@ namespace ksp_techtree_edit.ViewModels
 			AddLine("{");
 			IndentationLevel++;
 			AddLine("id = TEDGeneratedTree");
-			AddLine("name = TED Generated Tree");
+			AddLine("label = TED Generated Tree");
 			return this;
 		}
 
