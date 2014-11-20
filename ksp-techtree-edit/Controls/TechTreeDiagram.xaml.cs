@@ -19,6 +19,7 @@ namespace ksp_techtree_edit.Controls
 		private Vector _totalDelta = new Vector(0d, 0d);
 
 		private int _nodeStickiness = 25;
+		private int _snapDistance = 5;
 		private readonly TechTreeViewModel _techTree;
 
 		//TODO: Move this to ViewModel (Workspace?)
@@ -26,6 +27,13 @@ namespace ksp_techtree_edit.Controls
 		{
 			get { return _nodeStickiness; }
 			set { _nodeStickiness = value; }
+		}
+
+		//TODO: Move this to ViewModel (Workspace?)
+		public int SnapDistance
+		{
+			get { return _snapDistance; }
+			set { _snapDistance = value; }
 		}
 
 		#endregion Members
@@ -56,9 +64,14 @@ namespace ksp_techtree_edit.Controls
 
 			Mouse.OverrideCursor = Cursors.Hand;
 
-			var newPos = new Point(
-				Math.Round(techNode.Pos.X + e.HorizontalChange, 2),
-				Math.Round(techNode.Pos.Y - e.VerticalChange, 2));
+			var x = Math.Round(
+			                   (techNode.Pos.X + e.HorizontalChange) /
+			                   SnapDistance) * SnapDistance;
+			var y = Math.Round(
+			                   (techNode.Pos.Y - e.VerticalChange) /
+			                   SnapDistance) * SnapDistance;
+
+			var newPos = new Point(x, y);
 			techNode.Pos = newPos;
 		}
 
