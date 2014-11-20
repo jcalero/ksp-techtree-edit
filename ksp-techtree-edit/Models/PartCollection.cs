@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using KerbalParser;
+using ksp_techtree_edit.Util;
 using ksp_techtree_edit.ViewModels;
 
 namespace ksp_techtree_edit.Models
@@ -68,6 +69,7 @@ namespace ksp_techtree_edit.Models
 					_parts.Add(part);
 				}
 			}
+			Logger.Log("Loaded {0} parts from {1}", _parts.Count, Directory);
 			return partlist;
 		}
 

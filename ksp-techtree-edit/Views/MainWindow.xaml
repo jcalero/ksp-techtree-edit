@@ -9,6 +9,7 @@
 		mc:Ignorable="d" x:Class="ksp_techtree_edit.Views.MainWindow"
         Title="KSP Tech Tree Edit" Height="513" Width="718"
 		MinWidth="700" MinHeight="500" Loaded="OnLoaded"
+		Closed="OnClosed"
 		WindowStartupLocation="CenterScreen">
 	<Window.InputBindings>
 		<KeyBinding Key="Delete" Command="Delete"/>

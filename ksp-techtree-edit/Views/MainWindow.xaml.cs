@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using KerbalParser;
 using ksp_techtree_edit.Properties;
+using ksp_techtree_edit.Util;
 using ksp_techtree_edit.ViewModels;
 using Microsoft.Win32;
 
@@ -295,6 +296,11 @@ namespace ksp_techtree_edit.Views
 		{
 			var dlg = new HelpDialog { Owner = this };
 			dlg.ShowDialog();
+		}
+
+		private void OnClosed(object sender, EventArgs e)
+		{
+			Logger.Log("Application closed");
 		}
 	}
 }
