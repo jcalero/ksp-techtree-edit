@@ -137,6 +137,7 @@
     <Compile Include="Models\TechNode.cs" />
     <Compile Include="Models\TechTree.cs" />
     <Compile Include="Util\ExtensionMethods.cs" />
+    <Compile Include="Util\Logger.cs" />
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\NotificationViewModel.cs" />
     <Compile Include="ViewModels\ConnectionViewModel.cs" />
