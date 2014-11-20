@@ -44,7 +44,7 @@
 			</ListBox.GroupStyle>
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<Label Content="{Binding Title}"/>
+					<Label Content="{Binding ComposedTitle}"/>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>

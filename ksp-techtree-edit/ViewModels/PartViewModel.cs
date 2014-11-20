@@ -19,6 +19,11 @@ namespace ksp_techtree_edit.ViewModels
 			}
 		}
 
+		public string ComposedTitle
+		{
+			get { return "[" + ModName + "] " + Title; }
+		}
+
 		#region Model Wrappers
 
 		public string PartName
@@ -41,6 +46,11 @@ namespace ksp_techtree_edit.ViewModels
 				_part.FileName = value;
 				OnPropertyChanged();
 			}
+		}
+
+		public string ModName
+		{
+			get { return _part.ModName; }
 		}
 
 		public string Title

@@ -1,6 +1,8 @@
 using System;
+using System.IO;
 using System.Linq;
 using KerbalParser;
+using ksp_techtree_edit.Util;
 
 namespace ksp_techtree_edit.Models
 {
@@ -8,7 +10,27 @@ namespace ksp_techtree_edit.Models
 	{
 		#region Members
 
-		public string FileName { get; set; }
+		private string _fileName;
+
+		public string FileName
+		{
+			get { return _fileName; }
+			set
+			{
+				if (value == _fileName) return;
+				_fileName = value;
+				try
+				{
+					ModName = FindModName();
+				}
+				catch
+				{
+					ModName = "Unknown";
+					Logger.Error("Couldn't auto-detect mod for {0}", value);
+				}
+			}
+		}
+
 		public string PartName { get; set; }
 		public string Title { get; set; }
 		public string Description { get; set; }
@@ -16,6 +38,7 @@ namespace ksp_techtree_edit.Models
 		public string TechRequired { get; set; }
 		public string Category { get; set; }
 		public string Icon { get; set; }
+		public string ModName { get; set; }
 
 		#endregion Members
 
@@ -66,6 +89,23 @@ namespace ksp_techtree_edit.Models
 			{
 				Category = v["category"].First();
 			}
+		}
+
+		private string FindModName()
+		{
+			var di = new DirectoryInfo(FileName);
+
+			while (true)
+			{
+				if (di.Parent != null)
+				{
+					if (di.Parent.Name == "GameData") return di.Name;
+					di = di.Parent;
+					continue;
+				}
+				break;
+			}
+			return "Unknown";
 		}
 
 		#endregion Members
