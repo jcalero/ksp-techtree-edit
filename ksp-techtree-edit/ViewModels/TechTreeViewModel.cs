@@ -244,6 +244,14 @@ namespace ksp_techtree_edit.ViewModels
 			File.WriteAllLines(path, _output);
 		}
 
+		protected void AddLine(int count = 1)
+		{
+			for (var i = 0; i < count; i++)
+			{
+				_output.Add(Environment.NewLine);
+			}
+		}
+
 		protected void AddLine(string line)
 		{
 			_output.Add(Tabs + line);
