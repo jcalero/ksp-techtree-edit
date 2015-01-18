@@ -1,4 +1,4 @@
-TED - KSP Tech Tree Editor - v0.2.3 Alpha
+TED - KSP Tech Tree Editor - v0.2.4 Alpha
 =================
 
 Description
@@ -59,6 +59,14 @@ Known Issues
 
 Changelog
 -----
+### v0.2.4 Alpha (2015-01-18)
+* TechManager v1.5 support (hideIfNoBranch support)
+* Added debug logging - Output will be stored in output.log next to the .exe
+* Added node snapping - (Finally!)
+* Now shows "[Modname] Part Name - (Original TechRequired: Original Cost)" in parts list
+* TechId is now editable and not auto-generated
+* Fixes to TechManager file saver - Now uses ModuleManager config
+* This should mean more consistent part allocation when using many mods that edit tech requirements
 
 ### v0.2.3 Alpha (2014-11-15)
 * TechManager v1.3 support
