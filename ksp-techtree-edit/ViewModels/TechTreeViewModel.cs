@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows;
 using ksp_techtree_edit.Models;
 using ksp_techtree_edit.Properties;
+using ksp_techtree_edit.Util;
 
 namespace ksp_techtree_edit.ViewModels
 {
@@ -183,8 +184,10 @@ namespace ksp_techtree_edit.ViewModels
 		public void Save(TreeSaver saver, string path)
 		{
 			saver.StartTree(this);
+			var totalCost = 0;
 			foreach (var node in TechTree)
 			{
+				totalCost += node.Cost;
 				var parts = new List<string>();
 				foreach (var part in node.Parts)
 				{
@@ -216,6 +219,7 @@ namespace ksp_techtree_edit.ViewModels
 			}
 			saver.EndTree();
 			saver.Save(path);
+			Logger.Log("Tree saved succesfully to {0}. Total cost: {1} science. Total nodes: {2} nodes.", path, totalCost, TechTree.Count);
 		}
 
 		#endregion Methods
