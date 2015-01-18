@@ -83,7 +83,7 @@
 						<xctk:PropertyDefinition TargetProperties="NodeName" DisplayOrder="4"/>
 						<xctk:PropertyDefinition TargetProperties="TechId,Pos" DisplayOrder="5"/>
 						<xctk:PropertyDefinition TargetProperties="ZLayer" DisplayOrder="6"/>
-						<xctk:PropertyDefinition TargetProperties="AnyParent,HideIfEmpty" DisplayOrder="10"/>
+						<xctk:PropertyDefinition TargetProperties="AnyParent,HideIfEmpty,HideIfNoBranchParts" DisplayOrder="10"/>
 					</xctk:PropertyGrid.PropertyDefinitions>
 				</xctk:PropertyGrid>
 				<GridSplitter Grid.Row="3" Height="10" HorizontalAlignment="Stretch" Margin="0,2,0,2" Background="Black"/>

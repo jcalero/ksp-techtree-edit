@@ -171,6 +171,17 @@ namespace ksp_techtree_edit.ViewModels
 			}
 		}
 
+		public bool HideIfNoBranchParts
+		{
+			get { return _techNode.HideIfNoBranchParts; }
+			set
+			{
+				if (_techNode.HideIfNoBranchParts == value) return;
+				_techNode.HideIfNoBranchParts = value;
+				OnPropertyChanged();
+			}
+		}
+
 		#endregion Model Wrappers
 
 		#endregion Data Members

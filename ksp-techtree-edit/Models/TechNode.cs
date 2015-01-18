@@ -29,6 +29,7 @@ namespace ksp_techtree_edit.Models
 		public Icon Icon { get; set; }
 		public bool AnyParent { get; set; }
 		public bool HideIfEmpty { get; set; }
+		public bool HideIfNoBranchParts { get; set; }
 
 		public List<TechNode> Parents { get; set; }
 
@@ -56,6 +57,7 @@ namespace ksp_techtree_edit.Models
 			Icon = Icon.BASICROCKETRY;
 			AnyParent = false;
 			HideIfEmpty = false;
+			HideIfNoBranchParts = false;
 			Parents = new List<TechNode>();
 			Parts = new List<string>();
 		}
@@ -146,6 +148,7 @@ namespace ksp_techtree_edit.Models
 
 			AnyParent = false;
 			HideIfEmpty = false;
+			HideIfNoBranchParts = false;
 
 			if (treeType == TreeType.ATC)
 			{
@@ -203,6 +206,15 @@ namespace ksp_techtree_edit.Models
 					{
 						case "true":
 							HideIfEmpty = true;
+							break;
+					}
+				}
+				if (v.ContainsKey("hideIfNoBranchParts"))
+				{
+					switch (v["hideIfNoBranchParts"].First().Trim().ToLower())
+					{
+						case "true":
+							HideIfNoBranchParts = true;
 							break;
 					}
 				}

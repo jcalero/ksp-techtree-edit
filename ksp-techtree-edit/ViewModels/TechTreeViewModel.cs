@@ -205,6 +205,7 @@ namespace ksp_techtree_edit.ViewModels
 				      SaveAttribute(new KeyValuePair<string, string>("description", node.Description)).
 				      SaveAttribute(new KeyValuePair<string, string>("anyParent", node.AnyParent.ToString())).
 				      SaveAttribute(new KeyValuePair<string, string>("hideIfEmpty", node.HideIfEmpty.ToString())).
+				      SaveAttribute(new KeyValuePair<string, string>("hideIfNoBranchParts", node.HideIfNoBranchParts.ToString())).
 				      StartParents().
 				      SaveParents(parents).
 				      EndParents().
