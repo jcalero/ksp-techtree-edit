@@ -1,3 +1,4 @@
+using System;
 using ksp_techtree_edit.Models;
 
 namespace ksp_techtree_edit.ViewModels
@@ -21,8 +22,10 @@ namespace ksp_techtree_edit.ViewModels
 
 		public string ComposedTitle
 		{
-			get { return "[" + ModName + "] " + Title; }
+			get { return String.Format("[{0}] {1} - ({2}: {3})", ModName, Title, TechRequired, Cost); }
 		}
+
+
 
 		#region Model Wrappers
 

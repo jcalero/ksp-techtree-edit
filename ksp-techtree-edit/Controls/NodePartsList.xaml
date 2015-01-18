@@ -17,7 +17,7 @@
 		<ListBox Name="PartsListBox" Grid.Row="0" ItemsSource="{Binding WorkspaceViewModel.SelectedNode.Parts}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<Label Content="{Binding Title}" />
+					<Label Content="{Binding ComposedTitle}" />
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
