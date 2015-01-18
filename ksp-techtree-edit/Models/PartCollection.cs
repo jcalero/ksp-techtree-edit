@@ -55,7 +55,15 @@ namespace ksp_techtree_edit.Models
 			foreach (var file in Directory.GetFiles("*.cfg", SearchOption.AllDirectories))
 			{
 				OnProgress();
-				var parts = parser.ParseConfig(file.FullName);
+				KerbalConfig parts = null;
+				try
+				{
+					parts = parser.ParseConfig(file.FullName);
+				}
+				catch (Exception e)
+				{
+					Logger.Error(e.Message);
+				}
 				if (parts == null || parts.Count < 1) continue;
 				foreach (var p in parts.Where(
 				                              p => !partlist.Contains(p)

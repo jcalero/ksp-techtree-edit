@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using System.Windows;
 using ksp_techtree_edit.Models;
+using ksp_techtree_edit.Util;
 
 namespace ksp_techtree_edit.ViewModels
 {
@@ -221,7 +223,34 @@ namespace ksp_techtree_edit.ViewModels
 
 					foreach (var part in pc.PartCollection)
 					{
-						partTable.Add(part.PartName, part);
+						try
+						{
+							if (!partTable.ContainsKey(part.PartName))
+							{
+								partTable.Add(part.PartName, part);
+							}
+							else
+							{
+								var duplicate = partTable[part.PartName];
+								var existString = String.Format(" - Existing part: {0} ({1})", duplicate.PartName, duplicate.FileName);
+								Logger.Error(
+								             "PartLoader: Error while storing part \"{0}\" " +
+								             "({1}) into PartCollection - {2}{3}",
+								             part.PartName,
+								             part.FileName,
+								             "Part already exists",
+								             existString);
+							}
+						}
+						catch (Exception e)
+						{
+							Logger.Error(
+							             "PartLoader: Error while storing part \"{0}\" " +
+							             "({1}) into PartCollection - {2}",
+							             part.PartName,
+							             part.FileName,
+							             e.Message);
+						}
 					}
 
 					foreach (var part in _techNode.Parts)
